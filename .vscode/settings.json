@@ -1,0 +1,14 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    // "java.project.referencedLibraries": [
+    //     "lib/**/*.jar",
+    //     "/home/mikolaj/Documents/javafx-sdk-24.0.1/lib/**/*.jar"
+    // ]
+
+    "java.jdt.ls.java.home": "/usr/lib/jvm/java-22-openjdk",
+    "java.project.referencedLibraries": [
+        "/home/mikolaj/Documents/javafx-sdk-24.0.1/lib/**/*.jar"
+    ]
+
+}
