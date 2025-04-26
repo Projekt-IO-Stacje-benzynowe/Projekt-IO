@@ -1,3 +1,5 @@
+## Podstawy organizacji lokalnej wersji
+
 Przede wszystkim zainspirowane [tą stroną](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github).
 
 Najpierw lokalnie tworzymy sobie gałąź `main`:
@@ -22,7 +24,7 @@ Teraz jesteśmy zaktualizowani, commity wykonujemy w przedstawiony poniżej spos
 git add .
 git commit -m "Nazwa commita"
 ```
-Alternatywnie możemy pisać od razu `git commit -a -m "Nazwa commita`.
+Alternatywnie możemy pisać od razu `git commit -a -m "Nazwa commita"`.
 Następnie wysyłamy je do repozytorium online poprzez `git push origin main`.
 
 ## Tworzenie własnej gałęzi
