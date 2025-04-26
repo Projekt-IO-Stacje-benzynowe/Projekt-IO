@@ -20,4 +20,14 @@ Teraz jesteśmy zaktualizowani, commity wykonujemy w przedstawiony poniżej spos
 git add .
 git commit -m "Nazwa commita"
 ```
+Alternatywnie możemy pisać od razu `git commit -a -m "Nazwa commita`.
 Następnie wysyłamy je do repozytorium online poprzez `git push origin main`.
+
+## Tworzenie własnej gałęzi
+
+Tworzymy nową gałąż poprzez:
+```
+git checkout -b nazwa_gałęzi
+```
+
+`checkout` służy do przełączania się pomiędzy gałęziami, opcja `-b` oznacza tworzenie od razu gałęzi.
