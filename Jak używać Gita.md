@@ -1,3 +1,5 @@
+Przede wszystkim zainspirowane [tą stroną](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github).
+
 Najpierw lokalnie tworzymy sobie gałąź `main`:
 ```
 git init -b main
@@ -31,3 +33,5 @@ git checkout -b nazwa_gałęzi
 ```
 
 `checkout` służy do przełączania się pomiędzy gałęziami, opcja `-b` oznacza tworzenie od razu gałęzi.
+
+Następnie po przejściu do gałęzi main (`git checkout main`) możemy zaktualizować `main` z tej gałęzi poprzez `git merge nazwa_bocznej_krawędzi`. Możemy też ją usunąć za pomocą `git branch -d nazwa_usuwanej_krawędzi`.
