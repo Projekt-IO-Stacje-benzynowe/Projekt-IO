@@ -5,3 +5,6 @@ Docs/*.log
 Docs/*.synctex.gz
 Docs/*.xdv
 Docs/*.vscode
+.vscode
+build.*
+run.*

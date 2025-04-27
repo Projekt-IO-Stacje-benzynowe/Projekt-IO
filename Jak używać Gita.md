@@ -29,7 +29,7 @@ Następnie wysyłamy je do repozytorium online poprzez `git push origin main`.
 
 ## Tworzenie własnej gałęzi
 
-Tworzymy nową gałąż poprzez:
+Tworzymy nową gałąź poprzez:
 ```
 git checkout -b nazwa_gałęzi
 ```
