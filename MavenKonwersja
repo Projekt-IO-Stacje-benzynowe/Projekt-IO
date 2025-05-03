@@ -1,0 +1,73 @@
+1. Struktura katalogów projektu:
+   Żeby to miało sens musimy mieć jednolite drzewo katalogów, aby pobieranie i aktualizowanie projektów nie wiązało się z dodatkową pracą. Ja proponuję:
+        your-project/
+        ├── src/
+        │   └── main/
+        │       ├── java/
+        │       │   └── your/package/YourApp.java
+        |       |   └──controllers (folder z kontrolerami)
+        │       └── resources/
+        ├── pom.xml (zaraz wyjaśnie co to za plik - jest on WAŻNY)
+
+
+
+2. Stworzenie pliku pom.xml (on zarządza strukturą projektową i jest rozpoznawany przez każde IDE):
+Niestety tutaj nie ma jednej wersji bo każdy musi stworzyć plik pom.xml bazujący na już istniejącym projekcie, tzn. dopasować go pod swoje pliki. Polecam tutaj chata/deepseeka bo nie jest to trudne, ani długie. Mój plik wygląda następująco:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>Main</groupId>
+    <artifactId>javafx-projekt</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>24</java.version> <!-- lub 21, jeśli używacie -->
+        <javafx.version>24.0.1</javafx.version> <!-- lub nowsza -->
+    </properties>
+
+    <dependencies>
+        <!-- JavaFX modules -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin JavaFX -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>Main</mainClass>
+                    <options>
+                        <!-- Wyciszanie ostrzeżeń Unsafe dla JavaFX/Marlin -->
+                        <option>--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED</option>
+                        <option>--add-opens=java.base/sun.nio.ch=ALL-UNNAMED</option>
+                        <option>--add-opens=java.base/java.lang=ALL-UNNAMED</option>
+                        <option>--sun-misc-unsafe-memory-access=allow</option>
+                        <option>-Xlog:unsafe=off</option>
+                        <option>-Dprism.verbose=false</option> <!-- Wyłącza dodatkowe logi JavaFX -->
+                    </options>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+No i wsm to tyle, można sprawdzać czy działa i zgłaszać mi problemy.
