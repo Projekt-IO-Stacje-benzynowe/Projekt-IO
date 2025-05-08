@@ -15,9 +15,14 @@ public class Main extends Application {
         MSSQLConnection.MakeConnection(url, user, password);
 
         SceneManager.setStage(primaryStage);
-        SceneManager.addScene("branch", "/resources/view/branch_panel/main_menu.fxml");
-        SceneManager.addScene("login", "/resources/view/login.fxml");
-        // SceneManager.addScene("discount", "/app/view/branch_panel/discount_panel.fxml");
+        // resources w java, nie dziala dla mavena
+        // SceneManager.addScene("branch", "/resources/view/branch_panel/main_menu.fxml");
+        // SceneManager.addScene("login", "/resources/view/login.fxml");
+        // SceneManager.addScene("discount", "/app/view/branch_panel/discount_panel.fxml")
+        
+        // dziala dla mavena
+        SceneManager.addScene("branch", "/view/branch_panel/main_menu.fxml");
+        SceneManager.addScene("login", "/view/login.fxml");
 
         // trzeba dodać inne panele         
         // SceneManager.addScene("screen1", "/view/Screen1.fxml");

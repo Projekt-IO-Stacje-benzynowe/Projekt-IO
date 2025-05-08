@@ -11,7 +11,8 @@ public class DeliveryMenuController {
 
     @FXML
     public void confirmDelivery(ActionEvent event){
-        SceneManager.addScene("confirm_delivery", "/resources/view/branch_panel/confirm_delivery.fxml");
+        SceneManager.addScene("confirm_delivery", "/view/branch_panel/confirm_delivery.fxml");
+        // SceneManager.addScene("confirm_delivery", "/resources/view/branch_panel/confirm_delivery.fxml");
         SceneManager.showScene("confirm_delivery");
     }
     @FXML

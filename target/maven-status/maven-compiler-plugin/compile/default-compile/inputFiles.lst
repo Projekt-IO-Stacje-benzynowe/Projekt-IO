@@ -1,0 +1,15 @@
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/db/connection/MSSQLConnection.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/control_panel/Screen2Controller.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/LoginController.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/branch_panel/delivery_section/ConfirmDelivery.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/db/repo/RepositorySQL.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/branch_panel/discount_section/DiscountTableController.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/Main.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/branch_panel/discount_section/DiscountMenuController.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/branch_panel/MainMenuController.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/service/Session.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/model/PromotionsModel.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/branch_panel/delivery_section/DeliveryMenuController.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/SceneManager.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/model/UserModel.java
+/home/mikolaj/Documents/app_java/app_java/src/main/java/app/controllers/business_panel/Screen1Controller.java
