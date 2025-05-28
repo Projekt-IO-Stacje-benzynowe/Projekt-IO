@@ -6,3 +6,4 @@ Docs/*.synctex.gz
 Docs/*.xdv
 Docs/*.vscode
 mv_info.txt
+pom.xml

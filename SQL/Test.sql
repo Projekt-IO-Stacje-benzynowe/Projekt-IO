@@ -2,11 +2,8 @@
 
 /*
 CREATE DATABASE Test
-
 GO
-
 USE Test
-
 GO
 */
 IF OBJECT_ID('GetAllGiveawaysPerPromotion', 'P') IS NOT NULL

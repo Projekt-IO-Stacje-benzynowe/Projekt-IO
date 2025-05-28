@@ -1,7 +1,7 @@
 package app.controllers.branch_panel.discount_section;
 
 import javafx.fxml.FXML;
-import app.controllers.SceneManager;
+import app.service.SceneManager;
 import javafx.event.ActionEvent;
 
 public class DiscountMenuController {

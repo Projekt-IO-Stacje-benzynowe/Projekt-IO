@@ -1,4 +1,4 @@
-package app.controllers;
+package app.service;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +15,8 @@ public class SceneManager {
     public static void setStage(Stage stage) {
         primaryStage = stage;
     }
-    public static void addScene(String name, String fxmlFile) {
+    public static void addScene(String name, String fxmlFile){
+
         if(scenes.containsKey(name)){return;}
         try {
             Parent root = FXMLLoader.load(SceneManager.class.getResource(fxmlFile));

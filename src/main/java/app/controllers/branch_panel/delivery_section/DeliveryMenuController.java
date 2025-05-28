@@ -1,9 +1,9 @@
 package app.controllers.branch_panel.delivery_section;
 
 import javafx.fxml.FXML;
+import app.service.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
-import app.controllers.SceneManager;
 
 public class DeliveryMenuController {
     @FXML
@@ -21,4 +21,3 @@ public class DeliveryMenuController {
         // SceneManager.showScene("request_additional_delivery");
     }
 }
-// Przykład: komunikat informacyjny
