@@ -1,4 +1,4 @@
-package controllers;
+package app.controllers.control_panel;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane; // Zmiana z VBox na BorderPane
 import javafx.scene.layout.VBox;
-
+import app.controllers.control_panel.*;
 import java.io.IOException;
 
 public class MainController {

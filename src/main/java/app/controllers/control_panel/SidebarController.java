@@ -1,4 +1,4 @@
-package controllers;
+package app.controllers.control_panel;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
