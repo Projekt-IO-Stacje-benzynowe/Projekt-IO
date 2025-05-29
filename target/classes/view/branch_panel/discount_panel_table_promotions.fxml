@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.branch_panel.discount_section.DiscountTableController">
+   <children>
+      <Label layoutX="26.0" layoutY="29.0" prefHeight="35.0" prefWidth="245.0" text="Current promotions">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="13.0" layoutY="99.0" prefHeight="202.0" prefWidth="570.0">
+        <columns>
+          <TableColumn fx:id="column" prefWidth="569.0" text="Promotion's names" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
