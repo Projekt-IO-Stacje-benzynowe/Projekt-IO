@@ -3,7 +3,6 @@
     "java.project.referencedLibraries": [
       "/home/mikolaj/Documents/javafx-sdk-24.0.1/lib/*.jar",
       "lib/mssql-jdbc-12.10.0.jre11.jar"
-    ],
-    "java.configuration.updateBuildConfiguration": "interactive"
+    ]
   }
   

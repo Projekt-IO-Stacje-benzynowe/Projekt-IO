@@ -1,9 +1,23 @@
+<<<<<<< HEAD
+app/controllers/SceneManager.class
+app/service/Session.class
 app/db/repo/RepositorySQL.class
 app/controllers/branch_panel/delivery_section/DeliveryMenuController.class
+app/db/connection/MSSQLConnection.class
+app/controllers/LoginController.class
+app/model/UserModel.class
+=======
+app/db/repo/RepositorySQL.class
+app/controllers/branch_panel/delivery_section/DeliveryMenuController.class
+>>>>>>> diego
 app/model/PromotionsModel.class
 app/controllers/branch_panel/MainMenuController.class
 app/Main.class
 app/controllers/branch_panel/discount_section/DiscountTableController.class
+<<<<<<< HEAD
+app/controllers/branch_panel/delivery_section/ConfirmDelivery.class
+app/controllers/branch_panel/discount_section/DiscountMenuController.class
+=======
 app/service/Session.class
 app/service/branch_panel/discount_section/Promotions.class
 app/db/connection/MSSQLConnection.class
@@ -14,3 +28,4 @@ app/service/LoginValidation.class
 app/controllers/branch_panel/delivery_section/ConfirmDelivery.class
 app/controllers/branch_panel/discount_section/DiscountMenuController.class
 app/service/branch_panel/delivery_section/Delivery.class
+>>>>>>> diego
