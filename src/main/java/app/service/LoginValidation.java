@@ -32,6 +32,11 @@ public class LoginValidation{
         
         if (password.equals(user.getPassword())){
             SceneManager.showScene(user.getPanel());
+            if (user.getPanel().equals("branch")){
+                System.out.println("Branch panel");
+                user.setNameBranch(RepositorySQL.GetBranchNameForUser(user.getID()));
+                System.out.println("User - sesja nazwa brancha" + user.getNameBranch());
+            }
             Session.User = user;
         };
     }

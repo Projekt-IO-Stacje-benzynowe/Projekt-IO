@@ -7,11 +7,25 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
 
-import app.db.connection.MySQLConnection; // ZAMIANA TUTAJ
+import app.db.connection.MySQLConnection;
 import app.model.PromotionsModel;
 import app.model.UserModel;
 
 public class RepositorySQL {
+    public static String GetBranchNameForUser(int userID) {
+        String querySQL = "SELECT gasStationName FROM UsersGasStation WHERE ID_user = ?"; 
+
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("gasStationName");
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching branch name for user: " + err.getMessage());
+        }
+        return null;
+    }
 
     public static void InsertValue(String tableName, String[][] values) {
         String insertSQL = String.format("INSERT INTO %s (ID, Name, ProducerID) VALUES (?, ?, ?)", tableName);
@@ -27,21 +41,31 @@ public class RepositorySQL {
             System.err.println("Error while inserting values to the table: " + err.getMessage());
         }
     }
-
+    
     public static List<PromotionsModel> GetPromotions(String name) {
+        // String querySQL = """
+        // SELECT p.* 
+        // FROM Promotions p 
+        // JOIN GasStations g ON p.GasStationID = g.ID 
+        // WHERE g.name = ?
+        // """;
         String querySQL = """
         SELECT p.* 
-        FROM Promotions p 
-        JOIN GasStations g ON p.GasStationID = g.ID 
-        WHERE g.name = ?
+        FROM Promocje p 
+        JOIN Stacje g ON p.StacjaID = g.StacjaID 
+        WHERE g.Nazwa = ?
         """;
+
+        System.out.println("Name: " + name);
+
         List<PromotionsModel> result = new ArrayList<>();
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                result.add(new PromotionsModel(rs.getInt("ID"), rs.getString("Name")));
+                result.add(new PromotionsModel(rs.getInt("PromocjaID"), rs.getString("NazwaPromocji")));
+                // result.add(new PromotionsModel(rs.getInt("ID"), rs.getString("Name")));
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching promotions on chosen GasStation: " + err.getMessage());
@@ -60,7 +84,8 @@ public class RepositorySQL {
                     rs.getString("email"),
                     rs.getString("password"),
                     rs.getString("panel"),
-                    rs.getString("nameBranch")
+                    null
+                    // rs.getString("nameBranch")
                 );
             }else{
                 return null;
