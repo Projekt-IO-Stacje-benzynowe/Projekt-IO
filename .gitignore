@@ -9,7 +9,6 @@ mv_info.txt
 Docs/*.toc
 Docs/*.out
 Docs/*.svg
-pom.xml
 .vscode
 build.*
 run.*
