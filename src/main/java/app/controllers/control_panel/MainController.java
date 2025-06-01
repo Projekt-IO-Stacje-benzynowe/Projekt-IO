@@ -1,4 +1,4 @@
-package controllers;
+package app.controllers.control_panel;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ public class MainController {
     public void initialize() {
         try {
             loadSidebar();
-            changeContent("/fxmls/home.fxml");
+            changeContent("/view/control_panel/home.fxml");
         } catch (IOException e) {
             System.err.println("Failed to load sidebar: " + e.getMessage());
             e.printStackTrace();
@@ -24,7 +24,7 @@ public class MainController {
     }
 
     private void loadSidebar() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/sidebar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/sidebar.fxml"));
         VBox sidebar = loader.load(); // Zmienione z VBox na Parent
 
         SidebarController sidebarController = loader.getController();

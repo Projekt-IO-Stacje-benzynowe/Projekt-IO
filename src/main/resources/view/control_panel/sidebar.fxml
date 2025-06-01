@@ -15,7 +15,7 @@
       maxWidth="220"
       xmlns="http://javafx.com/javafx/23"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controllers.SidebarController">
+      fx:controller="app.controllers.control_panel.SidebarController">
 
    <stylesheets>
       <URL value="@/css/sidebar.css" />

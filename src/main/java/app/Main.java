@@ -20,10 +20,12 @@ public class Main extends Application {
         // SceneManager.addScene("discount", "/app/view/branch_panel/discount_panel.fxml")
         SceneManager.addScene("branch", "/view/branch_panel/main_menu.fxml");
         SceneManager.addScene("login", "/view/login.fxml");
+        SceneManager.addScene("Main", "/view/control_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
         // trzeba dodać inne panele         
         // SceneManager.addScene("screen1", "/view/Screen1.fxml");
         // SceneManager.addScene("screen2", "/view/Screen2.fxml");
         SceneManager.showScene("login");
+
     }
     public static void main(String[] args) {
         launch(args);
