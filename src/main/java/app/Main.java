@@ -14,6 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage){
         MySQLConnection.makeConnection();
         SceneManager.setStage(primaryStage);
+
         // resources w java, nie dziala dla mavena
         // SceneManager.addScene("branch", "/resources/view/branch_panel/main_menu.fxml");
         // SceneManager.addScene("login", "/resources/view/login.fxml");
@@ -21,7 +22,7 @@ public class Main extends Application {
         SceneManager.addScene("branch", "/view/branch_panel/main_menu.fxml");
         SceneManager.addScene("login", "/view/login.fxml");
         SceneManager.addScene("Main", "/view/control_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
-        //SceneManager.addScene("Analysis", "/view/control_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
+        SceneManager.addScene("Analysis", "/view/business_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
         // trzeba dodać inne panele
         // SceneManager.addScene("screen1", "/view/Screen1.fxml");
         // SceneManager.addScene("screen2", "/view/Screen2.fxml");

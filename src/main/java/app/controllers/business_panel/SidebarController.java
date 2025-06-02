@@ -117,6 +117,7 @@ public class SidebarController {
     }
 
     private void handleSettingsClick() {
+
         if (mainController != null) {
             try {
                 ReportGenerator service = new ReportGenerator();

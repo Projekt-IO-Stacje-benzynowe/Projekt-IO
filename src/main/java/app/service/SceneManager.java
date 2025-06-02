@@ -1,5 +1,4 @@
 package app.service;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -7,6 +6,7 @@ import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SceneManager {
     private static Stage primaryStage;
@@ -19,7 +19,7 @@ public class SceneManager {
 
         if(scenes.containsKey(name)){return;}
         try {
-            Parent root = FXMLLoader.load(SceneManager.class.getResource(fxmlFile));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(SceneManager.class.getResource(fxmlFile)));
             Scene scene = new Scene(root);
             scenes.put(name, scene);
         } catch (Exception e) {
