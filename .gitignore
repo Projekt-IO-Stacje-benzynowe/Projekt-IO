@@ -6,9 +6,9 @@ docs/*.synctex.gz
 docs/*.xdv
 docs/*.vscode
 mv_info.txt
-Docs/*.toc
-Docs/*.out
-Docs/*.svg
+docs/*.toc
+docs/*.out
+docs/*.svg
 .vscode
 build.*
 run.*
