@@ -1,0 +1,8 @@
+Tworzymy oprogramowanie według architektury trójwarstwowej. 
+{controllers, view} - warstwa prezentacji aplikacji, odpowiada za obsluge GUI oraz działan użytkownika. Łączy się z warstwą service.
+service - warstwa logiki biznesowej aplikacji. Łączy się z warstwą db
+db - warstwa danych. Opdowiada za połącznie z bazą danych oraz udostepnia API do jej obsługi.
+
+Przepływ:
+controllers -> service -> db
+// aktualnie w /controllers/branch_panel jest umieszczona logika biznesowa, ale to poprawie
