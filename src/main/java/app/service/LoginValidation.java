@@ -5,9 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-
+import app.db.connection.MySQLConnection;
 import app.db.repo.RepositorySQL;
 import app.model.UserModel;
+
+import app.db.connection.MySQLConnection;;
 
 public class LoginValidation{
     @FXML
@@ -16,7 +18,7 @@ public class LoginValidation{
     private TextField passwordField;
     @FXML
     private void loginScene(ActionEvent event) {
-        SceneManager.showScene("login");
+        MySQLConnection.makeConnection();
 
         String email = emailField.getText();
         String password = passwordField.getText();
@@ -33,6 +35,11 @@ public class LoginValidation{
         
         if (password.equals(user.getPassword())){
             SceneManager.showScene(user.getPanel());
+            if (user.getPanel().equals("branch")){
+                System.out.println("Branch panel");
+                user.setNameBranch(RepositorySQL.GetBranchNameForUser(user.getID()));
+                System.out.println("User - sesja nazwa brancha " + user.getNameBranch());
+            }
             Session.User = user;
         };
     }

@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
 import app.service.branch_panel.delivery_section.Delivery;
+import app.service.SceneManager;
+
 
 public class ConfirmDelivery{
     @FXML
@@ -12,6 +14,10 @@ public class ConfirmDelivery{
     @FXML
     public void confirmDelivery(ActionEvent event){
         Delivery.Confirm(deliveryID.getText());
-        
+        deliveryID.clear();
     }   
+    @FXML
+    public void goBackButton(ActionEvent event){
+        SceneManager.showScene("delivery_menu");
+    }
 }

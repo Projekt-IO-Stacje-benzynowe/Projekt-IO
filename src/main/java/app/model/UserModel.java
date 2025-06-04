@@ -20,4 +20,8 @@ public class UserModel {
     public String getPassword(){ return password;}
     public String getPanel(){return panel;}
     public String getNameBranch(){return nameBranch;}
+
+    public void setNameBranch(String nameBranch) {
+        this.nameBranch = nameBranch;
+    }
 }

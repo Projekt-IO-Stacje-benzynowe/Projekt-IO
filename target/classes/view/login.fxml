@@ -8,23 +8,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.service.LoginValidation">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.service.LoginValidation">
    <children>
       <Accordion />
-      <Button fx:id="loginButton" layoutX="256.0" layoutY="259.0" mnemonicParsing="false" onAction="#loginScene" text="Log in" />
-      <Label layoutX="133.0" layoutY="52.0" prefHeight="35.0" prefWidth="314.0" text="Welcome to the login panel">
+      <Button fx:id="loginButton" layoutX="111.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginScene" prefHeight="26.0" prefWidth="156.0" text="Log in" />
+      <Label layoutX="109.0" layoutY="38.0" prefHeight="51.0" prefWidth="202.0" text="Login Panel">
          <font>
-            <Font size="24.0" />
+            <Font size="35.0" />
          </font>
       </Label>
-      <TextField fx:id="emailField" layoutX="310.0" layoutY="131.0" />
-      <TextField fx:id="passwordField" layoutX="310.0" layoutY="191.0" />
-      <Text layoutX="106.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="66.36000061035156">
+      <TextField fx:id="emailField" layoutX="175.0" layoutY="130.0" />
+      <TextField fx:id="passwordField" layoutX="175.0" layoutY="189.0" />
+      <Text layoutX="29.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="66.36000061035156">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="106.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="102.36000061035156">
+      <Text layoutX="29.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="102.36000061035156">
          <font>
             <Font size="20.0" />
          </font>

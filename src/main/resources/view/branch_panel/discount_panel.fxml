@@ -19,13 +19,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="80.0" layoutY="233.0" mnemonicParsing="false" text="Button" />
       <Label layoutX="77.0" layoutY="89.0" prefHeight="35.0" prefWidth="307.0" text="Podgląd informacji o promocjach">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="77.0" layoutY="183.0" prefHeight="35.0" prefWidth="307.0" text="Wypełnienie ankiety dot. promocji">
          <font>
             <Font size="19.0" />
          </font>

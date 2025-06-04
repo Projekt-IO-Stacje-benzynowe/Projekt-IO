@@ -1,17 +1,17 @@
 package app.model;
 
 public class PromotionsModel {
-    private Integer ID = null;
     private String name = null;
+    private String desc = null;
 
-    public PromotionsModel(Integer ID, String name){
-        this.ID = ID;
+    public PromotionsModel(String name, String description){
         this.name = name;
-    }
-    public Integer getID(){
-        return this.ID;
+        this.desc = description;
     }
     public String getName(){
         return this.name;
+    }
+    public String getDesc(){
+        return this.desc;
     }
 }
