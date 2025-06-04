@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Parser",
+      "request": "launch",
+      "mainClass": "app.service.branch_panel.ClientSimulation.Parser",
+      "projectName": "app-java"
+    },
+    {
+      "type": "java",
       "name": "Launch JavaFX App",
       "request": "launch",
       "mainClass": "app.Main",

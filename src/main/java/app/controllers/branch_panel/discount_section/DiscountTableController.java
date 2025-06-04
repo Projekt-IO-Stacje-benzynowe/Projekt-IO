@@ -7,23 +7,38 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import app.model.PromotionsModel;
-import app.service.Session;
 
-import app.service.branch_panel.discount_section.Promotions;;
+import app.service.SceneManager;
+import app.service.Session;
+import app.service.branch_panel.discount_section.Promotions;
 
 public class DiscountTableController {
     @FXML
-    private TableColumn<String, String> column;
+    private TableColumn<PromotionsModel, String> nameColumn;
+
     @FXML
-    private TableView<String> table;
-    
+    private TableColumn<PromotionsModel, String> descColumn;
+
+    @FXML
+    private TableView<PromotionsModel> table;
+
     @FXML
     public void initialize() {
-        column.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue()));
-        List<PromotionsModel> promotions = Promotions.GetPromotions(Session.User.getNameBranch());
+        nameColumn.setCellValueFactory(cellData ->
+            new ReadOnlyStringWrapper(cellData.getValue().getName()));
 
-        for (PromotionsModel promotion : promotions) {
-            table.getItems().add(promotion.getName());
-        }
+        descColumn.setCellValueFactory(cellData ->
+            new ReadOnlyStringWrapper(cellData.getValue().getDesc()));
+
+
+    // do poprawki, przeneis do service
+        List<PromotionsModel> promotions = Promotions.GetPromotions(Session.User.getNameBranch());
+        table.getItems().addAll(promotions);
     }
+
+    @FXML
+    public void goBackButton(){
+        SceneManager.showScene("branch");
+    }
+
 }

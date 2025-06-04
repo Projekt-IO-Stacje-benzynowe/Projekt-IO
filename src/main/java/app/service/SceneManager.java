@@ -16,8 +16,23 @@ public class SceneManager {
         primaryStage = stage;
     }
     public static void addScene(String name, String fxmlFile){
-
         if(scenes.containsKey(name)){return;}
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(fxmlFile);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
+
         try {
             Parent root = FXMLLoader.load(SceneManager.class.getResource(fxmlFile));
             Scene scene = new Scene(root);
@@ -34,5 +49,18 @@ public class SceneManager {
         } else {
             System.out.println("Scena " + name + " nie istnieje!");
         }
+    }
+    public static boolean isScene(String name){
+        return scenes.containsKey(name);
+    }
+
+    public static void clearScene(String name){
+        scenes.remove(name);
+    }
+
+
+
+    public static void Clear(){
+        scenes.clear();
     }
 }

@@ -4,5 +4,8 @@ import app.model.UserModel;
 
 //stores logged user data
 public class Session {
-    public static UserModel User;
+    public static UserModel User = null;
+    public static void EndSession(){
+        User = null;
+    }
 }
