@@ -13,9 +13,9 @@ import java.util.Map;
 
 public class RequestDelivery {
     public static void sendRequest(TextField productID, TextField quantity, TextField deliveryID){
-        int prodID = TypeValidation.intValidation(deliveryID);
-        int quan = TypeValidation.intValidation(deliveryID);
-        int delID = TypeValidation.intValidation(deliveryID);
+        int prodID = TypeValidation.intValidation(productID.getText());
+        int quan = TypeValidation.intValidation(quantity.getText());
+        int delID = TypeValidation.intValidation(deliveryID.getText());
         RepositorySQL.sendRequestForDelivery(Session.User.getID(), delID, prodID, quan);
         
     }

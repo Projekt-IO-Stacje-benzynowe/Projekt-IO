@@ -6,15 +6,10 @@ import java.io.IOException;
 
 
 import javafx.event.ActionEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.WindowEvent;
-
 import app.service.Session;
 import app.service.branch_panel.ClientSimulation.Launcher;
 import app.service.SceneManager;
 
-import java.lang.Process;
 
 
 public class MainMenuController {    
@@ -60,6 +55,7 @@ public class MainMenuController {
         SceneManager.Clear();
         SceneManager.addScene("login", "/view/login.fxml");
         SceneManager.showScene("login");
+        SceneManager.addScene("branch", "/view/branch_panel/main_branch.fxml");
     }
 
 }       

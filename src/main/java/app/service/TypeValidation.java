@@ -5,10 +5,10 @@ import javafx.scene.control.TextField;
 
 public class TypeValidation {
     
-    public static int intValidation(TextField num){
+    public static int intValidation(String num){
         int result = -1;        
         try {
-            result = Integer.parseInt(num.getText());
+            result = Integer.parseInt(num);
         }catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Niepoprawna liczba");

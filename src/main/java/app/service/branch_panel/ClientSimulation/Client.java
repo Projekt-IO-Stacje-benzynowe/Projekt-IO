@@ -37,20 +37,4 @@ public class Client{
             System.out.println("Błąd zamykania: " + e.getMessage());
         }
     }
-
-    public void run(){
-        Client client = new Client("localhost", 9999);
-
-        while(true){
-
-            client.send(Parser.toJson(1, 13));
-            System.out.println("Wysłano wiadomość");
-            try{
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                break;
-            }
-        }
-        client.close();
-    }
 }
