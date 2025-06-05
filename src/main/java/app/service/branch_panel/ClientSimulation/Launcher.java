@@ -1,20 +1,23 @@
 package app.service.branch_panel.ClientSimulation;
 
 public class Launcher {
-    public Process runClientTask() {
+    public void runClientTask() {
         ClientTask tk = new ClientTask();
         Thread t = new Thread(tk::run);
 
         t.setDaemon(true);
-        t.start();
 
-        return null;
+
+        t.start();
     }
     public void runServerTask(){
-        Task tk = new Task();
+        ServerTask tk = new ServerTask();
 
         Thread t = new Thread(tk::run);
         t.setDaemon(true);
+        
+
         t.start();
+
     }
-}
+}       

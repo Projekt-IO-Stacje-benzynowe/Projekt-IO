@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 import java.util.List;
+
+
 import java.util.ArrayList;
 
 import app.db.connection.MySQLConnection;
@@ -12,6 +14,11 @@ import app.model.PromotionsModel;
 import app.model.UserModel;
 
 import java.sql.Timestamp;
+import java.sql.Connection;
+import java.sql.Date;
+
+import app.model.RewardModel;
+import app.model.RewardToIssuanceModel;
 
 public class RepositorySQL {
     public static String GetBranchNameForUser(int userID) {
@@ -51,7 +58,6 @@ public class RepositorySQL {
         WHERE g.name = ?
         """;
 
-        System.out.println("Name: " + name);
         List<PromotionsModel> result = new ArrayList<>();
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
             stmt.setString(1, name);
@@ -102,19 +108,6 @@ public class RepositorySQL {
         }
     }
 
-    // private static int GetLastIndexFromDisposals(){
-    //     String querySQL = "SELECT MAX(DisposalID) FROM Disposals";
-    //     try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
-    //         ResultSet rs = stmt.executeQuery();
-    //         if(rs.next()){
-    //             int id = rs.getInt(1);
-    //             return id;
-    //         }
-    //     }catch(SQLException e){
-    //         System.out.println("Error while fetching last row index " + e);
-    //     }
-    //     return 0;
-    // }
     public static void sendRaport(int stationID, int productID, int quantity, String desc, Timestamp date){
         String querySQL = """
             INSERT INTO Disposals (
@@ -150,6 +143,7 @@ public class RepositorySQL {
             System.out.println("Error while sending report" + e);
         }
     }
+
     private static int GetLastIndex(String tableName, String columnName){
         String querySQL = "SELECT MAX(" + columnName + ") FROM " + tableName;
 
@@ -181,7 +175,6 @@ public class RepositorySQL {
                 Notes
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
-
         try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
             int newID = GetLastIndex("Deliveries", "DeliveryID") + 1;
             stmt.setInt(1, newID);
@@ -199,5 +192,296 @@ public class RepositorySQL {
         }catch(SQLException e){
             System.out.println("Error while sending report" + e);
         }        
-    }   
+    }
+
+    public static ArrayList<Integer> findPromotionsByProductID(int productID) {
+        String querySQL = """
+            SELECT PromotionID FROM Promotions p
+            WHERE p.ProductID = ?
+            """;
+
+        ArrayList<Integer> ids = new ArrayList<>();
+        try {
+            PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL);
+
+            stmt.setInt(1, productID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ids.add(rs.getInt("PromotionID"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error while querying promotions: " + e.getMessage());
+        }
+        return ids;
+    }
+
+    public static List<RewardModel> findProductReward(int PromotionID){
+        String querySQL = """
+            SELECT * FROM RewardProducts p
+            WHERE p.PromotionID = ?
+            """;
+        List<RewardModel> result = new ArrayList<>();
+        
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setInt(1, PromotionID);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new RewardModel(
+                    rs.getInt("RewardProductID"),
+                    rs.getInt("PromotionID"),
+                    rs.getString("Name"),
+                    rs.getInt("UnitPrice"),
+                    rs.getInt("RequiredProductsNumber"),
+                    null
+                ));
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching promotions on chosen GasStation: " + err.getMessage());
+        }
+        return result;
+    }
+
+    public static void insertRewardToIssuance(
+            int issuanceID,
+            int rewardProductID,
+            int promotionID,
+            int stationID,
+            Date month,                  
+            int quantityIssued,
+            double unitPrice,
+            double totalValue,
+            String notes) {
+
+        String querySQL = """
+            INSERT INTO RewardsToIssuance (
+                IssuanceID, RewardProductID, PromotionID, StationID,
+                Month, QuantityIssued, UnitPrice, TotalValue, Notes
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """;
+
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
+
+            stmt.setInt(1, issuanceID);
+            stmt.setInt(2, rewardProductID);
+            stmt.setInt(3, promotionID);
+            stmt.setInt(4, stationID);
+            stmt.setDate(5, month);
+            stmt.setInt(6, quantityIssued);
+            stmt.setDouble(7, unitPrice);
+            stmt.setDouble(8, totalValue);
+            stmt.setString(9, notes);
+
+            stmt.executeUpdate();
+            System.out.println("Dane zostały dodane do RewardsToIssuance.");
+
+        } catch (SQLException e) {
+            System.err.println("Błąd podczas dodawania danych: " + e.getMessage());
+        }
+    }
+
+
+
+    public static Integer findStationIDByName(String name) {
+        String querySQL = """
+            SELECT StationID FROM Stations
+            WHERE Name = ?
+        """;
+
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("StationID");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Błąd podczas wyszukiwania StationID: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public static List<RewardToIssuanceModel> FetchRewardToIssuance(int stationID) {
+        String query = """
+            SELECT * FROM RewardsToIssuance
+            WHERE StationID = ?
+        """;
+    
+        List<RewardToIssuanceModel> result = new ArrayList<>();
+    
+        try ( PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query)) {
+    
+            stmt.setInt(1, stationID);
+    
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                RewardToIssuanceModel model = new RewardToIssuanceModel(
+                    rs.getObject("IssuanceID", Integer.class),
+                    rs.getObject("RewardProductID", Integer.class),
+                    rs.getObject("PromotionID", Integer.class),
+                    rs.getObject("StationID", Integer.class),
+                    rs.getDate("Month"),
+                    rs.getObject("QuantityIssued", Integer.class),
+                    rs.getObject("UnitPrice", Integer.class),
+                    rs.getObject("TotalValue", Integer.class),
+                    rs.getString("Notes")
+                );
+                result.add(model);
+            }
+    
+        } catch (SQLException e) {
+            System.err.println("Błąd podczas pobierania danych z RewardsToIssuance: " + e.getMessage());
+        }
+    
+        return result;
+    }
+
+    public static Integer getMaxIssuanceID() {
+        String query = "SELECT MAX(IssuanceID) FROM RewardsToIssuance";
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+    
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void deleteByIssuanceID(int issuanceID) {
+        String sql = "DELETE FROM RewardsToIssuance WHERE IssuanceID = ?";
+
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, issuanceID);
+
+            int rowsDeleted = stmt.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Usunięto " + rowsDeleted + " wiersz z RewardsToIssuance.");
+            } else {
+                System.out.println("Nie znaleziono wiersza z IssuanceID = " + issuanceID);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Integer getMaxIssuanceIDFromRewardIssuance() {
+        String query = "SELECT MAX(IssuanceID) FROM RewardIssuance";
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+    
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void insertRewardIssuance(RewardToIssuanceModel model) {
+        String sql = "INSERT INTO RewardIssuance " +
+                "(IssuanceID, RewardProductID, PromotionID, StationID, Month, QuantityIssued, UnitPrice, TotalValue, Notes) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try ( PreparedStatement stmt = MySQLConnection.conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, getMaxIssuanceIDFromRewardIssuance() + 1);
+            stmt.setInt(2, model.getRewardProductID());
+            stmt.setInt(3, model.getPromotionID());
+            stmt.setInt(4, model.getStationID());
+            stmt.setDate(5, model.getMonth());
+            stmt.setInt(6, model.getTotalValue());
+            stmt.setDouble(7, model.getUnitPrice());
+            stmt.setDouble(8, model.getTotalValue());
+            stmt.setString(9, model.getNotes());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Integer getMaxSaleID() {
+        String query = "SELECT MAX(SaleID) FROM Sales";
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+    
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static void insertSale(int saleID,int PromotionID, int StationID, int ProductID, Date month, int soldQuantity, double GrossValue, double Margin ){
+        String sql = "INSERT INTO Sales " +
+                "(SaleID, PromotionID, StationID, ProductID, Month, QuantitySold, GrossValue, Margin) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try ( PreparedStatement stmt = MySQLConnection.conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, saleID);
+            stmt.setInt(2, PromotionID);
+            stmt.setInt(3, StationID);
+            stmt.setInt(4, ProductID);
+            stmt.setDate(5, month);
+            stmt.setInt(6, soldQuantity);
+            stmt.setDouble(7, GrossValue);
+            stmt.setDouble(8, Margin);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Double getProductPriceById(int productId) {
+            String query = "SELECT Price FROM Products WHERE ProductID = ?";
+            
+            try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query)) {
+                stmt.setInt(1, productId);
+                
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getDouble("Price");
+                    }
+                }
+            } catch (SQLException e) {
+                System.err.println("Błąd podczas pobierania ceny produktu: " + e.getMessage());
+            }
+            
+            return null;
+        }
+
+        public static Double getPromotionPrice(int promotionID) {
+            String query = "SELECT Price FROM Promotions WHERE PromotionID = ?";
+            
+            try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query)) {
+                stmt.setInt(1, promotionID);
+                
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getDouble("Price");
+                    }
+                }
+            } catch (SQLException e) {
+                System.err.println("Błąd podczas pobierania ceny produktu: " + e.getMessage());
+            }
+            return 0.0;
+        }
+
 }       

@@ -17,22 +17,7 @@ public class SceneManager {
     }
     public static void addScene(String name, String fxmlFile){
         if(scenes.containsKey(name)){return;}
-
-
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println(fxmlFile);
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
-
-
+        
         try {
             Parent root = FXMLLoader.load(SceneManager.class.getResource(fxmlFile));
             Scene scene = new Scene(root);

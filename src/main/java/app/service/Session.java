@@ -8,4 +8,10 @@ public class Session {
     public static void EndSession(){
         User = null;
     }
+
+
+    public static boolean isUser(){
+        if( User != null) return true;
+        return false;
+    }
 }
