@@ -112,7 +112,6 @@ public class SidebarController {
 
     private void handleLogoutClick() {
         System.out.println("Logout clicked");
-
         System.out.println(Box1.getWidth());
     }
 }
