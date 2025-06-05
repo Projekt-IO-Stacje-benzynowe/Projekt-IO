@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
-    <BorderPane fx:id="mainContainer" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="app.controllers.control_panel.MainController">
-        <left>
-            <VBox fx:id="sidebarContainer" />  <!-- Kontener na sidebar -->
-        </left>
-        <center>
-            <StackPane fx:id="contentArea" />    <!-- Tutaj będzie dynamiczna zawartość -->
-        </center>
-    </BorderPane>
+<StackPane fx:id="mainContainer" xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="app.controllers.control_panel.logistics_coordinator_section.MainController"
+           prefHeight="800" prefWidth="800" maxHeight="-Infinity" maxWidth="-Infinity">
 
+    <!-- Panel górny -->
+    <StackPane fx:id="top"
+               prefHeight="120" maxHeight="120"
+               style="-fx-background-color: #2c3f53;"
+               StackPane.alignment="TOP_CENTER" />
+
+
+
+
+</StackPane>
