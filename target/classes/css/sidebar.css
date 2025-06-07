@@ -53,6 +53,5 @@
 
 /* Separatory */
 .sidebar-separator{
-    -fx-background-color: #34495e;
     -fx-padding: 0 10px;
 }
