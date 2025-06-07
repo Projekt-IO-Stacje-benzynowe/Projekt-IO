@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 
 <?import javafx.scene.shape.SVGPath?>
 <?import java.net.URL?>
@@ -37,10 +38,13 @@
                             </image>
                         </ImageView>
                     </StackPane>
+                    <StackPane fx:id="tablePane">
+                    </StackPane>
                 </center>
                 <right>
                     <VBox minWidth="100">
                         <Label text="Right section" style="-fx-background-color: #fbe6fa;"/>
+                        <Text text="test" fx:id="testText"/>
                     </VBox>
                 </right>
                 <bottom>

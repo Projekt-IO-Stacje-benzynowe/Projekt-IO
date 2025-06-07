@@ -1,16 +1,15 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
+import app.model.PromotionsModel;
+import app.service.control_panel.logistics_coordinator_section.MainService;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
-
-import java.io.IOException;
+import javafx.scene.text.Text;
 
 public class MainController {
     public BorderPane background;
@@ -22,13 +21,17 @@ public class MainController {
     public HBox topBar;
     @FXML
     public BorderPane mainContent;
+    private TableView<PromotionsModel> promotionsTableView;
+    @FXML
+    private StackPane tablePane;
     @FXML
     private VBox sidebarContainer;
     @FXML
     private ImageView szczyp;
+    @FXML
+    private Text testText;
     public void initialize() {
         try {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/sidebar.fxml"));
             sidebarContainer = loader.load(); // Ten VBox jest root z sidebar.fxml
 
@@ -49,8 +52,18 @@ public class MainController {
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
             szczyp.fitWidthProperty().bind(imagePane.widthProperty().multiply(0.95));
             szczyp.fitHeightProperty().bind(imagePane.heightProperty().multiply(0.95));
+
+            promotionsTableView = MainService.getPromotionsTable("Stacja Centralna");
+            tablePane.getChildren().add(promotionsTableView);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void reactTable(MouseEvent event) {
+        String text = promotionsTableView.getSelectionModel().getSelectedItem().getName();
+        System.out.println("hello" + text);
+        testText.setText("omg");
     }
 }

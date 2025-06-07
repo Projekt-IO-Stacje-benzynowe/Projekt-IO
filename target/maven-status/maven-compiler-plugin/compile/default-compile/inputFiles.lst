@@ -7,6 +7,7 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\Repor
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\ProductReport.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\db\connection\MySQLConnection.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Parser.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\MainService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\ReportGenerator.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\delivery_section\RequestDelivery.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\db\repo\RepositorySQL.java
@@ -15,6 +16,7 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\Main.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Server.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\SidebarController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\CreateOutletController.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\TableService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\PromotionsModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics\CreateOutletService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\MainMenuController.java

@@ -7,13 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import app.service.SceneManager;
 
+import com.mysql.cj.MysqlConnection;
+import com.mysql.cj.protocol.a.MysqlBinaryValueDecoder;
+
 import app.db.connection.MySQLConnection;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         SceneManager.setStage(primaryStage);
-
+        MySQLConnection.makeConnection();
         // resources w java, nie dziala dla mavena
         // SceneManager.addScene("branch", "/resources/view/branch_panel/main_menu.fxml");
         // SceneManager.addScene("login", "/resources/view/login.fxml");
