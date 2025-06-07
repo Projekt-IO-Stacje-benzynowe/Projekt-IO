@@ -2,33 +2,30 @@ package app.service.branch_panel.ClientSimulation;
 
 import java.util.Random;
 
+import app.service.Session;
 
 public class ClientTask {
     public ClientTask(){};
     
     public void run(){
         Client client = new Client("localhost", 9999);
+        // while(!Session.isUser());
 
         while(true){
             client.send(GenerateRandomJsonQuery());
             
             System.out.println("Wysłano wiadomość");
             try{
-                Thread.sleep(5000);
+                Thread.sleep(9000);
             } catch (InterruptedException e) {
                 break;
             }
         }
         client.close();
     }
-
     public String GenerateRandomJsonQuery(){
         Random rand = new Random();
-
-        // ewentualnie zmienic wraz id ostatniego dodanego produktu
-        return Parser.toJson(rand.nextInt(12), rand.nextInt(51));
+        return Parser.toJson(rand.nextInt(11) + 1, rand.nextInt(50) + 1);
+    
     }
-
-
-
 }
