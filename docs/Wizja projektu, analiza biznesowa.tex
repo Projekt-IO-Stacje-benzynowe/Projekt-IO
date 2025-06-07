@@ -1,0 +1,189 @@
+% Ten plik jest zaprojektowany do użycia z LuaLaTeX.
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{fontspec} % Obsługa czcionek w LuaLaTeX
+\usepackage[polish]{babel}
+\usepackage{geometry} % Ustawienia marginesów
+\geometry{margin=1in}
+\usepackage{hyperref} % Obsługa hiperłączy
+\usepackage{titlesec} % Formatowanie sekcji
+\usepackage[skip=10pt plus1pt]{parskip}
+\usepackage[table]{xcolor}
+\usepackage{float}
+
+% Ustawienia hiperłączy
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Wizja projektu, analiza biznesowa},
+    pdfauthor={Diego Ostoja Kowalski}
+}
+
+% Tytuł dokumentu
+\title{
+    \line(1,0){250}\\
+    System Zarządzania Promocjami\\
+    Wizja projektu, analiza biznesowa\\
+    \line(1,0){250}}
+\author{Antoni Blicharz\\
+        Szymon Dybał\\
+        Jakub Koszorz\\
+        Mikołaj Mroczek\\
+        Diego Ostoja-Kowalski\\}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+%\tableofcontents
+\newpage
+
+\section{Wstęp}
+
+\subsection{Cel dokumentu}
+
+Ten dokument opisuje wizję i zakres projektu Systemu Zarządzania Promocjami, obecną sytuację biznesową, charakteryzację interesariuszy, analizę zagrożeń i ryzyka oraz wymagania biznesowe względem oprogramowania.
+Całość wymagań dotyczy aspektów biznesowych i ewentualnych ograniczeń technicznych dotyczących projektowanego rozwiązania.
+
+\subsection{Definicje}
+
+\textbf{Promocja} -- czas, w którym nagroda jest wydawana klientom po spełnieniu przez nich wymagań kupna konkretnych produktów podczas sprzedaży detalicznej.
+
+\textbf{Produkt} -- pojedynczy towar o określonym kodzie w systemie, który jest sprzedawany w punktach sprzedaży sieci handlowej.
+
+\textbf{Nagroda} -- pojedynczy towar o określonym kodzie w systemie, który jest przekazywany klientowi po spełnieniu przez niego wymagań określonych w promocji.
+
+\textbf{Punkt sprzedaży} -- pojedynczy punkt, w którym odbywa się sprzedaż detaliczna w ramach sieci handlowej.
+
+\textbf{Dostawa} -- przekazanie określonej liczby nagród z magazynu centralnego do poszczególnych punktów sprzedaży.
+
+\section{Analiza biznesowa}
+
+\subsection{Obecna sytuacja biznesowa}
+
+Firmy skupiające swój biznes w obrębie sprzedaży i obsługi klienta starają się wyprzedzać inne konkurencyjne firmy i zachęcać jak największą rzeszę klientów do korzystania z ich sieci handlowych.
+Dotyczy to w równej mierze supermarketów, sieci małych sklepów, jak i stacji benzynowych.
+Stosują one różne metody marketingowe, w tym proponują klientom system nagród wymienianych za punkty na kartach lojalnościowych lub dodatki do zakupów w postaci prezentów.
+
+Nigdy nie ma pewności, czy zaproponowana przez sprzedawcę nagroda będzie ciekawa dla klienta, dlatego oferowane są różne nagrody (pluszaki, kubki z logo firmy, zabawki itp.).
+Aby klient był zadowolony w trakcie promocji, oczekuje on, żeby dostępne były wszystkie typy nagród.
+Natomiast z punktu widzenia sieci handlowej jest niezbędna taka dystrybucja nagród do poszczególnych placówek, aby ich stan magazynowy był optymalny i równomierny.
+
+Aby osiągnąć oba cele, konieczne jest oprócz systemu magazynowego i kasowego wprowadzenie dodatkowego oprogramowania do zarządzania promocjami.
+
+\subsection{Wizja i zakres produktu}
+
+System ma na celu automatyzację procesu zarządzania promocjami produktów w sieciach handlowych takich jak stacje benzynowe, supermarkety i inne punkty sprzedaży detalicznej.
+Umożliwi on pracownikom sieci dodawanie, edytowanie i usuwanie promocji, koordynowanie dostaw nagród, a także generowanie raportów dotyczących ich skuteczności.
+Będzie on również umożliwiał zintegrowanie procesu wydawania produktów promocyjnych z systemem kasowym, co pozwoli na automatyczne zarządzanie stanami magazynowymi.
+
+Dzięki zastosowaniu Systemu, sieci handlowe będą mogły znacznie uprościć proces tworzenia promocji, zarządzania nimi i analizowania ich wpływów na ich dochody.
+Będą też one miały narzędzie do sprawnej i prostej obsługi procesu wydawania nagród bez potrzeby skomplikowanego szkolenia pracowników punktów sprzedaży, co obniży koszty implementacji Systemu.
+
+\subsection{Charakterystyka interesariuszy:}
+
+Główne grupy interesariuszy stanowią:
+\begin{itemize}
+    \item \textbf{Sieci handlowe} -- firmy posiadające od kilku do kilku tysięcy punktów sprzedaży.
+    Ich celem jest zwiększenie zysków z prowadzonej przez nie sprzedaży bez potrzeby prowadzenia nadmiernie skomplikowanych i kosztownych operacji związanych z organizowaniem promocji.
+    Mają one wysoki wpływ i wysokie zainteresowanie projektem.
+    \item \textbf{Pracownicy sieci handlowej} -- pracownicy takiej firmy, na których pracę wpływa wprowadzenie Systemu do operacji ich firmy.
+    Są oni dokładniej przeanalizowani w dalszej części tej sekcji.
+    \item \textbf{Klienci} -- osoby dokonujące zakupów detalicznych w punktach sprzedaży sieci handlowej.
+    Ich celem jest otrzymywanie nagród zgodnie z obietnicami w reklamach sieci handlowej i sprawne przeprowadzanie zakupów.
+    Mają oni niski wpływ i niskie zainteresowanie projektem.
+\end{itemize}
+
+Pracowników sieci handlowej można podzielić na użytkowników Systemu i pozostałych pracowników.
+Użytkownikami systemu są:
+\begin{itemize}
+    \item \textbf{Administratorzy bazy danych} -- osoby odpowiedzialne za utrzymywanie baz danych firm.
+    Im zależy na przejrzystości schematu bazy danych Systemu i jej wydajność.
+    Mają oni średni wpływ i średnie zainteresowanie projektem.
+    \item \textbf{Analitycy biznesowi} -- osoby odpowiedzialne za przeprowadzanie analiz promocji.
+    Ich celem jest łatwe generowanie raportów na temat wpływu promocji na zyski firmy.
+    Mają oni niski wpływ i średnie zainteresowanie projektem.
+    \item \textbf{Koordynatorzy logistyki} -- osoby odpowiedzialne za planowanie dostaw nagród do poszczególnych punktów sprzedaży.
+    Ich celem jest wydajne koordynowanie dostaw nagród po to, aby nagrody były jak najlepiej rozłożone pomiędzy punktami sprzedaży, co ma dać większe zyski firmy.
+    Mają oni niski wpływ i średnie zainteresowanie projektem.
+    \item \textbf{Koordynatorzy promocji} -- osoby odpowiedzialne za proces tworzenia promocji i dbania o ich wydajny przebieg.
+    Zależy im na prostocie planowania promocji i to, aby następnie przebiegały one bez szwanku.
+    Mają oni średni wpływ i wysokie zainteresowanie projektem.
+    \item \textbf{Pracownicy punktów sprzedaży} -- osoby, które potwierdzają przyjęcie dostawy, wysyłają zapytania o dodatkowe dostawy oraz zgłaszają defekty nagród. Pośrednio, poprzez system kasowy rejestrują też wydawanie nagród.
+    Ich celem jest to, żeby wprowadzenie systemu nie dodawało im zbyt wiele nowych obowiązków i nie zwiększało trudności wykonywanej przez nich pracy.
+    Mają oni niski wpływ i średnie zainteresowanie projektem.  
+\end{itemize}
+
+Pozostałymi grupami pracowników są:
+\begin{itemize}
+    \item \textbf{Menedżerzy} -- osoby podejmujące decyzje dotyczące całej firmy.
+    Ich celem jest to, aby wprowadzenie Systemu do operacji ich firmy przyniosło zyski i dodatkową wiedzę o rynku bez pochłaniania zbyt wielu środków finansowych i personelowych.
+    Mają oni średni wpływ i wysokie zainteresowanie projektem.
+    \item \textbf{Zespół wsparcia technicznego} -- osoby odpowiedzialne za utrzymywanie komputerów, w tym systemów kasowych, firmy.
+    Ich interesuje to, żeby wprowadzenie Systemu na urządzenia pracowników powodowało jak najmniej nowych błędów ze starym oprogramowaniem i jak najbardziej bezbłędnie integrowało się z systemami kasowymi.
+    Mają oni średni wpływ i średnie zainteresowanie projektem.
+    \item \textbf{Zespół szkolenia pracowników} -- osoby odpowiedzialne za szkolenie pracowników w używaniu nowego oprogramowania.
+    Ich interesuje to, żeby korzystanie z funkcjonalności Systemu było jak najprostsze dla przeciętnego użytkownika i wymagało najmniej nakładu pracy przy szkoleniu personelu.
+    Mają oni niski wpływ i średnie zainteresowanie projektem.
+\end{itemize}
+
+\subsection{Wymagania biznesowe}
+
+System do zarządzania promocjami powinien umożliwiać definiowanie promocji oraz dawać możliwość zmiany terminu zakończenia promocji.
+
+W przypadku promocji, które są bardzo atrakcyjne dla klienta musi istnieć możliwość ich przedłużenia, natomiast w przypadku promocji nieatrakcyjnych (nagrody nie są wybierane przez klienta i promocja nie przynosi spodziewanego efektu) musi istnieć możliwość ich skrócenia.
+
+Z powodu rozproszenia sieci handlowych konieczne jest wprowadzenie możliwości zarządzania dostawami oraz zarządzanie stanem magazynowym w każdym punkcie sprzedaży objętym promocją.
+
+Aktualizacja stanu magazynowego musi odbywać się na podstawie dostaw nagród oraz informacji z systemu kasowego o wydanych nagrodach.
+Wymagana jest integracja z systemem kasowym sieci handlowej.
+
+System musi też mieć możliwość przekazania informacji o nagrodach, które z powodu swojej wady lub innego zdarzenia są uszkodzone i nie mogą zostać wydane klientowi -- defektach.
+
+System musi posiadać możliwość zgłaszania potrzeby dodatkowej dostawy przez pracownika punktu sprzedaży.
+
+System musi posiadać możliwość generowania raportów dotyczących skuteczności przeprowadzanych akcji promocyjnych.
+
+Punkt sprzedaży musi posiadać adres, ponieważ na ten adres będzie wysyłana dostawa towarów.
+
+Dostęp do systemu mogą mieć tylko zdefiniowani wcześniej użytkownicy.
+
+Pracownicy punktów sprzedaży mogą widzieć tylko dane dotyczące punktu sprzedaży, do którego są przypisani.
+Mogą potwierdzać tylko dostawy dotyczące przypisanego punktu sprzedaży.
+Również zgłaszanie defektów oraz zamawianie dodatkowej dostawy może realizować tylko pracownik punktu sprzedaży, którego te akcje dotyczą.
+
+\subsection{Analiza zagrożeń i ryzyka}
+
+W tej sekcji najpierw są wyszczególnione rozważane zagrożenia, a następnie są przedstawione za pomocą swoich kodów w macierzy ryzyka:
+\begin{enumerate}
+    \item Systemy kasowe z interfejsem użytkownika będą miały zbyt słabe połączenie internetowe z serwerem bazy danych, co spowolni proces przeprowadzania transakcji i będzie frustrować klientów punktów sprzedaży oczekujących szybkiej obsługi.
+    \item Interfejs użytkownika będzie zbyt trudny do nawigowania i wykonywania przewidzianych funkcjonalności, co spowolni pracę jego użytkowników, kosztując firmę więcej roboczogodzin.
+    \item Serwer bazy danych może przestać działać, co wstrzyma działanie promocji i może spowodować straty przez to, że klienci nie będą zachęcani do zakupów promocją.
+    \item Logika biznesowa wydawania nagród w ramach promocji może zawierać błędy, przez co System będzie kazał wydawać błędne polecenia wydawania nagród.
+    W wyniku tego może być wydawana klientom zbyt wielka liczba nagród, co przyniesie większe koszty dla firmy, lub zbyt mała, co spowoduje kłótnie klientów z pracownikami punktów sprzedaży i ich zdenerwowanie usługami firmy.
+    \item Proces dodawania nowej promocji może się nie powieść lub może nastąpić błąd przy wprowadzaniu danych, przez co mogą nastąpić te same błędy, co w zagrożeniu 4.
+    \item Proces dodawania nowej dostawy może się nie powieść lub może nastąpić błąd przy wprowadzaniu danych.
+    W wyniku tego może dojść do zbytniego opróżnienia magazynów punktów sprzedaży, powodując niemożliwość wydania klientom należnych im nagród, lub przepełnienia tych magazynów, przez co pracownicy punktów sprzedaży będą musieli spędzać więcej czasu na układanie produktów w magazynie i wyciąganie ich stamtąd.
+\end{enumerate}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{| p{2.5cm} | p{2.5cm} | p{2.5cm} | p{2.5cm} | p{2.5cm} |}
+\hline \bf Częstość/ Wpływ & \bf Bardzo rzadko & \bf Okazjonalnie & \bf Nierzadko & \bf Często\\ [10pt]
+
+\hline \bf Ogromny & \cellcolor{yellow!50} 3 & \cellcolor{red!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
+
+\hline \bf Krytyczny & \cellcolor{yellow!50} & \cellcolor{yellow!50} 1, 4 & \cellcolor{red!50} 6 &\cellcolor{red!50} \\ [10pt]
+
+\hline \bf Znaczny & \cellcolor{green!50} 2 & \cellcolor{yellow!50} &\cellcolor{yellow!50} 5 & \cellcolor{red!50} \\ [10pt]
+
+\hline \bf Nieznaczny & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &\cellcolor{yellow!50} \\ [10pt]
+\hline
+\end{tabular} \\
+\caption{Macierz ryzyka}
+\end{table}
+
+\end{document}
