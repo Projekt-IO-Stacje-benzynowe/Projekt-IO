@@ -54,6 +54,7 @@ public class MainController {
             szczyp.fitHeightProperty().bind(imagePane.heightProperty().multiply(0.95));
 
             promotionsTableView = MainService.getPromotionsTable("Stacja Centralna");
+            promotionsTableView.setOnMouseClicked(e -> clickTable(e));
             tablePane.getChildren().add(promotionsTableView);
 
         } catch (Exception e) {
@@ -61,9 +62,8 @@ public class MainController {
         }
     }
 
-    public void reactTable(MouseEvent event) {
+    public void clickTable(MouseEvent event) {
         String text = promotionsTableView.getSelectionModel().getSelectedItem().getName();
-        System.out.println("hello" + text);
-        testText.setText("omg");
+        testText.setText(text);
     }
 }
