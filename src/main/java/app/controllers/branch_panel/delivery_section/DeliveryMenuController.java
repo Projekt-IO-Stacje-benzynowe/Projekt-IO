@@ -8,12 +8,12 @@ import app.service.SceneManager;
 public class DeliveryMenuController {
     @FXML
     public void confirmDelivery(ActionEvent event){
-        SceneManager.addScene("confirm_delivery", "/view/branch_panel/confirm_delivery.fxml");
+        SceneManager.addScene("confirm_delivery");
         SceneManager.showScene("confirm_delivery");
     }
     @FXML
     public void requestForAdditionalDelivery(ActionEvent event){
-        SceneManager.addScene("additional_delivery", "/view/branch_panel/additional_delivery.fxml");
+        SceneManager.addScene("additional_delivery");
         SceneManager.showScene("additional_delivery");
     }
     @FXML

@@ -9,7 +9,6 @@ import app.db.connection.MySQLConnection;
 import app.db.repo.RepositorySQL;
 import app.model.UserModel;
 import app.service.branch_panel.ClientSimulation.Launcher;
-import app.db.connection.MySQLConnection;;
 
 public class LoginValidation{
     @FXML
@@ -23,6 +22,7 @@ public class LoginValidation{
         String email = emailField.getText();
         String password = passwordField.getText();
         UserModel user = RepositorySQL.FindUser(email);
+        System.out.println(user.getPanel());
         
         if (user == null){
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -34,8 +34,10 @@ public class LoginValidation{
         }
         
         if (password.equals(user.getPassword())){
-            SceneManager.showScene(user.getPanel());
-            if (user.getPanel().equals("branch")){
+            String panel = user.getPanel();
+            SceneManager.addScene(panel);
+            SceneManager.showScene(panel);
+            if (panel.equals("branch")){
                 user.setNameBranch(RepositorySQL.GetBranchNameForUser(user.getID()));
             
                 Launcher launcher = new Launcher();

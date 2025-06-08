@@ -13,7 +13,7 @@ public class RewardToIssuanceModel extends RewardModel{
 
     public RewardToIssuanceModel(int x, int quan){
         issuanceID = x;
-        totalValue= quan;
+        totalValue = quan;
     }
 
     public RewardToIssuanceModel(

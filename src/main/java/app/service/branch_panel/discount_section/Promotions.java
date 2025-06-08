@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Promotions {
     public static List<PromotionsModel> GetPromotions(String branchName) {
-        return RepositorySQL.GetPromotions(branchName);
+        return RepositorySQL.getPromotions(branchName);
     }
 
 }

@@ -55,7 +55,8 @@ public class MainController {
 
             promotionsTableView = MainService.getPromotionsTable("Stacja Centralna");
             promotionsTableView.setOnMouseClicked(e -> clickTable(e));
-            tablePane.getChildren().add(promotionsTableView);
+            boolean check = tablePane.getChildren().add(promotionsTableView);
+            System.out.println(check);
 
         } catch (Exception e) {
             e.printStackTrace();

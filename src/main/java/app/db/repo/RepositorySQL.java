@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import app.db.connection.MySQLConnection;
 import app.model.PromotionsModel;
 import app.model.UserModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 import java.sql.Connection;
@@ -50,7 +52,25 @@ public class RepositorySQL {
             System.err.println("Error while inserting values to the table: " + err.getMessage());
         }
     }
-    public static List<PromotionsModel> GetPromotions(String name) {
+
+    public static ObservableList<PromotionsModel> getAllPromotions() {
+        String querySQL = """
+                SELECT *
+                FROM Promotions
+                """;
+        ObservableList<PromotionsModel> result = FXCollections.observableArrayList();
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new PromotionsModel(rs.getInt("PromotionID"), rs.getString("PromotionName"), rs.getString("Description")));
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching promotions on chosen outlet: " + err.getMessage());
+        }
+        return result;
+    }
+
+    public static List<PromotionsModel> getPromotions(String name) {
         String querySQL = """
         SELECT p.* 
         FROM Promotions p 
@@ -63,10 +83,10 @@ public class RepositorySQL {
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new PromotionsModel(rs.getString("PromotionName"), rs.getString("Description")));
+                result.add(new PromotionsModel(rs.getInt("PromotionID"), rs.getString("PromotionName"), rs.getString("Description")));
             }
         } catch (SQLException err) {
-            System.err.println("Error while fetching promotions on chosen GasStation: " + err.getMessage());
+            System.err.println("Error while fetching promotions on chosen outlet: " + err.getMessage());
         }
         return result;
     }

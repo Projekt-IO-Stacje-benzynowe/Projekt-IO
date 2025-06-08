@@ -23,7 +23,7 @@ public class TableService {
     }
 
     private static ObservableList<PromotionsModel> getPromotionsObservableList(String promotionName){
-        promotionsList = RepositorySQL.GetPromotions(promotionName);
+        promotionsList = RepositorySQL.getPromotions(promotionName);
         ObservableList<PromotionsModel> promotionsObservableList = FXCollections.observableArrayList();
         for (PromotionsModel promotion : promotionsList) {
             promotionsObservableList.add(promotion);

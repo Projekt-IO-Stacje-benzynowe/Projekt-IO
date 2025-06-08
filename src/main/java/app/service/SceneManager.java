@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.model.PanelList;
+
 public class SceneManager {
     private static Stage primaryStage;
     private static Map<String, Scene> scenes = new HashMap<>();
@@ -15,8 +17,12 @@ public class SceneManager {
     public static void setStage(Stage stage) {
         primaryStage = stage;
     }
-    public static void addScene(String name, String fxmlFile){
+
+    // Powinno być zrefaktoryzowane, żeby używało PanelList i tylko argumentu "name"
+    public static void addScene(String name){
         if(scenes.containsKey(name)){return;}
+        
+        String fxmlFile = PanelList.getFXMLFile(name);
 
         try {
             Parent root = FXMLLoader.load(SceneManager.class.getResource(fxmlFile));
