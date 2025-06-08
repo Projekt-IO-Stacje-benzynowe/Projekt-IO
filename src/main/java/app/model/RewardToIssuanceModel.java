@@ -9,7 +9,7 @@ public class RewardToIssuanceModel extends RewardModel{
     public Integer totalValue;
     public String notes;
     public Date month;
-    public Integer stationID;
+    public Integer outletID;
 
     public RewardToIssuanceModel(int x, int quan){
         issuanceID = x;
@@ -20,7 +20,7 @@ public class RewardToIssuanceModel extends RewardModel{
         Integer IssuanceID,
         Integer RewardProductID,
         Integer PromotionID,
-        Integer StationID,
+        Integer OutletID,
         Date Month,
         Integer QuantityIssued,
         Integer UnitPrice,
@@ -32,7 +32,7 @@ public class RewardToIssuanceModel extends RewardModel{
         this.notes = notes;
         this.totalValue = TotalValue;
         this.issuanceID = IssuanceID;
-        this.stationID = StationID;
+        this.outletID = OutletID;
     }
 
     public Integer getIssuanceID() {
@@ -42,8 +42,8 @@ public class RewardToIssuanceModel extends RewardModel{
         return totalValue;
     }
     
-    public Integer getStationID(){
-        return stationID;
+    public Integer getOutletID(){
+        return outletID;
     }
 
     public Date getMonth(){

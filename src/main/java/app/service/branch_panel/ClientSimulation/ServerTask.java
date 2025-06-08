@@ -48,7 +48,7 @@ public class ServerTask{
 
             for(RewardModel reward : rewards){
                 int issued = quantity / reward.getRequiredProductsNumber();
-                int StationID = RepositorySQL.findStationIDByName(Session.User.getNameBranch());
+                int OutletID = RepositorySQL.findOutletIDByName(Session.User.getNameBranch());
 
                 double priceAfterPromotion = RepositorySQL.getPromotionPrice(reward.getPromotionID());
 
@@ -59,7 +59,7 @@ public class ServerTask{
                 nextIssuanceID,
                 reward.getRewardProductID(),
                 reward.getPromotionID(),
-                StationID,
+                OutletID,
                 month,
                 quantity,
                 productID,
@@ -71,7 +71,7 @@ public class ServerTask{
                 (
                 nextSaleID,
                 reward.getPromotionID(),
-                StationID,
+                OutletID,
                 productID,
                 month,
                 quantity,

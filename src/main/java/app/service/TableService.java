@@ -22,8 +22,8 @@ public class TableService {
         return column;
     }
 
-    private static ObservableList<PromotionsModel> getPromotionsObservableList(String promotionName){
-        promotionsList = RepositorySQL.getPromotions(promotionName);
+    private static ObservableList<PromotionsModel> getPromotionsObservableList(String outletName){
+        promotionsList = RepositorySQL.getPromotions(outletName);
         ObservableList<PromotionsModel> promotionsObservableList = FXCollections.observableArrayList();
         for (PromotionsModel promotion : promotionsList) {
             promotionsObservableList.add(promotion);
@@ -35,12 +35,25 @@ public class TableService {
     public static TableView<PromotionsModel> getPromotionsTable(String promotionName) {
         TableView<PromotionsModel> promotionsTableView = new TableView<>();
         promotionsTableView.setEditable(true);
+        promotionsTableView.setMaxWidth(400);
+        TableColumn<PromotionsModel, String> promotionNameCol = createTableColumn("Promotion name", "name", 200);
 
-        TableColumn<PromotionsModel, String> promotionNameCol = createTableColumn("Promotion name", "name", 100);
-
-        TableColumn<PromotionsModel, String> promotionDescCol = createTableColumn("Description", "desc", 100);
+        TableColumn<PromotionsModel, String> promotionDescCol = createTableColumn("Description", "desc", 200);
 
         promotionsTableView.setItems(getPromotionsObservableList(promotionName));
+        promotionsTableView.getColumns().addAll(Arrays.asList(promotionNameCol, promotionDescCol));
+        return promotionsTableView;
+    }
+
+    public static TableView<PromotionsModel> getAllPromotionsTable() {
+        TableView<PromotionsModel> promotionsTableView = new TableView<>();
+        promotionsTableView.setEditable(true);
+        promotionsTableView.setPrefWidth(400);
+        TableColumn<PromotionsModel, String> promotionNameCol = createTableColumn("Promotion name", "name", 200);
+
+        TableColumn<PromotionsModel, String> promotionDescCol = createTableColumn("Description", "desc", 200);
+
+        promotionsTableView.setItems(RepositorySQL.getAllPromotions());
         promotionsTableView.getColumns().addAll(Arrays.asList(promotionNameCol, promotionDescCol));
         return promotionsTableView;
     }

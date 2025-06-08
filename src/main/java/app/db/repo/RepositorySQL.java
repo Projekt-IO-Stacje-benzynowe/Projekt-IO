@@ -24,13 +24,13 @@ import app.model.RewardToIssuanceModel;
 
 public class RepositorySQL {
     public static String GetBranchNameForUser(int userID) {
-        String querySQL = "SELECT gasStationName FROM UsersGasStation WHERE ID_user = ?"; 
+        String querySQL = "SELECT gasOutletName FROM UsersGasOutlet WHERE ID_user = ?"; 
 
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
             stmt.setInt(1, userID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getString("gasStationName");
+                return rs.getString("gasOutletName");
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching branch name for user: " + err.getMessage());
@@ -74,7 +74,7 @@ public class RepositorySQL {
         String querySQL = """
         SELECT p.* 
         FROM Promotions p 
-        JOIN Stations g ON p.StationID = g.StationID 
+        JOIN Outlets g ON p.OutletID = g.OutletID 
         WHERE g.name = ?
         """;
 
@@ -128,11 +128,11 @@ public class RepositorySQL {
         }
     }
 
-    public static void sendRaport(int stationID, int productID, int quantity, String desc, Timestamp date){
+    public static void sendRaport(int outletID, int productID, int quantity, String desc, Timestamp date){
         String querySQL = """
             INSERT INTO Disposals (
                 DisposalID, 
-                StationID, 
+                OutletID, 
                 ProductID, 
                 Quantity, 
                 Reason, 
@@ -148,7 +148,7 @@ public class RepositorySQL {
             // int newID = GetLastIndexFromDisposals() + 1;
             int newID = GetLastIndex("DisposalID", "Disposals") + 1;
             stmt.setInt(1, newID);
-            stmt.setInt(2, stationID);
+            stmt.setInt(2, outletID);
             stmt.setInt(3, productID);
             stmt.setInt(4, quantity);
             stmt.setString(5, desc);
@@ -179,11 +179,11 @@ public class RepositorySQL {
         return 0;
     }
 
-    public static void sendRequestForDelivery(int stationID, int deliveryID, int productID, int quantity){
+    public static void sendRequestForDelivery(int outletID, int deliveryID, int productID, int quantity){
         String querySQL = """
             INSERT INTO Deliveries (
                 DeliveryID, 
-                StationID, 
+                OutletID, 
                 ProductID, 
                 Quantity,  
                 ReportDate,
@@ -198,7 +198,7 @@ public class RepositorySQL {
         try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
             int newID = GetLastIndex("Deliveries", "DeliveryID") + 1;
             stmt.setInt(1, newID);
-            stmt.setInt(2, stationID);
+            stmt.setInt(2, outletID);
             stmt.setInt(3, productID);
             stmt.setInt(4, quantity);
             stmt.setString(5, null);
@@ -258,7 +258,7 @@ public class RepositorySQL {
                 ));
             }
         } catch (SQLException err) {
-            System.err.println("Error while fetching promotions on chosen GasStation: " + err.getMessage());
+            System.err.println("Error while fetching promotions on chosen GasOutlet: " + err.getMessage());
         }
         return result;
     }
@@ -267,7 +267,7 @@ public class RepositorySQL {
             int issuanceID,
             int rewardProductID,
             int promotionID,
-            int stationID,
+            int outletID,
             Date month,                  
             int quantityIssued,
             double unitPrice,
@@ -276,7 +276,7 @@ public class RepositorySQL {
 
         String querySQL = """
             INSERT INTO RewardsToIssuance (
-                IssuanceID, RewardProductID, PromotionID, StationID,
+                IssuanceID, RewardProductID, PromotionID, OutletID,
                 Month, QuantityIssued, UnitPrice, TotalValue, Notes
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
@@ -286,7 +286,7 @@ public class RepositorySQL {
             stmt.setInt(1, issuanceID);
             stmt.setInt(2, rewardProductID);
             stmt.setInt(3, promotionID);
-            stmt.setInt(4, stationID);
+            stmt.setInt(4, outletID);
             stmt.setDate(5, month);
             stmt.setInt(6, quantityIssued);
             stmt.setDouble(7, unitPrice);
@@ -303,9 +303,9 @@ public class RepositorySQL {
 
 
 
-    public static Integer findStationIDByName(String name) {
+    public static Integer findOutletIDByName(String name) {
         String querySQL = """
-            SELECT StationID FROM Stations
+            SELECT OutletID FROM Outlets
             WHERE Name = ?
         """;
 
@@ -314,26 +314,26 @@ public class RepositorySQL {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("StationID");
+                return rs.getInt("OutletID");
             }
 
         } catch (SQLException e) {
-            System.err.println("Błąd podczas wyszukiwania StationID: " + e.getMessage());
+            System.err.println("Błąd podczas wyszukiwania OutletID: " + e.getMessage());
         }
         return null;
     }
 
-    public static List<RewardToIssuanceModel> FetchRewardToIssuance(int stationID) {
+    public static List<RewardToIssuanceModel> FetchRewardToIssuance(int outletID) {
         String query = """
             SELECT * FROM RewardsToIssuance
-            WHERE StationID = ?
+            WHERE OutletID = ?
         """;
     
         List<RewardToIssuanceModel> result = new ArrayList<>();
     
         try ( PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query)) {
     
-            stmt.setInt(1, stationID);
+            stmt.setInt(1, outletID);
     
             ResultSet rs = stmt.executeQuery();
     
@@ -342,7 +342,7 @@ public class RepositorySQL {
                     rs.getObject("IssuanceID", Integer.class),
                     rs.getObject("RewardProductID", Integer.class),
                     rs.getObject("PromotionID", Integer.class),
-                    rs.getObject("StationID", Integer.class),
+                    rs.getObject("OutletID", Integer.class),
                     rs.getDate("Month"),
                     rs.getObject("QuantityIssued", Integer.class),
                     rs.getObject("UnitPrice", Integer.class),
@@ -411,7 +411,7 @@ public class RepositorySQL {
 
     public static void insertRewardIssuance(RewardToIssuanceModel model) {
         String sql = "INSERT INTO RewardIssuance " +
-                "(IssuanceID, RewardProductID, PromotionID, StationID, Month, QuantityIssued, UnitPrice, TotalValue, Notes) " +
+                "(IssuanceID, RewardProductID, PromotionID, OutletID, Month, QuantityIssued, UnitPrice, TotalValue, Notes) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try ( PreparedStatement stmt = MySQLConnection.conn.prepareStatement(sql)) {
@@ -419,7 +419,7 @@ public class RepositorySQL {
             stmt.setInt(1, getMaxIssuanceIDFromRewardIssuance() + 1);
             stmt.setInt(2, model.getRewardProductID());
             stmt.setInt(3, model.getPromotionID());
-            stmt.setInt(4, model.getStationID());
+            stmt.setInt(4, model.getOutletID());
             stmt.setDate(5, model.getMonth());
             stmt.setInt(6, model.getTotalValue());
             stmt.setDouble(7, model.getUnitPrice());
@@ -446,16 +446,16 @@ public class RepositorySQL {
         }
         return null;
     }
-    public static void insertSale(int saleID,int PromotionID, int StationID, int ProductID, Date month, int soldQuantity, double GrossValue, double Margin ){
+    public static void insertSale(int saleID,int PromotionID, int OutletID, int ProductID, Date month, int soldQuantity, double GrossValue, double Margin ){
         String sql = "INSERT INTO Sales " +
-                "(SaleID, PromotionID, StationID, ProductID, Month, QuantitySold, GrossValue, Margin) " +
+                "(SaleID, PromotionID, OutletID, ProductID, Month, QuantitySold, GrossValue, Margin) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try ( PreparedStatement stmt = MySQLConnection.conn.prepareStatement(sql)) {
 
             stmt.setInt(1, saleID);
             stmt.setInt(2, PromotionID);
-            stmt.setInt(3, StationID);
+            stmt.setInt(3, OutletID);
             stmt.setInt(4, ProductID);
             stmt.setDate(5, month);
             stmt.setInt(6, soldQuantity);

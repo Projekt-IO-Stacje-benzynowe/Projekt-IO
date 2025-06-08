@@ -51,7 +51,7 @@ public class SceneManager {
 
 
 
-    public static void Clear(){
+    public static void clear(){
         scenes.clear();
     }
 }

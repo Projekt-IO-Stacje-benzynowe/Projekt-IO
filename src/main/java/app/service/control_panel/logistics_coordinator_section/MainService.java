@@ -7,7 +7,11 @@ import javafx.scene.control.TableView;
 
 public class MainService {
 
-    public static TableView<PromotionsModel> getPromotionsTable(String promotionName) {
-        return TableService.getPromotionsTable(promotionName);
+    public static TableView<PromotionsModel> getPromotionsTable(String outletName) {
+        return TableService.getPromotionsTable(outletName);
+    }
+
+    public static TableView<PromotionsModel> getAllPromotionsTable() {
+        return TableService.getAllPromotionsTable();
     }
 }

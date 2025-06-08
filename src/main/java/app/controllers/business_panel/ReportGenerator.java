@@ -28,7 +28,7 @@ public class ReportGenerator {
     private static final String USER = "admin";
     private static final String PASS = "admin123#";
 
-    public void generateSalesReport2024(String outputFilePath, int stationNumber) throws Exception {
+    public void generateSalesReport2024(String outputFilePath, int outletNumber) throws Exception {
         Map<String, Double> sales2024 = new LinkedHashMap<>();
         Map<String, Double> sales2023 = new LinkedHashMap<>();
         Map<String, Double> quantity2024 = new LinkedHashMap<>();
@@ -38,14 +38,14 @@ public class ReportGenerator {
                 String label = String.format("%02d", month);
                 String date2024 = String.format("2024-%02d-01", month);
                 String date2023 = String.format("2023-%02d-01", month);
-                if(stationNumber == 0) {//numer stacji == 0 oznacza że chcemy raport z sumy sprzedaży wszystkich stacji
+                if(outletNumber == 0) {//numer stacji == 0 oznacza że chcemy raport z sumy sprzedaży wszystkich stacji
                     sales2024.put(label, getTotalSales(conn, date2024));
                     sales2023.put(label, getTotalSales(conn, date2023));
                     quantity2024.put(label, getTotalQuantity(conn, date2024));
                 }else {
-                    sales2024.put(label, getTotalSalesForStation(conn, date2024, stationNumber));
-                    sales2023.put(label, getTotalSalesForStation(conn, date2023, stationNumber));
-                    quantity2024.put(label, getTotalQuantityForStation(conn, date2024, stationNumber));
+                    sales2024.put(label, getTotalSalesForOutlet(conn, date2024, outletNumber));
+                    sales2023.put(label, getTotalSalesForOutlet(conn, date2023, outletNumber));
+                    quantity2024.put(label, getTotalQuantityForOutlet(conn, date2024, outletNumber));
                 }
             }
         }
@@ -54,7 +54,7 @@ public class ReportGenerator {
         JFreeChart chartDiff = createStyledChart("Year-over-Year Sales Difference (PLN)", "Month", "PLN", computeDifference(sales2024, sales2023), new Color(255, 159, 64));
         JFreeChart chartQuantity = createStyledChart("Monthly Total Units Sold", "Month", "Units", quantity2024, new Color(40, 167, 69));
 
-        generatePdf(outputFilePath, stationNumber, chartSales, chartDiff, chartQuantity);
+        generatePdf(outputFilePath, outletNumber, chartSales, chartDiff, chartQuantity);
     }
 
     private double getTotalSales(Connection conn, String date) throws SQLException {
@@ -68,14 +68,14 @@ public class ReportGenerator {
             return rs.next() ? rs.getDouble(1) : 0.0;
         }
     }
-    private double getTotalSalesForStation(Connection conn, String date, int stationId) throws SQLException {
+    private double getTotalSalesForOutlet(Connection conn, String date, int outletId) throws SQLException {
         String sql = "SELECT SUM(GrossValue) FROM Sales " +
-                "WHERE StationID = ? " +
+                "WHERE OutletID = ? " +
                 "AND MONTH(Month) = MONTH(?) " +
                 "AND YEAR(Month) = YEAR(?)";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, stationId);      //  station ID
+            ps.setInt(1, outletId);      //  outlet ID
             ps.setString(2, date);        // month
             ps.setString(3, date);        // year
 
@@ -92,14 +92,14 @@ public class ReportGenerator {
             return rs.next() ? rs.getDouble(1) : 0.0;
         }
     }
-    private double getTotalQuantityForStation(Connection conn, String date, int stationId) throws SQLException {
+    private double getTotalQuantityForOutlet(Connection conn, String date, int outletId) throws SQLException {
         String sql = "SELECT SUM(QuantitySold) FROM Sales " +
-                "WHERE StationID = ? " +
+                "WHERE OutletID = ? " +
                 "AND MONTH(Month) = MONTH(?) " +
                 "AND YEAR(Month) = YEAR(?)";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, stationId);
+            ps.setInt(1, outletId);
             ps.setString(2, date);
             ps.setString(3, date);
 
@@ -144,17 +144,17 @@ public class ReportGenerator {
         return chart;
     }
 
-    private void generatePdf(String filename,int stationNumber, JFreeChart... charts) throws Exception {
+    private void generatePdf(String filename,int outletNumber, JFreeChart... charts) throws Exception {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         PdfWriter.getInstance(document, new FileOutputStream(filename));
         document.open();
 
         Font titleFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
         Paragraph title;
-        if(stationNumber == 0){
-            title = new Paragraph("Sales Report – All Stations", titleFont);
+        if(outletNumber == 0){
+            title = new Paragraph("Sales Report – All Outlets", titleFont);
         }else{
-            title = new Paragraph("Sales Report – Station number " + stationNumber, titleFont);
+            title = new Paragraph("Sales Report – Outlet number " + outletNumber, titleFont);
         }
 
         title.setAlignment(Element.ALIGN_CENTER);

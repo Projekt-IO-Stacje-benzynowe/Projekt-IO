@@ -18,13 +18,13 @@ IF OBJECT_ID('Promotions', 'U') IS NOT NULL
 	DROP TABLE Promotions;
 IF OBJECT_ID('PromotionTypes', 'U') IS NOT NULL
 	DROP TABLE PromotionTypes;
-IF OBJECT_ID('GasStations', 'U') IS NOT NULL
-	DROP TABLE GasStations;
+IF OBJECT_ID('GasOutlets', 'U') IS NOT NULL
+	DROP TABLE GasOutlets;
 
-CREATE TABLE GasStations(
+CREATE TABLE GasOutlets(
 	ID INT,
 	Name NVARCHAR(256) UNIQUE NOT NULL,
-	CONSTRAINT PK_GasStations PRIMARY KEY(ID)
+	CONSTRAINT PK_GasOutlets PRIMARY KEY(ID)
 );
 
 CREATE TABLE PromotionTypes(
@@ -60,15 +60,15 @@ CREATE TABLE GiveawaysLog(
 	ProductID INT,
 	PromotionID INT,
 	Quantity INT NOT NULL,
-	GasStationID INT,
+	GasOutletID INT,
 	Timestamp DATETIME,
 	CONSTRAINT PK_GiveawaysLog PRIMARY KEY(ID),
 	CONSTRAINT FK_ProductID_GiveawaysLog FOREIGN KEY(ProductID) REFERENCES Products(ID),
 	CONSTRAINT FK_PromotionID_GiveawaysLog FOREIGN KEY(PromotionID) REFERENCES Promotions(ID),
-	CONSTRAINT FK_GastStationID_GiveawaysLog FOREIGN KEY(GasStationID) REFERENCES GasStations(ID)
+	CONSTRAINT FK_GastOutletID_GiveawaysLog FOREIGN KEY(GasOutletID) REFERENCES GasOutlets(ID)
 );
 
-INSERT INTO GasStations VALUES
+INSERT INTO GasOutlets VALUES
 (1, N'Kurczaki 34'),
 (2, N'Paderewskiego 57'),
 (3, N'Zamenhofa 13'),
@@ -126,7 +126,7 @@ SELECT
 FROM
 	GiveawaysLog GL
 JOIN
-	GasStations GS ON GL.GasStationID = GS.ID
+	GasOutlets GS ON GL.GasOutletID = GS.ID
 WHERE
 	GL.PromotionID = 1;
 
@@ -145,7 +145,7 @@ SELECT
 FROM
 	GiveawaysLog GL
 JOIN
-	GasStations GS ON GL.GasStationID = GS.ID
+	GasOutlets GS ON GL.GasOutletID = GS.ID
 WHERE
 	GL.PromotionID = @PromotionID;
 

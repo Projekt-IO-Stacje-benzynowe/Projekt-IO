@@ -45,7 +45,7 @@ public class MainMenuController {
     @FXML
     public void goToLogOutButton(ActionEvent event){
         Session.EndSession();
-        SceneManager.Clear();
+        SceneManager.clear();
         SceneManager.addScene("login");
         SceneManager.showScene("login");
         SceneManager.addScene("branch");

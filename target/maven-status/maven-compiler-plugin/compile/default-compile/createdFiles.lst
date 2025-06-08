@@ -35,7 +35,6 @@ app\service\branch_panel\ClientSimulation\Parser.class
 app\db\connection\MySQLConnection.class
 app\controllers\control_panel\rewards_coordinator_section\RewardOverviewController.class
 app\controllers\branch_panel\delivery_section\AdditionalDelivery.class
-app\controllers\control_panel\logistics_coordinator_section\CreateOutletController.class
 app\service\TableService.class
 app\service\branch_panel\discount_section\Promotions.class
 app\service\control_panel\logistics\CreateOutletService.class
@@ -45,7 +44,6 @@ app\controllers\branch_panel\discount_section\DiscountTableController.class
 app\service\branch_panel\ClientSimulation\Task.class
 app\service\branch_panel\Rewards\RewardsOperation.class
 app\service\control_panel\rewards\ModifyRewardService.class
-app\controllers\control_panel\logistics_coordinator_section\MainController.class
 app\controllers\branch_panel\MainMenuController.class
 app\service\branch_panel\ClientSimulation\Launcher.class
 app\service\SceneManager.class
