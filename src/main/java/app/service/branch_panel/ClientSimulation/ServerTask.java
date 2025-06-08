@@ -1,8 +1,15 @@
 package app.service.branch_panel.ClientSimulation;
 
 import java.util.Map;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Date;
 
-import app.service.TypeValidation;
+import app.db.repo.RepositorySQL;
+import app.model.RewardModel;
+
+import app.service.Session;
 
 public class ServerTask{
     public ServerTask(){};
@@ -10,23 +17,71 @@ public class ServerTask{
     public void run(){
         Server server = new Server(9999);
 
-        while (true) {
+        while (true) {  
             System.out.println("Odebrano wiadomość: " + server.read());
-            Map<String, String>  dataMap = Parser.parseJson(server.read());
+            Map<String, Integer>  dataMap = Parser.parseJson(server.read());
+
+            Integer productID = dataMap.get("productID");
+            Integer quantity = dataMap.get("quantity");
+
+            System.out.println(productID);
+            System.out.println(quantity);
+
+            List<Integer> promotions = RepositorySQL.findPromotionsByProductID(productID);
+
+            for(Integer x : promotions){
+                System.out.print(x + " ");
+            }
+
+            List<RewardModel> rewards = new ArrayList<>();
+            for(int promotionID : promotions){
+                List<RewardModel> res = RepositorySQL.findProductReward(promotionID);
+                for(RewardModel reward : res){
+                    rewards.add(reward);
+                }
+            }
+            System.out.println(Session.User.getNameBranch());
             
-            // dataMap['productID']
-            // dataMap['quantity']
+            int nextSaleID = RepositorySQL.getMaxSaleID() + 1;
+            int nextIssuanceID = RepositorySQL.getMaxIssuanceID() + 1; 
+            double priceBeforePromotion = RepositorySQL.getProductPriceById(productID);
 
-            // trzeba sparsować values z mapy na inty
-            int productID = TypeValidation.intValidation(dataMap.get("productID"));
-            int quantity = TypeValidation.intValidation(dataMap.get("quantity"));
+            for(RewardModel reward : rewards){
+                int issued = quantity / reward.getRequiredProductsNumber();
+                int StationID = RepositorySQL.findStationIDByName(Session.User.getNameBranch());
 
+                double priceAfterPromotion = RepositorySQL.getPromotionPrice(reward.getPromotionID());
 
+                Date month = Date.valueOf(LocalDate.now());
 
-            // if(isQuantityAvailable(dataMap['productID'], dataMap['quantity'])){
+                RepositorySQL.insertRewardToIssuance
+                (
+                nextIssuanceID,
+                reward.getRewardProductID(),
+                reward.getPromotionID(),
+                StationID,
+                month,
+                quantity,
+                productID,
+                quantity,
+                generateNotes(issued, reward.getRequiredProductsNumber())
+                );
 
-            // }
+                RepositorySQL.insertSale
+                (
+                nextSaleID,
+                reward.getPromotionID(),
+                StationID,
+                productID,
+                month,
+                quantity,
+                quantity * priceAfterPromotion,
+                quantity*priceBeforePromotion - quantity*priceAfterPromotion
+                );
 
+                nextSaleID++;
+                nextIssuanceID++;
+            }
 
             try {
                 Thread.sleep(3000);
@@ -37,14 +92,8 @@ public class ServerTask{
         }
     }
 
-
-    public boolean isQuantityAvailable(int productID, int Quantity){
-        // zapytanie do BD o ilosc dla produktu
-
-
-
-        return false;
+    public static String generateNotes(int soldProducts, int requiredPerReward) {
+        return String.format("Wydano za %d sprzedanych produktów (wymagane %d na nagrodę)", soldProducts, requiredPerReward);
     }
-
 
 }

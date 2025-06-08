@@ -24,4 +24,5 @@ public class UserModel {
     public void setNameBranch(String nameBranch) {
         this.nameBranch = nameBranch;
     }
+
 }

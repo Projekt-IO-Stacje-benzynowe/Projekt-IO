@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, String> parseJson(String json){
-        Map<String, String> dataMap = new HashMap<String,String>();
+    public static Map<String, Integer> parseJson(String json){
+        Map<String, Integer> dataMap = new HashMap<String, Integer>();
         ObjectMapper objectMapper = new ObjectMapper();
 
         try{
@@ -19,6 +19,6 @@ public class Parser {
         return dataMap;
     }
     public static String toJson(int productID, int quantity) {
-        return String.format("{\"productID\":\"%d\", \"quantity\":%d}", productID, quantity);
+        return String.format("{\"productID\":%d, \"quantity\":%d}", productID, quantity);
     }
 }
