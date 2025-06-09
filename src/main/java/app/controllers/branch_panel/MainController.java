@@ -7,10 +7,14 @@ import app.service.control_panel.rewards.MainService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 public class MainController implements Controller {
     @FXML
@@ -48,7 +52,8 @@ public class MainController implements Controller {
             background.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
-
+            loadContent("menu_branch");
+            tablePane.setAlignment(Pos.CENTER);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,5 +80,14 @@ public class MainController implements Controller {
         Session.setPromotion(PromotionsTableView.getSelectionModel().getSelectedItem());
         SceneManager.addScene("modifyDelivery");
         SceneManager.showScene("modifyDelivery");
+    }
+    private void loadContent(String fxml) {
+        try {
+            String path = "/view/branch_panel/" + fxml + ".fxml";
+            Parent content = FXMLLoader.load(getClass().getResource(path));
+           tablePane.getChildren().setAll(content); // setAll zamiast add, by nie duplikować
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

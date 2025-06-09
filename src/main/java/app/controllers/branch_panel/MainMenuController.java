@@ -43,13 +43,6 @@ public class MainMenuController implements Controller {
         SceneManager.addScene("report_product");
         SceneManager.showScene("report_product");
     }
-    @FXML
-    public void goToLogOutButton(ActionEvent event){
-        Session.endSession();
-        SceneManager.clear();
-        SceneManager.addScene("login");
-        SceneManager.showScene("login");
-        SceneManager.addScene("branch");
-    }   
+
 
 }    

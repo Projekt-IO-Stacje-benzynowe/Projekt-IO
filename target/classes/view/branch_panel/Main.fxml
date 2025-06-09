@@ -25,25 +25,19 @@
         <center>
             <BorderPane fx:id="mainContent" style="-fx-background-color: #fafafa;">
                 <top>
-                    <Label text="Top section" style="-fx-background-color: #fbeee6;"/>
                 </top>
                 <left>
-                    <Label text="Left section" style="-fx-background-color: #e6fbf1;"/>
                 </left>
                 <center>
-                    <StackPane fx:id="tablePane">
-                        <fx:include fx:id="mainMenuContainer" source="main_branch.fxml"/>
+                    <StackPane fx:id="tablePane" alignment="CENTER">
                     </StackPane>
                 </center>
                 <right>
-                    <VBox minWidth="100">
-                        <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
-                        <Text text="test" fx:id="testText"/>
-
+                    <VBox minWidth="100" prefWidth="200"
+                          maxWidth="Infinity" style="-fx-background-color: #2196F3;">
                     </VBox>
                 </right>
                 <bottom>
-                    <Label text="Bottom section" style="-fx-background-color: #e6f8fb;"/>
                 </bottom>
             </BorderPane>
         </center>
