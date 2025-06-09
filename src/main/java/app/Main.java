@@ -16,11 +16,12 @@ public class Main extends Application {
         Locale.setDefault(Locale.UK);
         SceneManager.setStage(primaryStage);
         SceneManager.addScene("branch");
-        SceneManager.addScene("login"); 
+        SceneManager.addScene("login");
 
         //SceneManager.addScene("Analysis", "/view/business_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
         // trzeba dodać inne panele
         SceneManager.showScene("login");
+
 
     }
     public static void main(String[] args) {

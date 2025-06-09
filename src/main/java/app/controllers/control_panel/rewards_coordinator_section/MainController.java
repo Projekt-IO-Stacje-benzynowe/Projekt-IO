@@ -71,12 +71,13 @@ public class MainController implements Controller {
         SceneManager.showScene("login");
     }
 
-    public void goToViewRequests(ActionEvent event) {
+    public void goToCreateReward(ActionEvent event) {
         testText.setText("view requests?");
     }
 
 
-    public void goToModifyDelivery(ActionEvent event) {
+    public void goToModifyReward(ActionEvent event) {
+        Session.setPromotion(PromotionsTableView.getSelectionModel().getSelectedItem());
         SceneManager.addScene("modifyDelivery");
         SceneManager.showScene("modifyDelivery");
     }

@@ -1,12 +1,13 @@
 package app.controllers.branch_panel;
 
+import app.controllers.branch_panel.Controller;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 import app.service.Session;
 import app.service.SceneManager;
 
-public class MainMenuController {    
+public class MainMenuController implements Controller {
     // @FXML
     // private void initialize() {
     //     Launcher launcher = new Launcher();
