@@ -78,8 +78,8 @@ public class RepositorySQL {
         String querySQL = """
         SELECT p.* 
         FROM Promotions p 
-        JOIN Outlets o ON p.OutletID = o.OutletID 
-        WHERE g.name = ?
+        JOIN Outlets o ON p.OutletsID = o.OutletsID 
+        WHERE o.Name = ?
         """;
 
         ObservableList<PromotionModel> result = FXCollections.observableArrayList();
@@ -241,7 +241,7 @@ public class RepositorySQL {
             INSERT INTO Deliveries (
                 DeliveryID, 
                 OutletID, 
-                ProductID, 
+                RewardProductID, 
                 Quantity,  
                 ReportDate,
                 ShipmentDate, 
@@ -267,7 +267,7 @@ public class RepositorySQL {
             stmt.setString(11, null);
             stmt.executeUpdate();
         }catch(SQLException e){
-            System.out.println("Error while sending report" + e);
+            System.out.println("Error while sending request " + e);
         }        
     }
 
@@ -360,7 +360,7 @@ public class RepositorySQL {
 
     public static Integer findOutletIDByName(String name) {
         String querySQL = """
-            SELECT OutletID FROM Outlets
+            SELECT OutletsID FROM Outlets
             WHERE Name = ?
         """;
 
@@ -369,7 +369,7 @@ public class RepositorySQL {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("OutletID");
+                return rs.getInt("OutletsID");
             }
 
         } catch (SQLException e) {
@@ -504,7 +504,7 @@ public class RepositorySQL {
 
     public static void insertSale(int saleID,int PromotionID, int OutletID, int ProductID, Date month, int soldQuantity, double GrossValue, double Margin ){
         String sql = "INSERT INTO Sales " +
-                "(SaleID, PromotionID, OutletID, ProductID, Month, QuantitySold, GrossValue, Margin) " +
+                "(SaleID, PromotionID, StationID, ProductID, Month, QuantitySold, GrossValue, Margin) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try ( PreparedStatement stmt = MySQLConnection.conn.prepareStatement(sql)) {
