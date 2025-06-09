@@ -15,10 +15,11 @@ public class PanelList {
         result.put("additional_delivery", "/view/branch_panel/additional_delivery.fxml");
         result.put("table_promotions", "/view/branch_panel/discount_panel_table_promotions.fxml");
         result.put("delivery_menu", "/view/branch_panel/delivery_panel.fxml");
-        result.put("reportProduct", "/view/branch_panel/reportPanel.fxml");
+        result.put("report_product", "/view/branch_panel/reportPanel.fxml");
         result.put("rewards_table", "/view/branch_panel/tableRewards.fxml");
         result.put("promotions_table_scene", "/view/branch_panel/discount_panel_table_promotions.fxml");
         result.put("plan_delivery", "/view/control_panel/logistics/plan_delivery_panel.fxml");
+        result.put("choose_delivery", "/view/control_panel/logistics/choose_delivery_panel.fxml");
         return result;
     }
 

@@ -1,17 +1,17 @@
 package app.service;
 
+import app.model.DeliveryModel;
 import app.model.OutletModel;
 import app.model.PromotionModel;
 import app.model.UserModel;
-import app.service.branch_panel.delivery_section.Delivery;
 
 //stores logged user data
 public class Session {
     public static UserModel user = null;
     private static PromotionModel promotion = null;
     private static OutletModel outlet = null;
-    private static Delivery delivery = null;
-    
+    private static DeliveryModel delivery = null;
+
     public static void endSession(){
         user = null;
         promotion = null;
@@ -55,11 +55,11 @@ public class Session {
         outlet = null;
     }
 
-    public static void setDelivery(Delivery delivery) {
+    public static void setDelivery(DeliveryModel delivery) {
         Session.delivery = delivery;
     }
 
-    public static Delivery getDelivery() {
+    public static DeliveryModel getDelivery() {
         return delivery;
     }
 

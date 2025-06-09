@@ -76,13 +76,23 @@ public class MainController implements Controller {
     }
 
     public void goToPlanDelivery(ActionEvent event) {
-        Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
-        SceneManager.addScene("plan_delivery");
-        SceneManager.showScene("plan_delivery");
+
+        if (outletsTableView.getSelectionModel().getSelectedItem() != null) {
+            Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
+            SceneManager.addScene("plan_delivery");
+            SceneManager.showScene("plan_delivery");
+        } else {
+            messageText.setText("Please select an outlet to add a delivery to.");
+        }
     }
 
     public void goToChooseDelivery(ActionEvent event) {
-        SceneManager.addScene("chooseDelivery");
-        SceneManager.showScene("chooseDelivery");
+        if (outletsTableView.getSelectionModel().getSelectedItem() != null) {
+            Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
+            SceneManager.addScene("choose_delivery");
+            SceneManager.showScene("choose_delivery");
+        } else {
+            messageText.setText("Please select an outlet to modify deliveries for.");
+        }
     }
 }

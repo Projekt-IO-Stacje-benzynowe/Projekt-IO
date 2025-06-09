@@ -1,6 +1,7 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 import app.model.RewardModel;
 import app.service.SceneManager;
@@ -74,11 +75,12 @@ public class PlanDeliveryController implements Controller {
             rewardComboBox.setItems(rewards);
             rewardComboBox.setPromptText("Select a reward");
 
+            // Ensures that only future dates can be selected
             deliveryDatePicker.setDayCellFactory(_ -> new DateCell() {
                 @Override
                 public void updateItem(LocalDate date, boolean empty) {
                     super.updateItem(date, empty);
-                    setDisable(empty || date.compareTo(LocalDate.now()) < 0 );
+                    setDisable(empty || date.compareTo(LocalDate.now().plusDays(1)) < 0 );
             }
     });
 
@@ -110,7 +112,7 @@ public class PlanDeliveryController implements Controller {
             return;
         }
 
-        errorText.setText(selectedReward.getName() + " " + quantityField.getText());
+        errorText.setText(selectedReward.getName() + " " + quantityField.getText() + " " + deliveryDate.toString());
     }
 
     public void goBack(ActionEvent event) {

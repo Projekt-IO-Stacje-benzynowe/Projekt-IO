@@ -35,6 +35,6 @@ public class Delivery {
         }
     }
     private static void goToReportIssues(){
-        SceneManager.showScene("reportProduct");
+        SceneManager.showScene("report_product");
     }
 }

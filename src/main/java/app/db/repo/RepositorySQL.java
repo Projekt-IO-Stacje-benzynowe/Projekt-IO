@@ -149,10 +149,10 @@ public class RepositorySQL {
 
     public static ObservableList<DeliveryModel> getDeliveriesForOutlet(Integer outletID) {
         String querySQL = """
-                SELECT d.DeliveryID, d.OutletID, d.ProductID, d.Quantity, d.ShipmentDate, p.Name AS RewardName
+                SELECT d.DeliveryID, d.OutletID, d.RewardProductID, d.Quantity, d.ShipmentDate, p.Name AS RewardName
                 FROM Deliveries d
-                JOIN RewardProducts p ON d.ProductID = p.RewardProductID
-                WHERE d.OutletID = ?
+                JOIN RewardProducts p ON d.RewardProductID = p.RewardProductID
+                WHERE d.OutletID = ? AND d.ShipmentDate IS NOT NULL AND d.DeliveryDate IS NULL
                 """;
 
         ObservableList<DeliveryModel> result = FXCollections.observableArrayList();
@@ -163,7 +163,7 @@ public class RepositorySQL {
                 result.add(new DeliveryModel(
                     rs.getInt("DeliveryID"),
                     rs.getInt("OutletID"),
-                    rs.getInt("ProductID"),
+                    rs.getInt("RewardProductID"),
                     rs.getString("RewardName"),
                     rs.getInt("Quantity"),
                     rs.getTimestamp("ShipmentDate").toLocalDateTime().toLocalDate()

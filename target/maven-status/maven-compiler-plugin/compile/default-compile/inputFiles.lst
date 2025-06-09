@@ -31,6 +31,8 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ReportPro
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\delivery_section\ConfirmDelivery.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\ViewRequestsService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\SidebarController.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\rewards\MainService.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\Controller.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\rewards_coordinator_section\CreateRewardController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Launcher.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\discount_section\DiscountTableController.java
@@ -57,5 +59,6 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistic
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Task.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\MainController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\ChooseDeliveryController.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\rewards_coordinator_section\Controller.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\OutletModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\Session.java

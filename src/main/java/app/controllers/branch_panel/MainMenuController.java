@@ -39,8 +39,8 @@ public class MainMenuController {
     }  
     @FXML
     public void goToReportIssues(ActionEvent event){
-        SceneManager.addScene("reportProduct");
-        SceneManager.showScene("reportProduct");
+        SceneManager.addScene("report_product");
+        SceneManager.showScene("report_product");
     }
     @FXML
     public void goToLogOutButton(ActionEvent event){
