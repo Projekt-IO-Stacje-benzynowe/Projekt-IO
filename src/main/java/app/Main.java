@@ -22,10 +22,9 @@ public class Main extends Application {
         SceneManager.addScene("login", "/view/login.fxml");
         // SceneManager.addScene("Main", "/view/control_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
         // SceneManager.showScene("Main");
-        //SceneManager.addScene("Analysis", "/view/business_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
+        // SceneManager.addScene("Analysis", "/view/business_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
         // trzeba dodać inne panele
-        // SceneManager.addScene("screen1", "/view/Screen1.fxml");
-        // SceneManager.addScene("screen2", "/view/Screen2.fxml");
+        // SceneManager.showScene("Analysis");
         SceneManager.showScene("login");
 
     }
