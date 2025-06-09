@@ -7,6 +7,7 @@
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/branch_panel/RewardTableController.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/control_panel/logistics_coordinator_section/OutletController.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/model/PanelList.java
+/home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/branch_panel/SidebarController.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/branch_panel/discount_section/Promotions.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/control_panel/logistics_coordinator_section/MainService.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/control_panel/rewards_coordinator_section/SidebarController.java
@@ -22,6 +23,7 @@
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/model/RewardModel.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/branch_panel/delivery_section/Delivery.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/control_panel/logistics/CreateOutletService.java
+/home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/branch_panel/Controller.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/business_panel/MainController.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/branch_panel/MainMenuController.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/branch_panel/delivery_section/RequestDelivery.java
@@ -58,4 +60,5 @@
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/branch_panel/ClientSimulation/ServerTask.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/model/UserModel.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/Session.java
+/home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/controllers/branch_panel/MainController.java
 /home/mikolaj/Documents/apka/Projekt-IO/src/main/java/app/service/branch_panel/ClientSimulation/ClientTask.java

@@ -1,12 +1,14 @@
-package app.controllers.control_panel.rewards_coordinator_section;
+package app.controllers.branch_panel;
 
 import app.service.SceneManager;
+import app.service.Session;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -96,7 +98,8 @@ public class SidebarController {
 
     private void handleHomeClick() {
         if (mainController != null) {
-           // mainController.changeContent("/fxmls/home.fxml");
+            SceneManager.showScene("login");
+        //    mainController.changeContent("/fxmls/home.fxml");
         }
     }
 
@@ -110,11 +113,10 @@ public class SidebarController {
         System.out.println("Logout clicked");
         System.out.println(Box1.getWidth());
 
-        // SceneManager.showScene("login");
-        // SceneManager.addScene("login");
+        Session.user = null;
+        SceneManager.showScene("login");
     }
     public void setController(Controller controller) {
         this.mainController = controller;
     }
-
 }

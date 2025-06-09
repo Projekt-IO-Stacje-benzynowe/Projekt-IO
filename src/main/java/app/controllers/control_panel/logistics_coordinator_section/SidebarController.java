@@ -1,5 +1,6 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
+import app.service.SceneManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -97,21 +98,25 @@ public class SidebarController {
     private void handleHomeClick() {
         if (mainController != null) {
            // mainController.changeContent("/fxmls/home.fxml");
+           SceneManager.addScene("Main");
+           SceneManager.showScene("Main");
+            System.out.println("Kliknięto home!");
         }
     }
-
     private void handleSettingsClick() {
         if (mainController != null) {
            // mainController.changeContent("/fxmls/settings.fxml");
         }
     }
-
     private void handleLogoutClick() {
-        System.out.println("Logout clicked");
-        System.out.println(Box1.getWidth());
+        // System.out.println("Logout clicked");
+        // System.out.println(Box1.getWidth());
+
+        System.out.println("Kliknięto logout!");
+        // SceneManager.showScene("login");
+        // SceneManager.addScene("login");
     }
     public void setController(Controller controller) {
         this.mainController = controller;
     }
-
 }
