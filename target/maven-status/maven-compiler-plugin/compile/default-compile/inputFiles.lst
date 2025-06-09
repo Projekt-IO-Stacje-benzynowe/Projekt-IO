@@ -2,11 +2,13 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logi
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\LoginValidation.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\TypeValidation.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics\ViewRequestsService.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\PlanDeliveryService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics\CreateDeliveryService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\ReportIssuesProduct.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\ProductReport.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\db\connection\MySQLConnection.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\Rewards\RewardsOperation.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\PlanDeliveryController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Parser.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\MainService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\ReportGenerator.java
@@ -18,15 +20,14 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\Main.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Server.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\SidebarController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\TableService.java
-C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\PromotionsModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics\CreateOutletService.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\PromotionModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\RewardToIssuanceModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\MainMenuController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\UserModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\ServerTask.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ReportProduct.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\delivery_section\ConfirmDelivery.java
-C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\CreateDeliveryController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\ViewRequestsService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\SidebarController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\rewards_coordinator_section\CreateRewardController.java
@@ -53,4 +54,5 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\SceneManager.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\rewards\CreateRewardService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Task.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\MainController.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\OutletModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\Session.java

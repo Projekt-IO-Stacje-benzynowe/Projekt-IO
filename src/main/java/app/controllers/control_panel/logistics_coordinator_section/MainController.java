@@ -1,6 +1,6 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
-import app.model.PromotionsModel;
+import app.model.OutletModel;
 import app.service.SceneManager;
 import app.service.Session;
 import app.service.control_panel.logistics_coordinator_section.MainService;
@@ -13,15 +13,17 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class MainController {
-    public BorderPane background;
-    public VBox sidebar;
+    @FXML
+    private BorderPane background;
+    @FXML
+    private VBox sidebar;
     @FXML
     private AnchorPane mainContainer;
     @FXML
-    public HBox topBar;
+    private HBox topBar;
     @FXML
-    public BorderPane mainContent;
-    private TableView<PromotionsModel> promotionsTableView;
+    private BorderPane mainContent;
+    private TableView<OutletModel> outletsTableView;
     @FXML
     private StackPane tablePane;
     @FXML
@@ -31,7 +33,7 @@ public class MainController {
     public void initialize() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/sidebar.fxml"));
-            sidebarContainer = loader.load(); // Ten VBox jest root z sidebar.fxml
+            sidebarContainer = loader.load();
 
             SidebarController sidebarController = loader.getController();
             if (sidebarController != null) {
@@ -47,10 +49,9 @@ public class MainController {
             sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
 
-            promotionsTableView = MainService.getAllPromotionsTable();
-            promotionsTableView.setOnMouseClicked(e -> clickTable(e));
-            boolean check = tablePane.getChildren().add(promotionsTableView);
-            System.out.println(check);
+            outletsTableView = MainService.getAllOutletsView();
+            outletsTableView.setOnMouseClicked(e -> clickTable(e));
+            tablePane.getChildren().add(outletsTableView);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,12 +59,12 @@ public class MainController {
     }
 
     public void clickTable(MouseEvent event) {
-        String text = promotionsTableView.getSelectionModel().getSelectedItem().getName();
+        String text = outletsTableView.getSelectionModel().getSelectedItem().getName();
         testText.setText(text);
     }
 
     public void logOut(ActionEvent event) {
-        Session.EndSession();
+        Session.endSession();
         SceneManager.clear();
         SceneManager.addScene("login");
         SceneManager.showScene("login");
@@ -73,11 +74,14 @@ public class MainController {
         testText.setText("view requests?");
     }
 
-    public void goToPlanNewDelivery(ActionEvent event) {
-        testText.setText("view requests?");
+    public void goToPlanDelivery(ActionEvent event) {
+        Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
+        SceneManager.addScene("plan_delivery");
+        SceneManager.showScene("plan_delivery");
     }
 
     public void goToModifyDelivery(ActionEvent event) {
-        testText.setText("view requests?");
+        SceneManager.addScene("modifyDelivery");
+        SceneManager.showScene("modifyDelivery");
     }
 }

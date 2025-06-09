@@ -1,11 +1,11 @@
 package app.model;
 
-public class PromotionsModel {
+public class PromotionModel {
     private Integer id = null;
     private String name = null;
     private String desc = null;
 
-    public PromotionsModel(Integer id, String name, String description){
+    public PromotionModel(Integer id, String name, String description){
         this.id = id;
         this.name = name;
         this.desc = description;

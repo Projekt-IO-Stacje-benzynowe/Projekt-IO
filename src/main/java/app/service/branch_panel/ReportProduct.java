@@ -32,7 +32,7 @@ public class ReportProduct {
         }   
 
         if(quantity != -1 && productID != -1)
-            RepositorySQL.sendRaport(Session.User.getID(), productID, quantity, desc.getText(), validDate);
+            RepositorySQL.sendReport(Session.user.getID(), productID, quantity, desc.getText(), validDate);
         
         if (quantity >= 1){
             alert.setContentText("Zgłoszono usterkę produktów");

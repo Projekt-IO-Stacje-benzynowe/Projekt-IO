@@ -6,7 +6,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import app.model.PromotionsModel;
+import app.model.PromotionModel;
 
 import app.service.SceneManager;
 import app.service.Session;
@@ -14,13 +14,13 @@ import app.service.branch_panel.discount_section.Promotions;
 
 public class DiscountTableController {
     @FXML
-    private TableColumn<PromotionsModel, String> nameColumn;
+    private TableColumn<PromotionModel, String> nameColumn;
 
     @FXML
-    private TableColumn<PromotionsModel, String> descColumn;
+    private TableColumn<PromotionModel, String> descColumn;
 
     @FXML
-    private TableView<PromotionsModel> table;
+    private TableView<PromotionModel> table;
 
     @FXML
     public void initialize() {
@@ -32,7 +32,7 @@ public class DiscountTableController {
 
 
     // do poprawki, przeneis do service
-        List<PromotionsModel> promotions = Promotions.GetPromotions(Session.User.getNameBranch());
+        List<PromotionModel> promotions = Promotions.GetPromotions(Session.user.getNameBranch());
         table.getItems().addAll(promotions);
     }
 

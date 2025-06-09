@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 import app.db.connection.MySQLConnection;
-import app.model.PromotionsModel;
+import app.model.OutletModel;
+import app.model.PromotionModel;
 import app.model.UserModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,13 +25,13 @@ import app.model.RewardToIssuanceModel;
 
 public class RepositorySQL {
     public static String GetBranchNameForUser(int userID) {
-        String querySQL = "SELECT gasOutletName FROM UsersGasOutlet WHERE ID_user = ?"; 
+        String querySQL = "SELECT outletName FROM UsersOutlet WHERE ID_user = ?"; 
 
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
             stmt.setInt(1, userID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getString("gasOutletName");
+                return rs.getString("outletName");
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching branch name for user: " + err.getMessage());
@@ -53,16 +54,19 @@ public class RepositorySQL {
         }
     }
 
-    public static ObservableList<PromotionsModel> getAllPromotions() {
+    public static ObservableList<PromotionModel> getAllPromotions() {
         String querySQL = """
                 SELECT *
                 FROM Promotions
                 """;
-        ObservableList<PromotionsModel> result = FXCollections.observableArrayList();
+        ObservableList<PromotionModel> result = FXCollections.observableArrayList();
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new PromotionsModel(rs.getInt("PromotionID"), rs.getString("PromotionName"), rs.getString("Description")));
+                result.add(new PromotionModel(
+                    rs.getInt("PromotionID"),
+                    rs.getString("PromotionName"),
+                    rs.getString("Description")));
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching promotions on chosen outlet: " + err.getMessage());
@@ -70,23 +74,75 @@ public class RepositorySQL {
         return result;
     }
 
-    public static List<PromotionsModel> getPromotions(String name) {
+    public static ObservableList<PromotionModel> getPromotionsForOutlet(String outletName) {
         String querySQL = """
         SELECT p.* 
         FROM Promotions p 
-        JOIN Outlets g ON p.OutletID = g.OutletID 
+        JOIN Outlets o ON p.OutletID = o.OutletID 
         WHERE g.name = ?
         """;
 
-        List<PromotionsModel> result = new ArrayList<>();
+        ObservableList<PromotionModel> result = FXCollections.observableArrayList();
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
-            stmt.setString(1, name);
+            stmt.setString(1, outletName);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new PromotionsModel(rs.getInt("PromotionID"), rs.getString("PromotionName"), rs.getString("Description")));
+                result.add(new PromotionModel(
+                    rs.getInt("PromotionID"),
+                    rs.getString("PromotionName"),
+                    rs.getString("Description")));
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching promotions on chosen outlet: " + err.getMessage());
+        }
+        return result;
+    }
+
+    public static ObservableList<OutletModel> getAllOutlets() {
+        String querySQL = """
+                SELECT *
+                FROM Outlets
+                """;
+
+        ObservableList<OutletModel> result = FXCollections.observableArrayList();
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new OutletModel(
+                    rs.getInt("OutletsID"),
+                    rs.getString("Name"),
+                    rs.getString("Address"),
+                    rs.getString("City"),
+                    rs.getString("PostalCode"),
+                    rs.getString("Region")));
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching outlets: " + err.getMessage());
+        }
+        return result;
+    }
+
+    public static ObservableList<RewardModel> getAllRewards() {
+        String querySQL = """
+                SELECT *
+                FROM RewardProducts
+                """;
+
+        ObservableList<RewardModel> result = FXCollections.observableArrayList();
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new RewardModel(
+                    rs.getInt("RewardProductID"),
+                    rs.getInt("PromotionID"),
+                    rs.getString("Name"),
+                    rs.getInt("UnitPrice"),
+                    rs.getInt("RequiredProductsNumber"),
+                    null
+                ));
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching rewards: " + err.getMessage());
         }
         return result;
     }
@@ -113,6 +169,7 @@ public class RepositorySQL {
             return null;
         }
     }
+
     public static int confirmDelivery(String ID) {
         String querySQL = """
          UPDATE Deliveries
@@ -128,7 +185,7 @@ public class RepositorySQL {
         }
     }
 
-    public static void sendRaport(int outletID, int productID, int quantity, String desc, Timestamp date){
+    public static void sendReport(int outletID, int productID, int quantity, String desc, Timestamp date){
         String querySQL = """
             INSERT INTO Disposals (
                 DisposalID, 
@@ -301,8 +358,6 @@ public class RepositorySQL {
         }
     }
 
-
-
     public static Integer findOutletIDByName(String name) {
         String querySQL = """
             SELECT OutletID FROM Outlets
@@ -446,6 +501,7 @@ public class RepositorySQL {
         }
         return null;
     }
+
     public static void insertSale(int saleID,int PromotionID, int OutletID, int ProductID, Date month, int soldQuantity, double GrossValue, double Margin ){
         String sql = "INSERT INTO Sales " +
                 "(SaleID, PromotionID, OutletID, ProductID, Month, QuantitySold, GrossValue, Margin) " +
@@ -487,21 +543,21 @@ public class RepositorySQL {
             return null;
         }
 
-        public static Double getPromotionPrice(int promotionID) {
-            String query = "SELECT Price FROM Promotions WHERE PromotionID = ?";
+    public static Double getPromotionPrice(int promotionID) {
+        String query = "SELECT Price FROM Promotions WHERE PromotionID = ?";
+        
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query)) {
+            stmt.setInt(1, promotionID);
             
-            try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query)) {
-                stmt.setInt(1, promotionID);
-                
-                try (ResultSet rs = stmt.executeQuery()) {
-                    if (rs.next()) {
-                        return rs.getDouble("Price");
-                    }
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getDouble("Price");
                 }
-            } catch (SQLException e) {
-                System.err.println("Błąd podczas pobierania ceny produktu: " + e.getMessage());
             }
-            return 0.0;
+        } catch (SQLException e) {
+            System.err.println("Błąd podczas pobierania ceny produktu: " + e.getMessage());
         }
+        return 0.0;
+    }
 
 }       

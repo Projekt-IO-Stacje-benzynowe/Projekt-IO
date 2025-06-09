@@ -23,6 +23,8 @@ public class SceneManager {
         if(scenes.containsKey(name)){return;}
         
         String fxmlFile = PanelList.getFXMLFile(name);
+        System.out.println(name);
+        System.out.println(fxmlFile);
 
         try {
             Parent root = FXMLLoader.load(SceneManager.class.getResource(fxmlFile));

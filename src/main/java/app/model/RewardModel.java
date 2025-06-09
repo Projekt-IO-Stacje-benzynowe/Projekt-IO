@@ -6,8 +6,8 @@ public class RewardModel{
     String Name;
     Integer UnitPrice;
     Integer RequiredProductsNumber;
-
     Integer ProductID;
+
     public RewardModel(){};
 
     public RewardModel(Integer rpID, Integer pID, String Name, Integer up, Integer rpn, Integer ProductID){

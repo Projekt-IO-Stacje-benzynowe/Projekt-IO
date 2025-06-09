@@ -1,19 +1,15 @@
 package app.service;
 
 import java.util.Arrays;
-import java.util.List;
 
 import app.db.repo.RepositorySQL;
-import app.model.PromotionsModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import app.model.OutletModel;
+import app.model.PromotionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TableService {
-    private static List<PromotionsModel> promotionsList;
-
     private static <E, T> TableColumn<E, T> createTableColumn(String columnName, String propertyName, int width) {
         TableColumn<E, T> column = new TableColumn<E, T>(columnName);
         column.setMinWidth(width);
@@ -22,39 +18,49 @@ public class TableService {
         return column;
     }
 
-    private static ObservableList<PromotionsModel> getPromotionsObservableList(String outletName){
-        promotionsList = RepositorySQL.getPromotions(outletName);
-        ObservableList<PromotionsModel> promotionsObservableList = FXCollections.observableArrayList();
-        for (PromotionsModel promotion : promotionsList) {
-            promotionsObservableList.add(promotion);
-        }
-        promotionsList = null;
-        return promotionsObservableList;
-    }
-
-    public static TableView<PromotionsModel> getPromotionsTable(String promotionName) {
-        TableView<PromotionsModel> promotionsTableView = new TableView<>();
+    public static TableView<PromotionModel> getPromotionsTable(String outletName) {
+        TableView<PromotionModel> promotionsTableView = new TableView<>();
         promotionsTableView.setEditable(true);
         promotionsTableView.setMaxWidth(400);
-        TableColumn<PromotionsModel, String> promotionNameCol = createTableColumn("Promotion name", "name", 200);
+        TableColumn<PromotionModel, String> promotionNameCol = createTableColumn("Promotion name", "name", 200);
 
-        TableColumn<PromotionsModel, String> promotionDescCol = createTableColumn("Description", "desc", 200);
+        TableColumn<PromotionModel, String> promotionDescCol = createTableColumn("Description", "desc", 200);
 
-        promotionsTableView.setItems(getPromotionsObservableList(promotionName));
+        promotionsTableView.setItems(RepositorySQL.getPromotionsForOutlet(outletName));
         promotionsTableView.getColumns().addAll(Arrays.asList(promotionNameCol, promotionDescCol));
         return promotionsTableView;
     }
 
-    public static TableView<PromotionsModel> getAllPromotionsTable() {
-        TableView<PromotionsModel> promotionsTableView = new TableView<>();
+    public static TableView<PromotionModel> getAllPromotionsTable() {
+        TableView<PromotionModel> promotionsTableView = new TableView<>();
         promotionsTableView.setEditable(true);
         promotionsTableView.setPrefWidth(400);
-        TableColumn<PromotionsModel, String> promotionNameCol = createTableColumn("Promotion name", "name", 200);
+        TableColumn<PromotionModel, String> promotionNameCol = createTableColumn("Promotion name", "name", 200);
 
-        TableColumn<PromotionsModel, String> promotionDescCol = createTableColumn("Description", "desc", 200);
+        TableColumn<PromotionModel, String> promotionDescCol = createTableColumn("Description", "desc", 200);
 
         promotionsTableView.setItems(RepositorySQL.getAllPromotions());
         promotionsTableView.getColumns().addAll(Arrays.asList(promotionNameCol, promotionDescCol));
         return promotionsTableView;
+    }
+
+    public static TableView<OutletModel> getAllOutlets() {
+        TableView<OutletModel> outletsTableView = new TableView<>();
+        outletsTableView.setEditable(true);
+        outletsTableView.setPrefWidth(400);
+        TableColumn<OutletModel, String> outletNameCol = createTableColumn("Name", "name", 100);
+
+        TableColumn<OutletModel, String> outletAddressCol = createTableColumn("Address", "address", 100);
+
+        TableColumn<OutletModel, String> outletCityCol = createTableColumn("City", "city", 100);
+
+        TableColumn<OutletModel, String> outletPostalCodeCol = createTableColumn("Postal Code", "postalCode", 100);
+
+        TableColumn<OutletModel, String> outletRegionCol = createTableColumn("Region", "region", 100);
+
+        outletsTableView.setItems(RepositorySQL.getAllOutlets());
+        outletsTableView.getColumns().addAll(Arrays.asList(outletNameCol, outletAddressCol, outletCityCol, outletPostalCodeCol, outletRegionCol));
+        outletsTableView.setMaxWidth(600);
+        return outletsTableView;
     }
 }

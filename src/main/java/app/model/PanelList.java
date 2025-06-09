@@ -17,6 +17,7 @@ public class PanelList {
         result.put("reportProduct", "/view/branch_panel/reportPanel.fxml");
         result.put("rewards_table", "/view/branch_panel/tableRewards.fxml");
         result.put("promotions_table_scene", "/view/branch_panel/discount_panel_table_promotions.fxml");
+        result.put("plan_delivery", "/view/control_panel/logistics/plan_delivery_panel.fxml");
         return result;
     }
 

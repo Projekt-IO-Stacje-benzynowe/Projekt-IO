@@ -16,7 +16,7 @@ public class RequestDelivery {
         int prodID = TypeValidation.intValidation(productID.getText());
         int quan = TypeValidation.intValidation(quantity.getText());
         int delID = TypeValidation.intValidation(deliveryID.getText());
-        RepositorySQL.sendRequestForDelivery(Session.User.getID(), delID, prodID, quan);
+        RepositorySQL.sendRequestForDelivery(Session.user.getID(), delID, prodID, quan);
         
     }
 }

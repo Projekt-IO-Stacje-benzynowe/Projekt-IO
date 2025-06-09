@@ -52,7 +52,7 @@ public class LoginValidation{
 
                 launcher.runClientTask();            
             }
-            Session.User = user;
+            Session.user = user;
         };
     }
 }
