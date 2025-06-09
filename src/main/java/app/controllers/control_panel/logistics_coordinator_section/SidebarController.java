@@ -16,17 +16,13 @@ import javafx.util.Duration;
 
 public class SidebarController {
     private ChangeListener<Number> widthListener;
-    private MainController mainController;
+    private Controller mainController;
 
     @FXML private VBox Box1;
 
     @FXML private Button homeButton, settingsButton, logoutButton;
     @FXML private Label homeLabel, settingsLabel, logoutLabel;
     @FXML private HBox homeHBox, settingsHBox, logoutHBox;
-
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
 
     @FXML
     public void initialize() {
@@ -114,4 +110,8 @@ public class SidebarController {
         System.out.println("Logout clicked");
         System.out.println(Box1.getWidth());
     }
+    public void setController(Controller controller) {
+        this.mainController = controller;
+    }
+
 }
