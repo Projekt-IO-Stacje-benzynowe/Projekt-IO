@@ -13,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-public class MainController {
+public class MainController implements Controller {
     @FXML
     private AnchorPane mainContainer;
     @FXML
@@ -38,7 +38,7 @@ public class MainController {
 
             SidebarController sidebarController = loader.getController();
             if (sidebarController != null) {
-                sidebarController.setMainController(this);
+                sidebarController.setController(this);
             }
             sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));

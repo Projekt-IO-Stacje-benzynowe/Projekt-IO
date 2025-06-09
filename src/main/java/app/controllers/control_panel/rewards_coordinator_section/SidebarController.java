@@ -14,7 +14,7 @@ import javafx.util.Duration;
 
 public class SidebarController {
     private ChangeListener<Number> widthListener;
-    private MainController mainController;
+    private Controller mainController;
 
     @FXML private VBox Box1;
 
@@ -22,40 +22,22 @@ public class SidebarController {
     @FXML private Label homeLabel, settingsLabel, logoutLabel;
     @FXML private HBox homeHBox, settingsHBox, logoutHBox;
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
     @FXML
     public void initialize() {
+        System.out.println("SidebarController loaded! homeButton: " + homeButton);
         homeLabel.setVisible(false);
         settingsLabel.setVisible(false);
         logoutLabel.setVisible(false);
-
         setupButton(homeButton, homeLabel, homeHBox, this::handleHomeClick);
         setupButton(settingsButton, settingsLabel, settingsHBox, this::handleSettingsClick);
         setupButton(logoutButton, logoutLabel, logoutHBox, this::handleLogoutClick);
-
-        Box1.widthProperty().addListener((obs, oldVal, newVal) -> {
-            double width = newVal.doubleValue();
-            double iconSize = width * 0.25;
-            resizeIcon(homeButton, iconSize * 1.3);
-            resizeIcon(settingsButton, iconSize);
-            resizeIcon(logoutButton, iconSize);
-        });
-
-        Box1.sceneProperty().addListener((obs,oldScene, newScene)->{
-            if(newScene != null){
-                newScene.windowProperty().addListener((obs2, oldWin, newWin)->{
-                    if(newWin != null){
-                        newWin.widthProperty().addListener((o, oldW, newW)->{
-                        });
-                    }
-                });
-            }
-        });
+        ImageView homeIcon = (ImageView) homeButton.getGraphic();
+        ImageView settingsIcon = (ImageView) settingsButton.getGraphic();
+        ImageView logIcon = (ImageView) logoutButton.getGraphic();
+        homeIcon.fitHeightProperty().bind(Box1.widthProperty().multiply(0.325));
+        settingsIcon.fitHeightProperty().bind(Box1.widthProperty().multiply(0.25));
+        logIcon.fitHeightProperty().bind(Box1.widthProperty().multiply(0.25));
         Box1.setAlignment(Pos.CENTER);
-        forceResize();
     }
 
     private void forceResize(){
@@ -112,17 +94,22 @@ public class SidebarController {
 
     private void handleHomeClick() {
         if (mainController != null) {
-            mainController.changeContent("/fxmls/home.fxml");
+           // mainController.changeContent("/fxmls/home.fxml");
         }
     }
 
     private void handleSettingsClick() {
         if (mainController != null) {
-            mainController.changeContent("/fxmls/settings.fxml");
+           // mainController.changeContent("/fxmls/settings.fxml");
         }
     }
 
     private void handleLogoutClick() {
         System.out.println("Logout clicked");
+        System.out.println(Box1.getWidth());
     }
+    public void setController(Controller controller) {
+        this.mainController = controller;
+    }
+
 }

@@ -7,6 +7,7 @@ public class PanelList {
 
     private static TreeMap<String, String> initializeMap() {
         TreeMap<String, String> result = new TreeMap<>();
+        result.put("rewards", "/view/control_panel/rewards/Main.fxml");
         result.put("Main", "/view/control_panel/Main.fxml");
         result.put("login", "/view/login.fxml");
         result.put("branch", "/view/branch_panel/main_branch.fxml");

@@ -9,6 +9,7 @@ import app.service.control_panel.logistics_coordinator_section.PlanDeliveryServi
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -20,7 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class PlanDeliveryController {
+public class PlanDeliveryController implements Controller {
     @FXML
     private AnchorPane mainContainer;
     @FXML
@@ -48,6 +49,17 @@ public class PlanDeliveryController {
 
     public void initialize() {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/sidebar.fxml"));
+            sidebarContainer = loader.load();
+
+            SidebarController sidebarController = loader.getController();
+            if (sidebarController != null) {
+                sidebarController.setController(this);
+            }
+            sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
+            sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
+            // Dodaj do mainContainer na indeksie 1 (pod top, nad contentArea)
+            mainContainer.getChildren().add(sidebarContainer);
             background.prefWidthProperty().bind(mainContainer.widthProperty());
             background.prefHeightProperty().bind(mainContainer.heightProperty());
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.8));
