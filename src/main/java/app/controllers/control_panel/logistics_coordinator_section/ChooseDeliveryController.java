@@ -1,19 +1,22 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
+import app.model.DeliveryModel;
 import app.model.OutletModel;
-import app.service.SceneManager;
 import app.service.Session;
+import app.service.control_panel.logistics_coordinator_section.ChooseDeliveryService;
 import app.service.control_panel.logistics_coordinator_section.MainService;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class MainController {
+public class ChooseDeliveryController {
     @FXML
     private AnchorPane mainContainer;
     @FXML
@@ -30,16 +33,10 @@ public class MainController {
     private Text messageText;
     @FXML
     private VBox sidebarContainer;
-    private TableView<OutletModel> outletsTableView;
+    private TableView<DeliveryModel> deliveriesTableView;
+
     public void initialize() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/sidebar.fxml"));
-            sidebarContainer = loader.load();
-
-            SidebarController sidebarController = loader.getController();
-            if (sidebarController != null) {
-                sidebarController.setMainController(this);
-            }
             sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             // Dodaj do mainContainer na indeksie 1 (pod top, nad contentArea)
@@ -50,9 +47,9 @@ public class MainController {
             sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
 
-            outletsTableView = MainService.getAllOutletsView();
-            outletsTableView.setOnMouseClicked(e -> clickTable(e));
-            tablePane.getChildren().add(outletsTableView);
+            deliveriesTableView = ChooseDeliveryService.getDeliveriesForOutletView(Session.getOutlet().getID());
+            deliveriesTableView.setOnMouseClicked(e -> clickTable(e));
+            tablePane.getChildren().add(deliveriesTableView);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,29 +57,7 @@ public class MainController {
     }
 
     public void clickTable(MouseEvent event) {
-        String text = outletsTableView.getSelectionModel().getSelectedItem().getName();
+        String text = deliveriesTableView.getSelectionModel().getSelectedItem().getRewardName();
         messageText.setText(text);
-    }
-
-    public void logOut(ActionEvent event) {
-        Session.endSession();
-        SceneManager.clear();
-        SceneManager.addScene("login");
-        SceneManager.showScene("login");
-    }
-
-    public void goToViewRequests(ActionEvent event) {
-        messageText.setText("view requests?");
-    }
-
-    public void goToPlanDelivery(ActionEvent event) {
-        Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
-        SceneManager.addScene("plan_delivery");
-        SceneManager.showScene("plan_delivery");
-    }
-
-    public void goToChooseDelivery(ActionEvent event) {
-        SceneManager.addScene("chooseDelivery");
-        SceneManager.showScene("chooseDelivery");
     }
 }

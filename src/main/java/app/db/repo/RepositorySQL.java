@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import app.db.connection.MySQLConnection;
+import app.model.DeliveryModel;
 import app.model.OutletModel;
 import app.model.PromotionModel;
 import app.model.UserModel;
@@ -17,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
-import java.sql.Connection;
 import java.sql.Date;
 
 import app.model.RewardModel;
@@ -143,6 +143,34 @@ public class RepositorySQL {
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching rewards: " + err.getMessage());
+        }
+        return result;
+    }
+
+    public static ObservableList<DeliveryModel> getDeliveriesForOutlet(Integer outletID) {
+        String querySQL = """
+                SELECT d.DeliveryID, d.OutletID, d.ProductID, d.Quantity, d.ShipmentDate, p.Name AS RewardName
+                FROM Deliveries d
+                JOIN RewardProducts p ON d.ProductID = p.RewardProductID
+                WHERE d.OutletID = ?
+                """;
+
+        ObservableList<DeliveryModel> result = FXCollections.observableArrayList();
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setInt(1, outletID);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new DeliveryModel(
+                    rs.getInt("DeliveryID"),
+                    rs.getInt("OutletID"),
+                    rs.getInt("ProductID"),
+                    rs.getString("RewardName"),
+                    rs.getInt("Quantity"),
+                    rs.getTimestamp("ShipmentDate").toLocalDateTime().toLocalDate()
+                ));
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching deliveries for outlet: " + err.getMessage());
         }
         return result;
     }

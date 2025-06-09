@@ -6,8 +6,7 @@ import app.service.TableService;
 import javafx.scene.control.TableView;
 
 public class MainService {
-
     public static TableView<OutletModel> getAllOutletsView() {
-        return TableService.getAllOutlets();
+        return TableService.getAllOutletsTable();
     }
 }

@@ -1,8 +1,10 @@
 package app.service;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import app.db.repo.RepositorySQL;
+import app.model.DeliveryModel;
 import app.model.OutletModel;
 import app.model.PromotionModel;
 import javafx.scene.control.TableColumn;
@@ -18,7 +20,7 @@ public class TableService {
         return column;
     }
 
-    public static TableView<PromotionModel> getPromotionsTable(String outletName) {
+    public static TableView<PromotionModel> getPromotionsForOutletTable(String outletName) {
         TableView<PromotionModel> promotionsTableView = new TableView<>();
         promotionsTableView.setEditable(true);
         promotionsTableView.setMaxWidth(400);
@@ -44,7 +46,7 @@ public class TableService {
         return promotionsTableView;
     }
 
-    public static TableView<OutletModel> getAllOutlets() {
+    public static TableView<OutletModel> getAllOutletsTable() {
         TableView<OutletModel> outletsTableView = new TableView<>();
         outletsTableView.setEditable(true);
         outletsTableView.setPrefWidth(400);
@@ -62,5 +64,21 @@ public class TableService {
         outletsTableView.getColumns().addAll(Arrays.asList(outletNameCol, outletAddressCol, outletCityCol, outletPostalCodeCol, outletRegionCol));
         outletsTableView.setMaxWidth(600);
         return outletsTableView;
+    }
+
+    public static TableView<DeliveryModel> getDeliveriesForOutletTable(Integer outletID){
+        TableView<DeliveryModel> deliveriesTableView = new TableView<>();
+        deliveriesTableView.setEditable(true);
+        deliveriesTableView.setPrefWidth(400);
+        TableColumn<DeliveryModel, String> rewardNameCol = createTableColumn("Name", "rewardName", 100);
+
+        TableColumn<DeliveryModel, Integer> deliveryQuantityCol = createTableColumn("Quantity", "quantity", 100);
+
+        TableColumn<DeliveryModel, LocalDate> shipmentDateCol = createTableColumn("Shipment date", "shipmentDate", 100);
+
+        deliveriesTableView.setItems(RepositorySQL.getDeliveriesForOutlet(outletID));
+        deliveriesTableView.getColumns().addAll(Arrays.asList(rewardNameCol, deliveryQuantityCol, shipmentDateCol));
+        deliveriesTableView.setMaxWidth(600);
+        return deliveriesTableView;
     }
 }

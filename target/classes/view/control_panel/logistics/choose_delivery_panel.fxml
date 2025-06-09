@@ -44,7 +44,7 @@
 
                         <Button mnemonicParsing="false" onAction="#goToPlanDelivery" prefHeight="35.0" prefWidth="100.0" text="Plan a new delivery"/>
 
-                        <Button mnemonicParsing="false" onAction="#goToChooseDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify a delivery"/>
+                        <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify a delivery"/>
                     </VBox>
                 </right>
                 <bottom>

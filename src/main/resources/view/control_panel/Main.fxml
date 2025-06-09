@@ -37,14 +37,14 @@
                 <right>
                     <VBox minWidth="100">
                         <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
-                        <Text text="test" fx:id="testText"/>
+                        <Text text="" fx:id="messageText"/>
                         <Button mnemonicParsing="false" onAction="#logOut" prefHeight="35.0" prefWidth="100.0" text="Log out"/>
                         
                         <Button mnemonicParsing="false" onAction="#goToViewRequests" prefHeight="35.0" prefWidth="100.0" text="View requests"/>
 
                         <Button mnemonicParsing="false" onAction="#goToPlanDelivery" prefHeight="35.0" prefWidth="100.0" text="Plan a new delivery"/>
 
-                        <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify a delivery"/>
+                        <Button mnemonicParsing="false" onAction="#goToChooseDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify a delivery"/>
                     </VBox>
                 </right>
                 <bottom>

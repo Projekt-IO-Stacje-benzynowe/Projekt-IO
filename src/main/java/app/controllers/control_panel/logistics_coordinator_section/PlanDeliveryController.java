@@ -1,5 +1,7 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
+import java.time.LocalDate;
+
 import app.model.RewardModel;
 import app.service.SceneManager;
 import app.service.Session;
@@ -8,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -59,6 +62,14 @@ public class PlanDeliveryController {
             rewardComboBox.setItems(rewards);
             rewardComboBox.setPromptText("Select a reward");
 
+            deliveryDatePicker.setDayCellFactory(_ -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    setDisable(empty || date.compareTo(LocalDate.now()) < 0 );
+            }
+    });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,6 +81,23 @@ public class PlanDeliveryController {
             errorText.setText("Please select a reward.");
             return;
         }
+        String quantityText = quantityField.getText();
+        try {
+            int quantity = Integer.parseInt(quantityText);
+            if (quantity <= 0) {
+                errorText.setText("Quantity must be a positive number.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            errorText.setText("Invalid quantity format.");
+            return;
+        }
+        LocalDate deliveryDate = deliveryDatePicker.getValue();
+        if (deliveryDate == null) {
+            errorText.setText("Please select a delivery date.");
+            return;
+        }
+
         errorText.setText(selectedReward.getName() + " " + quantityField.getText());
     }
 

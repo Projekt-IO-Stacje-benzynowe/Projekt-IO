@@ -12,6 +12,7 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logi
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Parser.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\MainService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\ReportGenerator.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\DeliveryModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\delivery_section\RequestDelivery.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\db\repo\RepositorySQL.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\Screen1Controller.java
@@ -52,7 +53,9 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\delivery_
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\MainController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\SceneManager.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\rewards\CreateRewardService.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\ChooseDeliveryService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Task.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\MainController.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\control_panel\logistics_coordinator_section\ChooseDeliveryController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\OutletModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\Session.java
