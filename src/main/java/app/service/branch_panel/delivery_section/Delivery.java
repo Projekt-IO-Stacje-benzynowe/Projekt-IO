@@ -1,6 +1,7 @@
 package app.service.branch_panel.delivery_section;
 
 import app.db.repo.RepositorySQL;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -35,6 +36,9 @@ public class Delivery {
         }
     }
     private static void goToReportIssues(){
+        if(!SceneManager.isScene("report_product")){
+            SceneManager.addScene("report_product");
+        }
         SceneManager.showScene("report_product");
     }
 }
