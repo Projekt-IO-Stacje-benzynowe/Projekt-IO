@@ -26,6 +26,7 @@ app/db/connection/MySQLConnection.class
 app/service/TypeValidation.class
 app/controllers/control_panel/logistics_coordinator_section/SidebarController.class
 app/controllers/branch_panel/discount_section/DiscountMenuController.class
+app/service/control_panel/rewards/MainService.class
 app/controllers/branch_panel/delivery_section/DeliveryMenuController.class
 app/controllers/business_panel/ProductReport.class
 app/controllers/branch_panel/discount_section/DiscountTableController.class

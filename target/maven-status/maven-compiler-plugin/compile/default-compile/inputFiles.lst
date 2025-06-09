@@ -18,6 +18,7 @@
 /Users/jakubkoszorz/Desktop/main/src/main/java/app/controllers/control_panel/Screen2Controller.java
 /Users/jakubkoszorz/Desktop/main/src/main/java/app/service/branch_panel/delivery_section/RequestDelivery.java
 /Users/jakubkoszorz/Desktop/main/src/main/java/app/controllers/business_panel/MainController.java
+/Users/jakubkoszorz/Desktop/main/src/main/java/app/service/control_panel/rewards/MainService.java
 /Users/jakubkoszorz/Desktop/main/src/main/java/app/controllers/control_panel/logistics_coordinator_section/Controller.java
 /Users/jakubkoszorz/Desktop/main/src/main/java/app/service/branch_panel/ClientSimulation/ServerTask.java
 /Users/jakubkoszorz/Desktop/main/src/main/java/app/service/control_panel/logistics/CreateDeliveryService.java

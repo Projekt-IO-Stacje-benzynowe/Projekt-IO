@@ -1,9 +1,10 @@
 package app.controllers.control_panel.rewards_coordinator_section;
 
 import app.model.OutletModel;
+import app.model.PromotionModel;
 import app.service.SceneManager;
 import app.service.Session;
-import app.service.control_panel.logistics_coordinator_section.MainService;
+import app.service.control_panel.rewards.MainService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,7 @@ public class MainController implements Controller {
     private HBox topBar;
     @FXML
     private BorderPane mainContent;
-    private TableView<OutletModel> outletsTableView;
+    private TableView<PromotionModel> PromotionsTableView;
     @FXML
     private StackPane tablePane;
     @FXML
@@ -49,9 +50,9 @@ public class MainController implements Controller {
             sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
 
-            outletsTableView = MainService.getAllOutletsView();
-            outletsTableView.setOnMouseClicked(e -> clickTable(e));
-            tablePane.getChildren().add(outletsTableView);
+            PromotionsTableView = MainService.getAllPromotions();
+            PromotionsTableView.setOnMouseClicked(e -> clickTable(e));
+            tablePane.getChildren().add(PromotionsTableView);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +60,7 @@ public class MainController implements Controller {
     }
 
     public void clickTable(MouseEvent event) {
-        String text = outletsTableView.getSelectionModel().getSelectedItem().getName();
+        String text = PromotionsTableView.getSelectionModel().getSelectedItem().getName();
         testText.setText(text);
     }
 
@@ -74,11 +75,6 @@ public class MainController implements Controller {
         testText.setText("view requests?");
     }
 
-    public void goToPlanDelivery(ActionEvent event) {
-        Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
-        SceneManager.addScene("plan_delivery");
-        SceneManager.showScene("plan_delivery");
-    }
 
     public void goToModifyDelivery(ActionEvent event) {
         SceneManager.addScene("modifyDelivery");
