@@ -1,42 +1,46 @@
 package app.model;
 
 public class RewardModel{
-    Integer RewardProductID;
-    Integer PromotionID;
-    String Name;
-    Integer UnitPrice;
-    Integer RequiredProductsNumber;
-    Integer ProductID;
+    Integer rewardProductID;
+    Integer promotionID;
+    String name;
+    Integer unitPrice;
+    Integer requiredProductsNumber;
+    Integer productID;
 
     public RewardModel(){};
 
-    public RewardModel(Integer rpID, Integer pID, String Name, Integer up, Integer rpn, Integer ProductID){
-        this.RewardProductID = rpID;
-        this.PromotionID = pID;
-        this.Name = Name;
-        this.UnitPrice = up;
-        this.RequiredProductsNumber = rpn;
-        this.ProductID = ProductID;
+    public RewardModel(Integer rpID, Integer pID, String name, Integer up, Integer rpn, Integer productID){
+        this.rewardProductID = rpID;
+        this.promotionID = pID;
+        this.name = name;
+        this.unitPrice = up;
+        this.requiredProductsNumber = rpn;
+        this.productID = productID;
     }
 
     public Integer getRewardProductID(){
-        return RewardProductID;
+        return rewardProductID;
     }
     public Integer getPromotionID(){
-        return PromotionID;
+        return promotionID;
     }
     public Integer getUnitPrice(){
-        return UnitPrice;
+        return unitPrice;
     }
     public Integer getRequiredProductsNumber(){
-        return RequiredProductsNumber;
+        return requiredProductsNumber;
     }
     public String getName(){
-        return Name;
+        return name;
+    }
+    public Integer getProductID(){
+        return productID;
     }
 
-    public Integer getProductID(){
-        return ProductID;
+    @Override
+    public String toString() {
+        return name;
     }
 
 }

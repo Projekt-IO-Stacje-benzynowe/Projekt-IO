@@ -13,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class PlanDeliveryController {
@@ -20,6 +22,10 @@ public class PlanDeliveryController {
     private AnchorPane mainContainer;
     @FXML
     private BorderPane background;
+    @FXML
+    private HBox topBar;
+    @FXML
+    private VBox sidebar;
     @FXML
     private BorderPane mainContent;
     @FXML
@@ -34,6 +40,8 @@ public class PlanDeliveryController {
     private DatePicker deliveryDatePicker;
     @FXML
     private Text errorText;
+    @FXML
+    private VBox sidebarContainer;
 
     public void initialize() {
         try {
