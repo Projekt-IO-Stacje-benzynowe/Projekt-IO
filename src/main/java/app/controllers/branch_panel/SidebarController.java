@@ -1,5 +1,7 @@
 package app.controllers.branch_panel;
 
+import app.service.SceneManager;
+import app.service.Session;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
@@ -12,16 +14,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class SidebarController {
+public class SidebarController implements DynamicContentController{
     private ChangeListener<Number> widthListener;
-    private Controller mainController;
-
+    private MainController mainController;
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+    @FXML
+    private void goToAnotherView(String fxml) {
+        if (mainController != null) {
+            mainController.loadContent(fxml);
+        }
+    }
     @FXML private VBox Box1;
-
     @FXML private Button homeButton, settingsButton, logoutButton;
     @FXML private Label homeLabel, settingsLabel, logoutLabel;
     @FXML private HBox homeHBox, settingsHBox, logoutHBox;
-
     @FXML
     public void initialize() {
         System.out.println("SidebarController loaded! homeButton: " + homeButton);
@@ -94,7 +103,7 @@ public class SidebarController {
 
     private void handleHomeClick() {
         if (mainController != null) {
-           // mainController.changeContent("/fxmls/home.fxml");
+          goToAnotherView("menu_branch");
         }
     }
 
@@ -105,11 +114,11 @@ public class SidebarController {
     }
 
     private void handleLogoutClick() {
-        System.out.println("Logout clicked");
-        System.out.println(Box1.getWidth());
+        Session.endSession();
+        SceneManager.clear();
+        SceneManager.addScene("login");
+        SceneManager.showScene("login");
     }
-    public void setController(Controller controller) {
-        this.mainController = controller;
-    }
+
 
 }

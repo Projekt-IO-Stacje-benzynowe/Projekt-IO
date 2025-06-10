@@ -1,6 +1,8 @@
 package app.service.branch_panel.delivery_section;
-
+import app.controllers.branch_panel.DynamicContentController;
+import app.controllers.branch_panel.MainController;
 import app.db.repo.RepositorySQL;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -9,8 +11,19 @@ import java.util.Optional;
 
 import app.service.SceneManager;
 
-public class Delivery {
-    public static void Confirm(String deliveryID){
+public class Delivery implements DynamicContentController {
+    private MainController mainController;
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+    @FXML
+    private void goToAnotherView(String fxml) {
+        if (mainController != null) {
+            mainController.loadContent(fxml);
+        }
+    }
+    public void Confirm(String deliveryID){
         int result = RepositorySQL.confirmDelivery(deliveryID);
 
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -35,10 +48,10 @@ public class Delivery {
             alert.showAndWait();
         }
     }
-    private static void goToReportIssues(){
+    private void goToReportIssues(){
         if(!SceneManager.isScene("report_product")){
             SceneManager.addScene("report_product");
         }
-        SceneManager.showScene("report_product");
+        goToAnotherView("reportPanel");
     }
 }

@@ -1,5 +1,5 @@
 package app.controllers.branch_panel;
-
+import app.controllers.branch_panel.DynamicContentController;
 import app.db.repo.RepositorySQL;
 import app.model.RewardToIssuanceModel;
 import app.service.SceneManager;
@@ -15,8 +15,18 @@ import app.service.Session;
 import app.service.branch_panel.Rewards.RewardsOperation;;
 
 
-public class RewardTableController {
-
+public class RewardTableController implements DynamicContentController {
+    private MainController mainController;
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+    @FXML
+    private void goToAnotherView(String fxml) {
+        if (mainController != null) {
+            mainController.loadContent(fxml);
+        }
+    }
     @FXML
     private TableView<RewardToIssuanceModel> rewardTable;
 
@@ -67,7 +77,7 @@ public class RewardTableController {
     @FXML
     public void goBack() {
         SceneManager.clearScene("rewards_table");
-        SceneManager.showScene("branch");
+        goToAnotherView("menu_branch");
 
     }   
 }

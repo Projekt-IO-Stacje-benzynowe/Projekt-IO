@@ -32,7 +32,6 @@
                     </HBox>
                 </top>
                 <left>
-                    <Label text="Left section" style="-fx-background-color: #e6fbf1;"/>
                 </left>
                 <center>
                     <StackPane fx:id="tablePane">
@@ -50,7 +49,7 @@
                     </VBox>
                 </right>
                 <bottom>
-                    <Label text="Bottom section" style="-fx-background-color: #e6f8fb;"/>
+
                 </bottom>
             </BorderPane>
         </center>

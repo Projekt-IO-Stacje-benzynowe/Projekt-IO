@@ -4,6 +4,7 @@ app/controllers/control_panel/rewards_coordinator_section/ModifyRewardController
 app/controllers/control_panel/logistics_coordinator_section/ViewRequestsController.class
 app/controllers/control_panel/logistics_coordinator_section/ChooseDeliveryController.class
 app/controllers/control_panel/rewards_coordinator_section/Controller.class
+app/controllers/branch_panel/DynamicContentController.class
 app/service/control_panel/logistics_coordinator_section/ChooseDeliveryService.class
 app/service/branch_panel/discount_section/Promotions.class
 app/service/branch_panel/ClientSimulation/ClientTask.class

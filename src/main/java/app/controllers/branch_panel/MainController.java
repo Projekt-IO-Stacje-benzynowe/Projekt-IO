@@ -41,7 +41,7 @@ public class MainController implements Controller {
 
             SidebarController sidebarController = loader.getController();
             if (sidebarController != null) {
-                sidebarController.setController(this);
+                sidebarController.setMainController(this);
             }
             sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
@@ -81,11 +81,17 @@ public class MainController implements Controller {
         SceneManager.addScene("modifyDelivery");
         SceneManager.showScene("modifyDelivery");
     }
-    private void loadContent(String fxml) {
+    public void loadContent(String fxml) {
         try {
-            String path = "/view/branch_panel/" + fxml + ".fxml";
-            Parent content = FXMLLoader.load(getClass().getResource(path));
-           tablePane.getChildren().setAll(content); // setAll zamiast add, by nie duplikować
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/branch_panel/" + fxml + ".fxml"));
+            Parent content = loader.load();
+
+            // PRZEKAZUJEMY REFERENCJĘ DO MAINCONTROLLER
+            Object controller = loader.getController();
+            if (controller instanceof DynamicContentController) {
+                ((DynamicContentController) controller).setMainController(this);
+            }
+            tablePane.getChildren().setAll(content);
         } catch (IOException e) {
             e.printStackTrace();
         }

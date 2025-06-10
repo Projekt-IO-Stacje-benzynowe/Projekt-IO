@@ -1,7 +1,8 @@
 package app.controllers.branch_panel.discount_section;
-
+import app.controllers.branch_panel.DynamicContentController;
 import java.util.List;
 
+import app.controllers.branch_panel.MainController;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -12,7 +13,18 @@ import app.service.SceneManager;
 import app.service.Session;
 import app.service.branch_panel.discount_section.Promotions;
 
-public class DiscountTableController {
+public class DiscountTableController implements DynamicContentController {
+    private MainController mainController;
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+    @FXML
+    private void goToAnotherView(String fxml) {
+        if (mainController != null) {
+            mainController.loadContent(fxml);
+        }
+    }
     @FXML
     private TableColumn<PromotionModel, String> nameColumn;
 
@@ -38,7 +50,7 @@ public class DiscountTableController {
 
     @FXML
     public void goBackButton(){
-        SceneManager.showScene("branch");
+        goToAnotherView("menu_branch");
     }
 
 }
