@@ -1,13 +1,10 @@
-package app.controllers.control_panel.rewards_coordinator_section;
+package app.controllers.shared;
 
 import app.model.OutletModel;
-import app.model.PromotionModel;
 import app.service.SceneManager;
-import app.service.Session;
-import app.service.control_panel.rewards.MainService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -17,27 +14,27 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class MainController implements Controller {
+
+    @FXML
+    public AnchorPane mainContainer;
     @FXML
     private BorderPane background;
     @FXML
-    private VBox sidebar;
-    @FXML
-    private AnchorPane mainContainer;
-    @FXML
     private HBox topBar;
     @FXML
-    private BorderPane mainContent;
-    private TableView<PromotionModel> PromotionsTableView;
+    private VBox sidebar;
     @FXML
-    private StackPane tablePane;
+    private BorderPane mainContent;
     @FXML
     private VBox sidebarContainer;
-    @FXML
-    private Text testText;
+    private TableView<OutletModel> outletsTableView;
+    public void setPanel(String panelName) {
+        SceneManager.setPanel(panelName); //ustawiamy panel w dynamicznej zawartosci
+    }
     public void initialize() {
         try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/rewards/sidebar.fxml"));
+            SceneManager.setMainController(this); // ustawiamy sceneManagerowi mainKontroler sceny jako ten główny
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/sidebar.fxml"));
             sidebarContainer = loader.load();
 
             SidebarController sidebarController = loader.getController();
@@ -53,49 +50,25 @@ public class MainController implements Controller {
             background.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
-
-            PromotionsTableView = MainService.getAllPromotions();
-            PromotionsTableView.setOnMouseClicked(e -> clickTable(e));
-            tablePane.getChildren().add(PromotionsTableView);
-
+            SceneManager.setMainRoot(mainContent);
+            System.out.println(mainContent);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void clickTable(MouseEvent event) {
-        String text = PromotionsTableView.getSelectionModel().getSelectedItem().getName();
-        testText.setText(text);
-    }
 
-    public void logOut(ActionEvent event) {
-        Session.endSession();
-        SceneManager.clear();
-        SceneManager.addScene("login");
-        SceneManager.showScene("login");
-    }
-
-    public void goToCreateReward(ActionEvent event) {
-        testText.setText("view requests?");
-    }
-
-
-    public void goToModifyReward(ActionEvent event) {
-        Session.setPromotion(PromotionsTableView.getSelectionModel().getSelectedItem());
-        SceneManager.addScene("modifyDelivery");
-        SceneManager.showScene("modifyDelivery");
-    }
-    public void loadContent(String fxml) {
+    public void showDynamicContent(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/branch_panel/" + fxml + ".fxml"));
+            FXMLLoader loader =  new FXMLLoader(getClass().getResource(fxmlPath));
             Parent content = loader.load();
 
             // PRZEKAZUJEMY REFERENCJĘ DO MAINCONTROLLER
             Object controller = loader.getController();
-            if (controller instanceof app.controllers.branch_panel.DynamicContentController) {
+            if (controller instanceof DynamicContentController) {
                 ((DynamicContentController) controller).setMainController(this);
             }
-            tablePane.getChildren().setAll(content);
+            mainContent.setCenter(content);
         } catch (IOException e) {
             e.printStackTrace();
         }

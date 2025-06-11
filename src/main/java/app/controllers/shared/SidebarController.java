@@ -1,9 +1,10 @@
-package app.controllers.control_panel.logistics_coordinator_section;
+package app.controllers.shared;
 
+
+import app.service.SceneManager;
+import app.service.Session;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -12,11 +13,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class SidebarController {
-    private ChangeListener<Number> widthListener;
-    private Controller mainController;
+public class SidebarController implements DynamicContentController {
+    private MainController mainController;
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+
 
     @FXML private VBox Box1;
 
@@ -96,7 +102,7 @@ public class SidebarController {
 
     private void handleHomeClick() {
         if (mainController != null) {
-           // mainController.changeContent("/fxmls/home.fxml");
+
         }
     }
 
@@ -107,11 +113,11 @@ public class SidebarController {
     }
 
     private void handleLogoutClick() {
-        System.out.println("Logout clicked");
-        System.out.println(Box1.getWidth());
+        Session.endSession(); // kończymy sesję
+        SceneManager.clear(); // usuwamy z historii hashmapy stare sceny
+        SceneManager.addScene("login");
+        Stage stage = (Stage) homeButton.getScene().getWindow(); // każdy przycisk ma dostęp do swojej sceny więc pobieramy ją w celu zamknięcia
+        stage.close(); // zamykamy
+        SceneManager.showScene("login"); //pokazujemy panel logowania
     }
-    public void setController(Controller controller) {
-        this.mainController = controller;
-    }
-
 }

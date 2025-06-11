@@ -1,7 +1,11 @@
 package app.service;
 
+import app.controllers.shared.MainController;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
@@ -9,6 +13,9 @@ import app.db.connection.MySQLConnection;
 import app.db.repo.RepositorySQL;
 import app.model.UserModel;
 import app.service.branch_panel.ClientSimulation.Launcher;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginValidation{
     @FXML
@@ -16,7 +23,7 @@ public class LoginValidation{
     @FXML
     private TextField passwordField;
     @FXML
-    private void loginScene(ActionEvent event) {
+    private void loginScene(ActionEvent event) throws IOException {
         MySQLConnection.makeConnection();
 
         String email = emailField.getText();
@@ -35,8 +42,22 @@ public class LoginValidation{
         
         if (password.equals(user.getPassword())){
             String panel = user.getPanel();
-            SceneManager.addScene(panel);
-            SceneManager.showScene(panel);
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.close();
+
+            // Załaduj główną scenę
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/Main.fxml"));
+            Parent root = loader.load();
+
+            // Pokaż główne okno
+            Stage mainStage = new Stage();
+            mainStage.setScene(new Scene(root));
+            mainStage.show();
+
+            // Ustaw panel PO załadowaniu sceny i wywołaniu initialize()!
+            // Możesz przekazać typ panelu np. przez MainController
+            MainController mainController = loader.getController();
+            mainController.setPanel(user.getPanel());
             if (panel.equals("branch")){
                 user.setNameBranch(RepositorySQL.GetBranchNameForUser(user.getID()));
             

@@ -1,6 +1,5 @@
 package app.controllers.control_panel.rewards_coordinator_section;
 
-import app.controllers.control_panel.rewards_coordinator_section.SidebarController;
 import app.model.RewardModel;
 import app.service.SceneManager;
 import app.service.Session;
@@ -15,7 +14,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-public class ModifyRewardController implements Controller {
+public class ModifyRewardController implements Controller, DynamicContentController {
+    private MainController mainController;
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+    @FXML
+    private void goToAnotherView(String fxml) {
+        if (mainController != null) {
+            mainController.loadContent(fxml);
+        }
+    }
     @FXML
     private AnchorPane mainContainer;
     @FXML
@@ -47,9 +57,6 @@ public class ModifyRewardController implements Controller {
             sidebarContainer = loader.load();
 
             SidebarController sidebarController = loader.getController();
-            if (sidebarController != null) {
-                sidebarController.setController(this);
-            }
             sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             // Dodaj do mainContainer na indeksie 1 (pod top, nad contentArea)
