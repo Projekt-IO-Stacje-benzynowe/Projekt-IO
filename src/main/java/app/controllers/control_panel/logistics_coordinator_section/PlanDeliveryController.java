@@ -1,7 +1,7 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
 import java.time.LocalDate;
-
+import app.controllers.shared.*;
 import app.model.RewardModel;
 import app.service.SceneManager;
 import app.service.Session;
@@ -21,7 +21,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class PlanDeliveryController implements Controller {
+public class PlanDeliveryController implements DynamicContentController {
+    private app.controllers.shared.MainController mainController;
+    @Override
+    public void setMainController(app.controllers.shared.MainController mainController) {
+            this.mainController=mainController;
+    }
     @FXML
     private AnchorPane mainContainer;
     @FXML
@@ -53,9 +58,6 @@ public class PlanDeliveryController implements Controller {
             sidebarContainer = loader.load();
 
             SidebarController sidebarController = loader.getController();
-            if (sidebarController != null) {
-                sidebarController.setController(this);
-            }
             sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             // Dodaj do mainContainer na indeksie 1 (pod top, nad contentArea)
@@ -119,4 +121,6 @@ public class PlanDeliveryController implements Controller {
         SceneManager.showScene("Main");
         SceneManager.clearScene("plan_delivery");
     }
+
+
 }

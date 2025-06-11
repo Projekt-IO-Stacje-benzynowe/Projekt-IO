@@ -8,10 +8,13 @@ import app.service.control_panel.rewards.MainService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 public class MainController implements Controller {
     @FXML
@@ -33,12 +36,13 @@ public class MainController implements Controller {
     private Text testText;
     public void initialize() {
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/rewards/sidebar.fxml"));
             sidebarContainer = loader.load();
 
             SidebarController sidebarController = loader.getController();
             if (sidebarController != null) {
-                sidebarController.setController(this);
+                sidebarController.setMainController(this);
             }
             sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
@@ -80,5 +84,20 @@ public class MainController implements Controller {
         Session.setPromotion(PromotionsTableView.getSelectionModel().getSelectedItem());
         SceneManager.addScene("modifyDelivery");
         SceneManager.showScene("modifyDelivery");
+    }
+    public void loadContent(String fxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/branch_panel/" + fxml + ".fxml"));
+            Parent content = loader.load();
+
+            // PRZEKAZUJEMY REFERENCJĘ DO MAINCONTROLLER
+            Object controller = loader.getController();
+            if (controller instanceof app.controllers.branch_panel.DynamicContentController) {
+                ((DynamicContentController) controller).setMainController(this);
+            }
+            tablePane.getChildren().setAll(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,63 +1,34 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
+import app.controllers.shared.DynamicContentController;
+import app.controllers.shared.MainController;
 import app.model.DeliveryModel;
-import app.model.OutletModel;
 import app.service.SceneManager;
 import app.service.Session;
 import app.service.control_panel.logistics_coordinator_section.ChooseDeliveryService;
-import app.service.control_panel.logistics_coordinator_section.MainService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class ChooseDeliveryController implements Controller {
-    @FXML
-    private AnchorPane mainContainer;
-    @FXML
-    private BorderPane background;
-    @FXML
-    private HBox topBar;
-    @FXML
-    private VBox sidebar;
-    @FXML
-    private BorderPane mainContent;
+public class ChooseDeliveryController extends MainController implements DynamicContentController {
+    private MainController mainController;
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController=mainController;
+    }
+
     @FXML
     private StackPane tablePane;
     @FXML
     private Text messageText;
-    @FXML
-    private VBox sidebarContainer;
+
     private TableView<DeliveryModel> deliveriesTableView;
 
     public void initialize() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/sidebar.fxml"));
-            sidebarContainer = loader.load();
-
-            SidebarController sidebarController = loader.getController();
-            if (sidebarController != null) {
-                sidebarController.setController(this);
-            }
-            sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
-            sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
-            sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
-            sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
-            // Dodaj do mainContainer na indeksie 1 (pod top, nad contentArea)
-            mainContainer.getChildren().add(sidebarContainer);
-            topBar.prefHeightProperty().bind(mainContainer.heightProperty().multiply(0.08)); // lub dowolna proporcja
-            background.prefWidthProperty().bind(mainContainer.widthProperty());
-            background.prefHeightProperty().bind(mainContainer.heightProperty());
-            sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
-            mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
-
             deliveriesTableView = ChooseDeliveryService.getDeliveriesForOutletView(Session.getOutlet().getID());
             deliveriesTableView.setOnMouseClicked(e -> clickTable(e));
             tablePane.getChildren().add(deliveriesTableView);
@@ -74,7 +45,7 @@ public class ChooseDeliveryController implements Controller {
 
     public void goBack(ActionEvent event) {
         Session.setOutletNull();
-        SceneManager.showScene("Main");
+        mainController.showDynamicContent("/view/control_panel/logistics/logistics_main_panel.fxml");
         SceneManager.clearScene("choose_delivery");
     }
 

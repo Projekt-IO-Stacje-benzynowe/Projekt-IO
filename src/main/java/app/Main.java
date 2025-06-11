@@ -15,10 +15,11 @@ public class Main extends Application {
         // but also the weeek starts on Monday
         Locale.setDefault(Locale.UK);
         SceneManager.setStage(primaryStage);
+        SceneManager.addScene("Main");
         SceneManager.addScene("branch");
         SceneManager.addScene("login");
 
-        //SceneManager.addScene("Analysis", "/view/business_panel/Main.fxml"); // scena Main z Centrali po zalogowaniu
+        //SceneManager.addScene("Analysis", "/view/business_panel/logistics_main_panel.fxml"); // scena Main z Centrali po zalogowaniu
         // trzeba dodać inne panele
         SceneManager.showScene("login");
 

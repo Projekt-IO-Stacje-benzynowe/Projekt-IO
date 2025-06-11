@@ -1,23 +1,57 @@
 package app.service;
 
+import app.controllers.shared.DynamicContentController;
+import app.controllers.shared.MainController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import app.model.PanelList;
 
 public class SceneManager {
+    private static MainController mainController;
+    public static void setMainController(MainController controller) {
+        mainController = controller;
+    }
     private static Stage primaryStage;
     private static Map<String, Scene> scenes = new HashMap<>();
 
     public static void setStage(Stage stage) {
         primaryStage = stage;
     }
+    private static BorderPane mainContent; // np. root z main.fxml
 
+    public static void setMainRoot(BorderPane root) {
+        mainContent = root;
+    }
+
+    public static void setPanel(String panelName) {
+        String panelFxml;
+        switch(panelName) {
+            case "branch": panelFxml = "/Shared/panels/BranchPanel.fxml"; break;
+            case "business": panelFxml = "/Shared/panels/BusinessPanel.fxml"; break;
+            case "Main": panelFxml = "/view/control_panel/logistics/logistics_main_panel.fxml"; break;
+            default: throw new IllegalArgumentException("Nieznany panel");
+        }
+        try { // Tutaj pobieramy nowy fxml, i ładujemy go, oraz przypisujemy tej scenie jej kontroler "główny" czyli kontroler naszej sceny bazowej
+            FXMLLoader loader =  new FXMLLoader(SceneManager.class.getResource(panelFxml));
+            Node panel = loader.load();
+            Object controller = loader.getController();
+            if (controller instanceof DynamicContentController) {
+                ((DynamicContentController) controller).setMainController(mainController); // <--- tutaj przypisujemy kontrolerowi nowej sceny kontroler główny
+            }
+            mainContent.setCenter(panel); // <---- dajemy nowy panel do środka
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
     // Powinno być zrefaktoryzowane, żeby używało PanelList i tylko argumentu "name"
     public static void addScene(String name){
         if(scenes.containsKey(name)){return;}
