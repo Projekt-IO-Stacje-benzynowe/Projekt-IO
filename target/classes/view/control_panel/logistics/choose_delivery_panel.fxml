@@ -23,12 +23,10 @@
             <VBox fx:id="sidebar" prefWidth="120" maxWidth="220" minWidth="100"/>
         </left>
         <center>
-            <BorderPane fx:id="mainContent" style="-fx-background-color: #fafafa;">
+            <BorderPane fx:id="mainContent">
                 <top>
-                    <Label text="Top section" style="-fx-background-color: #fbeee6;"/>
                 </top>
                 <left>
-                    <Label text="Left section" style="-fx-background-color: #e6fbf1;"/>
                 </left>
                 <center>
                     <StackPane fx:id="tablePane">
@@ -36,14 +34,14 @@
                 </center>
                 <right>
                     <VBox minWidth="100">
-                        <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
+                        <Label text="Select an option:"/>
                         <Text text="" fx:id="messageText"/>
                         <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
                         <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify delivery"/>
+                        <Button mnemonicParsing="false" onAction="#goToDeleteDelivery" prefHeight="35.0" prefWidth="100.0" text="Delete delivery"/>
                     </VBox>
                 </right>
                 <bottom>
-                    <Label text="Bottom section" style="-fx-background-color: #e6f8fb;"/>
                 </bottom>
             </BorderPane>
         </center>

@@ -20,6 +20,7 @@ public class PanelList {
         result.put("promotions_table_scene", "/view/branch_panel/discount_panel_table_promotions.fxml");
         result.put("plan_delivery", "/view/control_panel/logistics/plan_delivery_panel.fxml");
         result.put("choose_delivery", "/view/control_panel/logistics/choose_delivery_panel.fxml");
+        result.put("modify_delivery", "/view/control_panel/logistics/modify_delivery_panel.fxml");
         return result;
     }
 

@@ -1,7 +1,6 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 import app.model.RewardModel;
 import app.service.SceneManager;

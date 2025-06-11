@@ -8,7 +8,7 @@
     fx:id="mainContainer"
     xmlns:fx="http://javafx.com/fxml"
     xmlns="http://javafx.com/javafx"
-    fx:controller="app.controllers.control_panel.logistics_coordinator_section.PlanDeliveryController"
+    fx:controller="app.controllers.control_panel.logistics_coordinator_section.ModifyDeliveryController"
     prefHeight="800"
     prefWidth="800">
     <BorderPane fx:id="background">
@@ -38,7 +38,7 @@
                         <TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                         <Label text="Shipment Date:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                         <DatePicker fx:id="deliveryDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <Button mnemonicParsing="false" onAction="#planDelivery" text="Plan delivery" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <Button mnemonicParsing="false" onAction="#planDelivery" text="Modify delivery" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                     </GridPane>
                 </center>
                 <right>
