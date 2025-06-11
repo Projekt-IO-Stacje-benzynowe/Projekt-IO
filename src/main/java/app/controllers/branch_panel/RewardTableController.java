@@ -1,6 +1,5 @@
 package app.controllers.branch_panel;
 
-import app.db.repo.RepositorySQL;
 import app.model.RewardToIssuanceModel;
 import app.service.SceneManager;
 import javafx.collections.FXCollections;
@@ -9,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.util.List;
-
-import app.service.Session;
 
 import app.service.branch_panel.Rewards.RewardsOperation;;
 

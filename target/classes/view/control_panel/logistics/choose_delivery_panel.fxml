@@ -39,7 +39,7 @@
                         <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
                         <Text text="" fx:id="messageText"/>
                         <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
-                        <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify the delivery"/>
+                        <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify delivery"/>
                     </VBox>
                 </right>
                 <bottom>

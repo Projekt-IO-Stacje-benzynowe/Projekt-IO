@@ -50,7 +50,6 @@
                     </VBox>
                 </right>
                 <bottom>
-                    <Label text="Bottom section" style="-fx-background-color: #e6f8fb;"/>
                 </bottom>
             </BorderPane>
         </center>

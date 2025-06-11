@@ -38,13 +38,13 @@
                     <VBox minWidth="100">
                         <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
                         <Text text="" fx:id="messageText"/>
-                        <Button mnemonicParsing="false" onAction="#logOut" prefHeight="35.0" prefWidth="100.0" text="Log out"/>
+                        <Button mnemonicParsing="false" onAction="#logOut" prefHeight="50.0" prefWidth="130.0" text="Log out"/>
                         
-                        <Button mnemonicParsing="false" onAction="#goToViewRequests" prefHeight="35.0" prefWidth="100.0" text="View requests"/>
+                        <Button mnemonicParsing="false" onAction="#goToViewRequests" prefHeight="50.0" prefWidth="130.0" text="View requests"/>
 
-                        <Button mnemonicParsing="false" onAction="#goToPlanDelivery" prefHeight="35.0" prefWidth="100.0" text="Plan a new delivery"/>
+                        <Button mnemonicParsing="false" onAction="#goToPlanDelivery" prefHeight="50.0" prefWidth="130.0" text="Plan a new delivery"/>
 
-                        <Button mnemonicParsing="false" onAction="#goToChooseDelivery" prefHeight="35.0" prefWidth="100.0" text="Choose a delivery\nto modify"/>
+                        <Button mnemonicParsing="false" onAction="#goToChooseDelivery" prefHeight="50.0" prefWidth="130.0" text="Choose delivery to modify" wrapText="true" textAlignment="CENTER"/>
                     </VBox>
                 </right>
                 <bottom>
