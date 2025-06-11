@@ -25,19 +25,31 @@
         <center>
             <BorderPane fx:id="mainContent" style="-fx-background-color: #fafafa;">
                 <top>
-                    <Label text="Top section" style="-fx-background-color: #fbeee6;"/>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button fx:id="addPromotionButton" text="Dodaj promocję"/>
+                        <Button fx:id="editPromotionButton" text="Modyfikuj zaznaczoną"/>
+                        <Button fx:id="deletePromotionButton" text="Usuń zaznaczoną"/>
+                    </HBox>
                 </top>
                 <left>
-                    <Label text="Left section" style="-fx-background-color: #e6fbf1;"/>
                 </left>
                 <center>
                     <StackPane fx:id="tablePane">
                     </StackPane>
                 </center>
                 <right>
+                    <VBox minWidth="100">
+                        <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
+
+                        <Button mnemonicParsing="false" onAction="#logOut" prefHeight="35.0" prefWidth="100.0" text="Log out"/>
+
+                        <Button mnemonicParsing="false"  prefHeight="35.0" prefWidth="100.0" text="View requests"/>
+
+                        <Button mnemonicParsing="false"  prefHeight="35.0" prefWidth="100.0" text="Modify a delivery"/>
+                    </VBox>
                 </right>
                 <bottom>
-                    <Label text="Bottom section" style="-fx-background-color: #e6f8fb;"/>
+
                 </bottom>
             </BorderPane>
         </center>

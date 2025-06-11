@@ -10,7 +10,7 @@ public class PanelList {
         result.put("rewards", "/view/control_panel/rewards/Main.fxml");
         result.put("Main", "/view/control_panel/Main.fxml");
         result.put("login", "/view/login.fxml");
-        result.put("branch", "/view/branch_panel/main_branch.fxml");
+        result.put("branch", "/view/branch_panel/Main.fxml");
         result.put("confirm_delivery", "/view/branch_panel/confirm_delivery.fxml");
         result.put("additional_delivery", "/view/branch_panel/additional_delivery.fxml");
         result.put("table_promotions", "/view/branch_panel/discount_panel_table_promotions.fxml");
