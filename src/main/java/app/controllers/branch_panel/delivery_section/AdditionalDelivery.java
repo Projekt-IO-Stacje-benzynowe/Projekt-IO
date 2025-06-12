@@ -33,7 +33,7 @@ public class AdditionalDelivery implements DynamicContentController {
     }
     @FXML
     public void goBackButton(){
-        mainController.showDynamicContent(PanelList.getFXMLFile("delivery_panel"));
+        mainController.showDynamicContent("delivery_panel");
     }
 
 

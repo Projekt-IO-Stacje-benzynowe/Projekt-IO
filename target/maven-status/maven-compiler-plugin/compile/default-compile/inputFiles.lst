@@ -1,6 +1,6 @@
 G:\Pulpit\main\src\main\java\app\model\PromotionModel.java
 G:\Pulpit\main\src\main\java\app\controllers\business_panel\MainController.java
-G:\Pulpit\main\src\main\java\app\controllers\control_panel\Screen2Controller.java
+G:\Pulpit\main\src\main\java\app\controllers\control_panel\logistics_coordinator_section\ModifyDeliveryController.java
 G:\Pulpit\main\src\main\java\app\controllers\branch_panel\discount_section\DiscountMenuController.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\ClientSimulation\ClientTask.java
 G:\Pulpit\main\src\main\java\app\controllers\shared\SidebarController.java
@@ -27,18 +27,16 @@ G:\Pulpit\main\src\main\java\app\controllers\branch_panel\discount_section\Disco
 G:\Pulpit\main\src\main\java\app\service\branch_panel\ClientSimulation\Launcher.java
 G:\Pulpit\main\src\main\java\app\service\SceneManager.java
 G:\Pulpit\main\src\main\java\app\controllers\control_panel\rewards_coordinator_section\ModifyRewardController.java
-G:\Pulpit\main\src\main\java\app\controllers\control_panel\logistics_coordinator_section\ViewRequestsController.java
 G:\Pulpit\main\src\main\java\app\model\RewardModel.java
 G:\Pulpit\main\src\main\java\app\service\Session.java
 G:\Pulpit\main\src\main\java\app\controllers\branch_panel\RewardTableController.java
-G:\Pulpit\main\src\main\java\app\service\control_panel\logistics\CreateOutletService.java
 G:\Pulpit\main\src\main\java\app\service\control_panel\rewards\CreateRewardService.java
 G:\Pulpit\main\src\main\java\app\model\UserModel.java
+G:\Pulpit\main\src\main\java\app\service\control_panel\logistics_coordinator_section\ModifyDeliveryService.java
 G:\Pulpit\main\src\main\java\app\model\RewardToIssuanceModel.java
 G:\Pulpit\main\src\main\java\app\service\control_panel\rewards\ModifyRewardService.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\ClientSimulation\Client.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\ReportProduct.java
-G:\Pulpit\main\src\main\java\app\service\control_panel\logistics\ViewRequestsService.java
 G:\Pulpit\main\src\main\java\app\db\connection\MySQLConnection.java
 G:\Pulpit\main\src\main\java\app\service\control_panel\logistics_coordinator_section\MainService.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\ClientSimulation\Server.java
@@ -46,11 +44,9 @@ G:\Pulpit\main\src\main\java\app\model\PanelList.java
 G:\Pulpit\main\src\main\java\app\controllers\business_panel\ProductReport.java
 G:\Pulpit\main\src\main\java\app\controllers\control_panel\rewards_coordinator_section\CreateRewardController.java
 G:\Pulpit\main\src\main\java\app\controllers\control_panel\rewards_coordinator_section\RewardsMainPanel.java
-G:\Pulpit\main\src\main\java\app\service\control_panel\logistics_coordinator_section\ViewRequestsService.java
 G:\Pulpit\main\src\main\java\app\db\repo\RepositorySQL.java
 G:\Pulpit\main\src\main\java\app\controllers\business_panel\ReportGenerator.java
 G:\Pulpit\main\src\main\java\app\controllers\branch_panel\ReportIssuesProduct.java
-G:\Pulpit\main\src\main\java\app\controllers\control_panel\logistics_coordinator_section\OutletController.java
 G:\Pulpit\main\src\main\java\app\controllers\shared\Controller.java
 G:\Pulpit\main\src\main\java\app\service\control_panel\logistics_coordinator_section\PlanDeliveryService.java
 G:\Pulpit\main\src\main\java\app\controllers\business_panel\Screen1Controller.java
@@ -58,7 +54,6 @@ G:\Pulpit\main\src\main\java\app\controllers\control_panel\logistics_coordinator
 G:\Pulpit\main\src\main\java\app\model\DeliveryModel.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\Rewards\RewardsOperation.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\ClientSimulation\Parser.java
-G:\Pulpit\main\src\main\java\app\service\control_panel\logistics\CreateDeliveryService.java
 G:\Pulpit\main\src\main\java\app\controllers\shared\MainController.java
 G:\Pulpit\main\src\main\java\app\controllers\branch_panel\delivery_section\ConfirmDelivery.java
 G:\Pulpit\main\src\main\java\app\service\TableService.java

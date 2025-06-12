@@ -89,7 +89,7 @@ public class SidebarController implements DynamicContentController {
 
     private void handleHomeClick() {
         if (mainController != null) {
-            mainController.showDynamicContent(PanelList.getFXMLFile(Session.user.getPanel()));
+            mainController.showDynamicContent(Session.user.getPanel());
         }
     }
 

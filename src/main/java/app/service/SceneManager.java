@@ -36,7 +36,6 @@ public class SceneManager {
         String panelFxml;
         switch(panelName) {
             case "branch": panelFxml = PanelList.getFXMLFile("branch"); break;
-
             case "business": panelFxml = "/Shared/panels/BusinessPanel.fxml"; break;
             case "logistyk": panelFxml = PanelList.getFXMLFile("LogisticsCoordinator"); break;
             default: throw new IllegalArgumentException("Nieznany panel");
@@ -52,6 +51,24 @@ public class SceneManager {
             mainContent.setCenter(panel); // <---- dajemy nowy panel do środka
         } catch(IOException e) {
             e.printStackTrace();
+        }
+    }
+    public static Parent setSubPanel(MainController mainController, String name) {
+        try {
+            String fxmlFile = PanelList.getFXMLFile(name);
+
+            FXMLLoader loader =  new FXMLLoader(SceneManager.class.getResource(fxmlFile));
+            Parent content = loader.load();
+
+            // PRZEKAZUJEMY REFERENCJĘ DO MAINCONTROLLER
+            Object controller = loader.getController();
+            if (controller instanceof DynamicContentController) {
+                ((DynamicContentController) controller).setMainController(mainController);
+            }
+            return content;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
     // Powinno być zrefaktoryzowane, żeby używało PanelList i tylko argumentu "name"

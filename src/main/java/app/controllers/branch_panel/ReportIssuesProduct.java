@@ -34,6 +34,6 @@ public class ReportIssuesProduct implements DynamicContentController {
 
     @FXML
     void goBackButton(ActionEvent event){
-        mainController.showDynamicContent(PanelList.getFXMLFile("branch"));
+        mainController.showDynamicContent("branch");
     }
 }

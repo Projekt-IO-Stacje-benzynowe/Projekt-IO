@@ -44,7 +44,7 @@ public class DiscountTableController implements DynamicContentController {
 
     @FXML
     public void goBackButton(){
-        mainController.showDynamicContent(PanelList.getFXMLFile("branch"));
+        mainController.showDynamicContent("branch");
     }
 
 }

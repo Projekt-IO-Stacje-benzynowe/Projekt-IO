@@ -25,6 +25,6 @@ public class ConfirmDelivery implements DynamicContentController {
     }   
     @FXML
     public void goBackButton(ActionEvent event){
-        mainController.showDynamicContent(PanelList.getFXMLFile("delivery_panel"));
+        mainController.showDynamicContent("delivery_panel");
     }
 }

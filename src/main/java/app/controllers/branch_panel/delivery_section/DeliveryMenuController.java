@@ -16,16 +16,16 @@ public class DeliveryMenuController implements DynamicContentController {
     @FXML
     public void confirmDelivery(ActionEvent event){
         SceneManager.addScene("confirm_delivery");
-        mainController.showDynamicContent(PanelList.getFXMLFile("confirm_delivery"));;
+        mainController.showDynamicContent("confirm_delivery");;
     }
     @FXML
     public void requestForAdditionalDelivery(ActionEvent event){
         SceneManager.addScene("additional_delivery");
-        mainController.showDynamicContent(PanelList.getFXMLFile("additional_delivery"));
+        mainController.showDynamicContent("additional_delivery");
     }
     @FXML
     public void goBackButton(){
         SceneManager.addScene("menu_branch");
-        mainController.showDynamicContent(PanelList.getFXMLFile("branch"));
+        mainController.showDynamicContent("branch");
     }
 }

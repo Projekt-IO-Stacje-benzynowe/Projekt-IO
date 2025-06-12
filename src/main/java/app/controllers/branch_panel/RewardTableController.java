@@ -70,7 +70,7 @@ public class RewardTableController implements DynamicContentController {
     @FXML
     public void goBack() {
         SceneManager.clearScene("rewards_table");
-        mainController.showDynamicContent(PanelList.getFXMLFile("branch"));
+        mainController.showDynamicContent("branch");
 
     }   
 }
