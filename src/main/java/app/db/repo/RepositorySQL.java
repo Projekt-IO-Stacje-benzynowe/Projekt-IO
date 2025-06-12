@@ -175,7 +175,7 @@ public class RepositorySQL {
         return result;
     }
 
-    public static void deleteDelivery(Integer deliveryID) {
+    public static boolean deleteDelivery(Integer deliveryID) {
         String querySQL = """
                 DELETE
                 FROM Deliveries d
@@ -185,9 +185,10 @@ public class RepositorySQL {
             stmt.setInt(1, deliveryID);
             System.out.println(stmt.toString());
             int rs = stmt.executeUpdate();
-            System.out.println(rs);
+            return rs == 1;
         } catch (SQLException err) {
             System.err.println("Error while deleting a delivery: " + err.getMessage());
+            return false;
         }
     }
 

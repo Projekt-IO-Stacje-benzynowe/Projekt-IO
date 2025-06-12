@@ -5,7 +5,7 @@ import app.service.TableService;
 
 import javafx.scene.control.TableView;
 
-public class MainService {
+public class LogisticsMainService {
     public static TableView<OutletModel> getAllOutletsView() {
         return TableService.getAllOutletsTable();
     }

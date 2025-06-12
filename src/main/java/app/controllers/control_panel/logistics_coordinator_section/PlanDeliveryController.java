@@ -89,6 +89,7 @@ public class PlanDeliveryController extends MainController implements DynamicCon
         }
 
         PlanDeliveryService.addDelivery(selectedReward, quantity, deliveryDate);
+        errorText.setText("Successfully added a delivery");
     }
 
     public void goBack(ActionEvent event) {

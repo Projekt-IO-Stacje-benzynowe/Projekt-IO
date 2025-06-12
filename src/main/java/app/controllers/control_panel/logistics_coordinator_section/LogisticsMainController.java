@@ -5,7 +5,8 @@ import app.controllers.shared.MainController;
 import app.model.OutletModel;
 import app.service.SceneManager;
 import app.service.Session;
-import app.service.control_panel.logistics_coordinator_section.MainService;
+import app.service.control_panel.logistics_coordinator_section.LogisticsMainService;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +34,7 @@ public class LogisticsMainController implements DynamicContentController {
     private TableView<OutletModel> outletsTableView;
 
     public void initialize() {
-        outletsTableView = MainService.getAllOutletsView();
+        outletsTableView = LogisticsMainService.getAllOutletsView();
         outletsTableView.setOnMouseClicked(e -> clickTable(e));
         tablePane.getChildren().add(outletsTableView);
     }

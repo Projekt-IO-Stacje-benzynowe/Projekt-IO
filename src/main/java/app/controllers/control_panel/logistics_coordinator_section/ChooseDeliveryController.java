@@ -2,11 +2,12 @@ package app.controllers.control_panel.logistics_coordinator_section;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-import app.db.repo.RepositorySQL;
+
 import app.model.DeliveryModel;
+
 import app.service.SceneManager;
-import app.service.Session;
 import app.service.control_panel.logistics_coordinator_section.ChooseDeliveryService;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
@@ -44,7 +45,7 @@ public class ChooseDeliveryController implements DynamicContentController {
     }
 
     public void goBack(ActionEvent event) {
-        Session.setOutletNull();
+        ChooseDeliveryService.setSessionOutlet(null);
         mainController.showDynamicContent("logistics_main");
         SceneManager.clearScene("choose_delivery");
     }
@@ -61,7 +62,11 @@ public class ChooseDeliveryController implements DynamicContentController {
     public void deleteDelivery(ActionEvent event) {
         DeliveryModel delivery = deliveriesTableView.getSelectionModel().getSelectedItem();
         if (delivery != null) {
-            ChooseDeliveryService.deleteDelivery(delivery);
+            boolean result = ChooseDeliveryService.deleteDelivery(delivery);
+            if (result == true) {
+                messageText.setText("Successfully deleted the delivery");
+                deliveriesTableView.getItems().remove(delivery);
+            }
         } else {
             messageText.setText("Please select a delivery to modify.");
         }
