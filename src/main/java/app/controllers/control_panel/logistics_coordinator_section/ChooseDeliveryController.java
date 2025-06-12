@@ -2,9 +2,7 @@ package app.controllers.control_panel.logistics_coordinator_section;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-
 import app.model.DeliveryModel;
-
 import app.service.SceneManager;
 import app.service.control_panel.logistics_coordinator_section.ChooseDeliveryService;
 

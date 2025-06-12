@@ -4,6 +4,7 @@ import app.db.connection.MySQLConnection;
 import app.model.DeliveryModel;
 import app.model.OutletModel;
 import app.model.PromotionModel;
+import app.model.RequestModel;
 import app.model.UserModel;
 import app.model.RewardModel;
 import app.model.RewardToIssuanceModel;
@@ -174,6 +175,33 @@ public class RepositorySQL {
         return result;
     }
 
+    public static ObservableList<RequestModel> getRequestsForOutlet(Integer outletID) {
+        String querySQL = """
+                SELECT d.DeliveryID, d.RewardProductID, rp.Name, d.Quantity, d.ReportDate
+                FROM Deliveries d
+                JOIN RewardProducts rp on d.RewardProductID = rp.RewardProductID
+                WHERE d.ShipmentDate IS NULL AND d.outletID = ?
+                """;
+
+        ObservableList<RequestModel> result = FXCollections.observableArrayList();
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setInt(1, outletID);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new RequestModel(
+                    rs.getInt("DeliveryID"),
+                    rs.getInt("RewardProductID"),
+                    rs.getString("Name"),
+                    rs.getInt("Quantity"),
+                    rs.getTimestamp("ReportDate").toLocalDateTime().toLocalDate()
+                ));
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching requests: " + err.getMessage());
+        }
+        return result;
+    }
+
     public static boolean deleteDelivery(Integer deliveryID) {
         String querySQL = """
                 DELETE
@@ -197,7 +225,7 @@ public class RepositorySQL {
                 INTO Deliveries (OutletID, RewardProductID, Quantity, ShipmentDate, Status)
                 VALUES(?, ?, ?, ?, "Shipped")
                 """;
-        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
             stmt.setInt(1, delivery.getOutletID());
             stmt.setInt(2, delivery.getRewardID());
             stmt.setInt(3, delivery.getQuantity());

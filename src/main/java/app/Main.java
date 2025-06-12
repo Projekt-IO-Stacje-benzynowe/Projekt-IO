@@ -17,7 +17,6 @@ public class Main extends Application {
         SceneManager.setStage(primaryStage);
         SceneManager.addScene("branch");
         SceneManager.addScene("login");
-        // trzeba dodać inne panele
         SceneManager.showScene("login");
 
 

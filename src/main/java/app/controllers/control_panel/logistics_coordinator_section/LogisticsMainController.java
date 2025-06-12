@@ -45,7 +45,14 @@ public class LogisticsMainController implements DynamicContentController {
     }
 
     public void goToViewRequests(ActionEvent event) {
-        messageText.setText("view requests?");
+        if (outletsTableView.getSelectionModel().getSelectedItem() != null) {
+            Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
+            SceneManager.addScene("view_requests");
+            mainController.showDynamicContent("view_requests");
+
+        } else {
+            messageText.setText("Please select an outlet to view requests from.");
+        }
     }
 
     public void goToPlanDelivery(ActionEvent event) throws IOException {

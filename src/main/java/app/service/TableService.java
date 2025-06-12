@@ -7,6 +7,7 @@ import app.db.repo.RepositorySQL;
 import app.model.DeliveryModel;
 import app.model.OutletModel;
 import app.model.PromotionModel;
+import app.model.RequestModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -80,5 +81,23 @@ public class TableService {
         deliveriesTableView.getColumns().addAll(Arrays.asList(rewardNameCol, deliveryQuantityCol, shipmentDateCol));
         deliveriesTableView.setMaxWidth(600);
         return deliveriesTableView;
+    }
+
+    public static TableView<RequestModel> getRequestsForOutletTable(Integer outletID) {
+        TableView<RequestModel> requestsTableView = new TableView<>();
+        requestsTableView.setEditable(true);
+        requestsTableView.setPrefWidth(400);
+
+        TableColumn<RequestModel, String> rewardNameCol = createTableColumn("Reward", "rewardName", 100);
+
+        TableColumn<RequestModel, Integer> quantityCol = createTableColumn("Quantity", "quantity", 100);
+
+        TableColumn<RequestModel, LocalDate> reportDateCol = createTableColumn("Request date", "reportDate", 100);
+
+        requestsTableView.setItems(RepositorySQL.getRequestsForOutlet(outletID));
+        requestsTableView.getColumns().addAll(Arrays.asList(rewardNameCol, quantityCol, reportDateCol));
+        requestsTableView.setMaxWidth(600);
+        return requestsTableView;
+
     }
 }
