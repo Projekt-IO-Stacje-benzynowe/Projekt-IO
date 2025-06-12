@@ -9,34 +9,22 @@ import app.service.control_panel.logistics_coordinator_section.PlanDeliveryServi
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class PlanDeliveryController implements DynamicContentController {
-    private app.controllers.shared.MainController mainController;
+public class PlanDeliveryController extends MainController implements DynamicContentController {
+    private MainController mainController;
+
     @Override
     public void setMainController(app.controllers.shared.MainController mainController) {
-            this.mainController=mainController;
+            this.mainController = mainController;
     }
-    @FXML
-    private AnchorPane mainContainer;
-    @FXML
-    private BorderPane background;
-    @FXML
-    private HBox topBar;
-    @FXML
-    private VBox sidebar;
-    @FXML
-    private BorderPane mainContent;
     @FXML
     private GridPane deliveryGrid;
     @FXML
@@ -54,20 +42,6 @@ public class PlanDeliveryController implements DynamicContentController {
 
     public void initialize() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/control_panel/sidebar.fxml"));
-            sidebarContainer = loader.load();
-
-            SidebarController sidebarController = loader.getController();
-            sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
-            sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
-            // Dodaj do mainContainer na indeksie 1 (pod top, nad contentArea)
-            mainContainer.getChildren().add(sidebarContainer);
-            background.prefWidthProperty().bind(mainContainer.widthProperty());
-            background.prefHeightProperty().bind(mainContainer.heightProperty());
-            mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.8));
-            mainContent.prefHeightProperty().bind(mainContainer.heightProperty());
-            deliveryGrid.setPrefWidth(mainContent.getWidth() * 0.8);
-            deliveryGrid.setPrefHeight(mainContent.getHeight() * 0.8);
             outletText.setText(Session.getOutlet().getName());
 
             // Initialize the reward combo box with available rewards
@@ -96,9 +70,10 @@ public class PlanDeliveryController implements DynamicContentController {
             errorText.setText("Please select a reward.");
             return;
         }
+        int quantity;
         String quantityText = quantityField.getText();
         try {
-            int quantity = Integer.parseInt(quantityText);
+            quantity = Integer.parseInt(quantityText);
             if (quantity <= 0) {
                 errorText.setText("Quantity must be a positive number.");
                 return;
@@ -113,12 +88,12 @@ public class PlanDeliveryController implements DynamicContentController {
             return;
         }
 
-        errorText.setText(selectedReward.getName() + " " + quantityField.getText() + " " + deliveryDate.toString());
+        PlanDeliveryService.addDelivery(selectedReward, quantity, deliveryDate);
     }
 
     public void goBack(ActionEvent event) {
         Session.setOutletNull();
-        SceneManager.showScene("Main");
+        mainController.showDynamicContent("logistics_main");
         SceneManager.clearScene("plan_delivery");
     }
 

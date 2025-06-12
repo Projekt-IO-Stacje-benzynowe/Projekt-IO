@@ -3,29 +3,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-            <BorderPane fx:id="mainContent" style="-fx-background-color: #fafafa;"
-                        xmlns="http://javafx.com/javafx"
-                        xmlns:fx="http://javafx.com/fxml"
-                        fx:controller="app.controllers.control_panel.logistics_coordinator_section.ChooseDeliveryController">
-                <top>
-                    <Label text="Top section" style="-fx-background-color: #fbeee6;"/>
-                </top>
-                <left>
-                    <Label text="Left section" style="-fx-background-color: #e6fbf1;"/>
-                </left>
-                <center>
-                    <StackPane fx:id="tablePane">
-                    </StackPane>
-                </center>
-                <right>
-                    <VBox minWidth="100">
-                        <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
-                        <Text text="" fx:id="messageText"/>
-                        <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
-                        <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify the delivery"/>
-                    </VBox>
-                </right>
-                <bottom>
-                    <Label text="Bottom section" style="-fx-background-color: #e6f8fb;"/>
-                </bottom>
-            </BorderPane>
+<BorderPane
+    fx:id="contentPane"
+    style="-fx-background-color: #fafafa;"
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="app.controllers.control_panel.logistics_coordinator_section.ChooseDeliveryController">
+    <top>
+    </top>
+    <left>
+    </left>
+    <center>
+        <StackPane fx:id="tablePane">
+        </StackPane>
+    </center>
+    <right>
+        <VBox minWidth="100">
+            <Label text="Select an option:"/>
+            <Text text="" fx:id="messageText"/>
+            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
+            <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify delivery"/>
+            <Button mnemonicParsing="false" onAction="#deleteDelivery" prefHeight="35.0" prefWidth="100.0" text="Delete delivery"/>
+        </VBox>
+    </right>
+    <bottom>
+    </bottom>
+</BorderPane>

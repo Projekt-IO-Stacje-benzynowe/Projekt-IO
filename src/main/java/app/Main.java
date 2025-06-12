@@ -15,7 +15,6 @@ public class Main extends Application {
         // but also the weeek starts on Monday
         Locale.setDefault(Locale.UK);
         SceneManager.setStage(primaryStage);
-        SceneManager.addScene("Main");
         SceneManager.addScene("branch");
         SceneManager.addScene("login");
 
@@ -27,20 +26,5 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch(args);
-    }
-    // @Override
-    // public void start(Stage primaryStage) throws Exception {
-    
-    //     // MySQLConnection.makeConnection();
-    //     // Parent root = FXMLLoader.load(getClass().getResource("/view/branch_panel/main_menu.fxml"));
-    //     // Scene scene = new Scene(root, 800, 600);  // rozmiar okna
-
-    //     // primaryStage.setTitle("Moja aplikacja JavaFX");
-    //     // primaryStage.setScene(scene);
-    //     // primaryStage.show();  // <--- uruchamia okno
-    // }
-
-    // public static void main(String[] args) {
-    //     launch(args);
-    // }    
+    }  
 }

@@ -15,18 +15,18 @@ public class MySQLConnection {
     public static void makeConnection() {
         try {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Połączono z bazą danych MySQL");
+            System.out.println("✅ Successful connection to MySQL");
         } catch (SQLException e) {
-            System.err.println("❌ Błąd połączenia z MySQL: " + e.getMessage());
+            System.err.println("❌ Failed connection to MySQL: " + e.getMessage());
         }
     }
     public static void closeConnection() {
         if (conn != null) {
             try {
                 conn.close();
-                System.out.println("ℹ️ Połączenie zamknięte.");
+                System.out.println("ℹ️ Connection closed");
             } catch (SQLException e) {
-                System.err.println("❌ Błąd przy zamykaniu połączenia: " + e.getMessage());
+                System.err.println("❌ Failed to close connection: " + e.getMessage());
             }
         }
     }

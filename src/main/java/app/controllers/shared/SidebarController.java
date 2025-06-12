@@ -4,9 +4,9 @@ package app.controllers.shared;
 import app.model.PanelList;
 import app.service.SceneManager;
 import app.service.Session;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -49,33 +49,19 @@ public class SidebarController implements DynamicContentController {
         Box1.setAlignment(Pos.CENTER);
     }
 
-    private void forceResize(){
-        double width = Box1.getWidth();
-        double iconSize = width * 0.25;
-        resizeIcon(homeButton, iconSize*1.3);
-        resizeIcon(settingsButton, iconSize);
-        resizeIcon(logoutButton, iconSize);
-    }
-    private void resizeIcon(Button button, double size) {
-        if (button.getGraphic() instanceof ImageView iv) {
-            iv.setFitWidth(size);
-            iv.setFitHeight(size);
-        }
-    }
-
     private void setupButton(Button button, Label label, HBox container, Runnable action) {
         if (button != null && label != null && container != null) {
-            button.setOnMouseEntered(e -> {
+            button.setOnMouseEntered(_ -> {
                 animateMove(button, -10); // ikonka w lewo
                 showLabel(label);
             });
 
-            button.setOnMouseExited(e -> {
+            button.setOnMouseExited(_ -> {
                 animateMove(button, 0); // powrót
                 hideLabel(label);
             });
 
-            button.setOnAction(e -> action.run());
+            button.setOnAction(_ -> action.run());
         }
     }
 
@@ -97,7 +83,7 @@ public class SidebarController implements DynamicContentController {
         FadeTransition ft = new FadeTransition(Duration.millis(200), label);
         ft.setFromValue(1);
         ft.setToValue(0);
-        ft.setOnFinished(e -> label.setVisible(false));
+        ft.setOnFinished(_ -> label.setVisible(false));
         ft.play();
     }
 
