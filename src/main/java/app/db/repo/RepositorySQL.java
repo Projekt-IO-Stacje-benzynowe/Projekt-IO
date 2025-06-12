@@ -175,7 +175,7 @@ public class RepositorySQL {
         return result;
     }
 
-    public static void deleteDelivery(Integer deliveryID) {
+    public static boolean deleteDelivery(Integer deliveryID) {
         String querySQL = """
                 DELETE
                 FROM Deliveries d
@@ -185,13 +185,14 @@ public class RepositorySQL {
             stmt.setInt(1, deliveryID);
             System.out.println(stmt.toString());
             int rs = stmt.executeUpdate();
-            System.out.println(rs);
+            return rs == 1;
         } catch (SQLException err) {
             System.err.println("Error while deleting a delivery: " + err.getMessage());
+            return false;
         }
     }
 
-    public static void addDelivery(DeliveryModel delivery) {
+    public static boolean addDelivery(DeliveryModel delivery) {
         String querySQL = """
                 INSERT
                 INTO Deliveries (OutletID, RewardProductID, Quantity, ShipmentDate, Status)
@@ -202,10 +203,11 @@ public class RepositorySQL {
             stmt.setInt(2, delivery.getRewardID());
             stmt.setInt(3, delivery.getQuantity());
             stmt.setTimestamp(4, Timestamp.valueOf(delivery.getShipmentDate().atStartOfDay()));
-            stmt.executeUpdate();
-            MySQLConnection.conn.commit();
+            int rs = stmt.executeUpdate();
+            return rs == 1;
         } catch (SQLException e) {
-            System.err.println("Error while finding user data: " + e.getMessage());
+            System.err.println("Error while adding delivery: " + e.getMessage());
+            return false;
         }
     }
 

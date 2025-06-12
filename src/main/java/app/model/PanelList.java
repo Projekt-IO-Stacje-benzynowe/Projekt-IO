@@ -21,11 +21,11 @@ public class PanelList {
         result.put("rewards_table", "/view/branch_panel/tableRewards.fxml");
         result.put("promotions_table_scene", "/view/branch_panel/discount_panel_table_promotions.fxml");
 
-        result.put("logistics_main", "/view/control_panel/logistics/logistics_main_panel.fxml");
-        result.put("plan_delivery", "/view/control_panel/logistics/plan_delivery_panel.fxml");
-        result.put("choose_delivery", "/view/control_panel/logistics/choose_delivery_panel.fxml");
-        result.put("modify_delivery", "/view/control_panel/logistics/modify_delivery_panel.fxml");
-        result.put("view_requests", "/view/control_panel/logistics/view_requests_panel.fxml");
+        result.put("logistics_main", "/view/control_panel/logistics_coordinator_section/logistics_main_panel.fxml");
+        result.put("plan_delivery", "/view/control_panel/logistics_coordinator_section/plan_delivery_panel.fxml");
+        result.put("choose_delivery", "/view/control_panel/logistics_coordinator_section/choose_delivery_panel.fxml");
+        result.put("modify_delivery", "/view/control_panel/logistics_coordinator_section/modify_delivery_panel.fxml");
+        result.put("view_requests", "/view/control_panel/logistics_coordinator_section/view_requests_panel.fxml");
 
 
 

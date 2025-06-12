@@ -1,9 +1,9 @@
 app\Main.class
 app\service\branch_panel\ReportProduct.class
 app\controllers\business_panel\ReportGenerator.class
+app\service\control_panel\logistics_coordinator_section\LogisticsMainService.class
 app\model\PromotionModel.class
 app\controllers\branch_panel\RewardTableController.class
-app\service\control_panel\logistics_coordinator_section\MainService.class
 app\controllers\business_panel\SidebarController.class
 app\controllers\shared\Controller.class
 app\service\LoginValidation.class
@@ -53,6 +53,7 @@ app\service\TableService.class
 app\service\branch_panel\discount_section\Promotions.class
 app\controllers\branch_panel\discount_section\DiscountTableController.class
 app\service\branch_panel\ClientSimulation\Task.class
+app\controllers\control_panel\logistics_coordinator_section\ModifyDeliveryController$1.class
 app\service\control_panel\rewards\ModifyRewardService.class
 app\service\branch_panel\ClientSimulation\Launcher.class
 app\controllers\control_panel\logistics_coordinator_section\PlanDeliveryController$1.class
