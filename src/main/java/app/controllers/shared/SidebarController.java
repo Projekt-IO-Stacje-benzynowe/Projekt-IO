@@ -1,6 +1,7 @@
 package app.controllers.shared;
 
 
+import app.model.PanelList;
 import app.service.SceneManager;
 import app.service.Session;
 
@@ -88,7 +89,7 @@ public class SidebarController implements DynamicContentController {
 
     private void handleHomeClick() {
         if (mainController != null) {
-
+            mainController.showDynamicContent(Session.user.getPanel());
         }
     }
 

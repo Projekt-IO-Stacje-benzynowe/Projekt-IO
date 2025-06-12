@@ -1,10 +1,10 @@
 package app.controllers.branch_panel.delivery_section;
-import app.controllers.branch_panel.DynamicContentController;
-import app.controllers.branch_panel.MainController;
+import app.controllers.shared.DynamicContentController;
+import app.controllers.shared.MainController;
+import app.model.PanelList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import app.service.SceneManager;
 import javafx.fxml.FXML;
 
 import app.service.branch_panel.delivery_section.RequestDelivery;
@@ -18,14 +18,8 @@ public class AdditionalDelivery implements DynamicContentController {
     TextField deliveryIDField;
     private MainController mainController;
     @Override
-    public void setMainController(MainController mainController) {
+    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala
         this.mainController = mainController;
-    }
-    @FXML
-    private void goToAnotherView(String fxml) {
-        if (mainController != null) {
-            mainController.loadContent(fxml);
-        }
     }
     @FXML
     public void sendRequest(){
@@ -39,7 +33,7 @@ public class AdditionalDelivery implements DynamicContentController {
     }
     @FXML
     public void goBackButton(){
-        goToAnotherView("delivery_panel");
+        mainController.showDynamicContent("delivery_panel");
     }
 
 

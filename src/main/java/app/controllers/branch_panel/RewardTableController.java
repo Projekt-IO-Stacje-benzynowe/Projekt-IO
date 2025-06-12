@@ -1,6 +1,7 @@
 package app.controllers.branch_panel;
-import app.controllers.branch_panel.DynamicContentController;
-import app.db.repo.RepositorySQL;
+import app.controllers.shared.DynamicContentController;
+import app.controllers.shared.MainController;
+import app.model.PanelList;
 import app.model.RewardToIssuanceModel;
 import app.service.SceneManager;
 import javafx.collections.FXCollections;
@@ -16,14 +17,8 @@ import app.service.branch_panel.Rewards.RewardsOperation;;
 public class RewardTableController implements DynamicContentController {
     private MainController mainController;
     @Override
-    public void setMainController(MainController mainController) {
+    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala
         this.mainController = mainController;
-    }
-    @FXML
-    private void goToAnotherView(String fxml) {
-        if (mainController != null) {
-            mainController.loadContent(fxml);
-        }
     }
     @FXML
     private TableView<RewardToIssuanceModel> rewardTable;
@@ -75,7 +70,7 @@ public class RewardTableController implements DynamicContentController {
     @FXML
     public void goBack() {
         SceneManager.clearScene("rewards_table");
-        goToAnotherView("menu_branch");
+        mainController.showDynamicContent("branch");
 
     }   
 }

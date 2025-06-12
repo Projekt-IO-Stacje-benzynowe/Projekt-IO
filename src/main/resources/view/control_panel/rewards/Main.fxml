@@ -8,7 +8,7 @@
     fx:id="mainContainer"
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="app.controllers.control_panel.rewards_coordinator_section.MainController"
+    fx:controller="app.controllers.control_panel.rewards_coordinator_section.RewardsMainPanel"
     prefHeight="800"
     prefWidth="800">
     <BorderPane fx:id="background">

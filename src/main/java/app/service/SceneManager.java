@@ -17,17 +17,16 @@ import app.model.PanelList;
 
 public class SceneManager {
     private static MainController mainController;
-    private static Stage primaryStage;
-    private static BorderPane mainContent; // np. root z main.fxml
-    private static Map<String, Scene> scenes = new HashMap<>();
-
     public static void setMainController(MainController controller) {
         mainController = controller;
     }
+    private static Stage primaryStage;
+    private static Map<String, Scene> scenes = new HashMap<>();
 
     public static void setStage(Stage stage) {
         primaryStage = stage;
     }
+    private static BorderPane mainContent; // np. root z main.fxml
 
     public static void setMainRoot(BorderPane root) {
         mainContent = root;
@@ -36,12 +35,13 @@ public class SceneManager {
     public static void setPanel(String panelName) {
         String panelFxml;
         switch(panelName) {
-            case "branch": panelFxml = "/Shared/panels/BranchPanel.fxml"; break;
+            case "branch": panelFxml = PanelList.getFXMLFile("branch"); break;
             case "business": panelFxml = "/Shared/panels/BusinessPanel.fxml"; break;
-            case "logistyk": panelFxml = "/view/control_panel/logistics/logistics_main_panel.fxml"; break;
-            default: throw new IllegalArgumentException("Unknown panel");
+            case "logistyk": panelFxml = PanelList.getFXMLFile("LogisticsCoordinator"); break;
+            default: throw new IllegalArgumentException("Nieznany panel");
         }
         try { // Tutaj pobieramy nowy fxml, i ładujemy go, oraz przypisujemy tej scenie jej kontroler "główny" czyli kontroler naszej sceny bazowej
+            System.out.println(panelFxml);
             FXMLLoader loader =  new FXMLLoader(SceneManager.class.getResource(panelFxml));
             Node panel = loader.load();
             Object controller = loader.getController();
@@ -53,7 +53,6 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
-
     public static Parent setSubPanel(MainController mainController, String name) {
         try {
             String fxmlFile = PanelList.getFXMLFile(name);
@@ -72,13 +71,9 @@ public class SceneManager {
             return null;
         }
     }
-    
-
-
+    // Powinno być zrefaktoryzowane, żeby używało PanelList i tylko argumentu "name"
     public static void addScene(String name){
-        if (scenes.containsKey(name)) {
-            return;
-        }
+        if(scenes.containsKey(name)){return;}
         
         String fxmlFile = PanelList.getFXMLFile(name);
         System.out.println(name);
@@ -92,7 +87,6 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
-
     public static void showScene(String name) {
         Scene scene = scenes.get(name);
         if (scene != null && primaryStage != null) {
@@ -102,7 +96,6 @@ public class SceneManager {
             System.out.println("Scena " + name + " nie istnieje!");
         }
     }
-
     public static boolean isScene(String name){
         return scenes.containsKey(name);
     }
@@ -110,6 +103,8 @@ public class SceneManager {
     public static void clearScene(String name){
         scenes.remove(name);
     }
+
+
 
     public static void clear(){
         scenes.clear();
