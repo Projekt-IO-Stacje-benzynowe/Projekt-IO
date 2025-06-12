@@ -42,7 +42,7 @@ public class LoginValidation{
         
         if (password.equals(user.getPassword())){
             String panel = user.getPanel();
-            Stage stage = (Stage) emailField.getScene().getWindow();
+            Stage stage = (Stage) emailField.getScene().getWindow(); // <-- służy zamknięciu Panela logowania
             stage.close();
 
             // Załaduj główną scenę
@@ -54,10 +54,8 @@ public class LoginValidation{
             mainStage.setScene(new Scene(root));
             mainStage.show();
 
-            // Ustaw panel PO załadowaniu sceny i wywołaniu initialize()!
-            // Możesz przekazać typ panelu np. przez MainController
-            MainController mainController = loader.getController();
-            mainController.setPanel(user.getPanel());
+            MainController mainController = loader.getController(); // <--przypisujemy kontroler do sceny
+            mainController.setPanel(user.getPanel()); //<--- ładujemy zawartość w poprawne miejsce
             if (panel.equals("branch")){
                 user.setNameBranch(RepositorySQL.GetBranchNameForUser(user.getID()));
             

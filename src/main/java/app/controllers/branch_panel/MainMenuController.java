@@ -1,40 +1,37 @@
 package app.controllers.branch_panel;
+import app.controllers.shared.DynamicContentController;
+import app.controllers.shared.MainController;
+import app.model.PanelList;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
-import app.service.Session;
 import app.service.SceneManager;
-public class MainMenuController implements Controller, DynamicContentController  {
+public class MainMenuController implements DynamicContentController {
     private MainController mainController;
     @Override
-    public void setMainController(MainController mainController) {
+    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala
         this.mainController = mainController;
     }
-    @FXML
-    private void goToAnotherView(String fxml) {
-        if (mainController != null) {
-            mainController.loadContent(fxml);
-        }
-    }
+
     @FXML
     public void goToDeliverySectionButton(ActionEvent event){
         SceneManager.addScene("delivery_panel");
-        goToAnotherView("delivery_panel");
+        mainController.showDynamicContent(PanelList.getFXMLFile("delivery_panel"));
     }
     @FXML
     public void goToShowPromotionsButton(ActionEvent event){
         SceneManager.addScene("promotions_table_scene");
-        goToAnotherView("discount_panel_table_promotions");
+        mainController.showDynamicContent(PanelList.getFXMLFile("promotions_table_scene"));
     }      
     @FXML
     public void goToRewardsButton(ActionEvent event){
         SceneManager.addScene("rewards_table");
-        goToAnotherView("tableRewards");
+        mainController.showDynamicContent(PanelList.getFXMLFile("rewards_table"));
     }  
     @FXML
     public void goToReportIssues(ActionEvent event){
         SceneManager.addScene("report_product");
-        goToAnotherView("reportPanel");
+        mainController.showDynamicContent(PanelList.getFXMLFile("report_product"));
     }
 
 

@@ -1,25 +1,19 @@
 package app.controllers.branch_panel.delivery_section;
 
-import app.controllers.branch_panel.MainController;
+import app.controllers.shared.DynamicContentController;
+import app.controllers.shared.MainController;
+import app.model.PanelList;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
-import app.controllers.branch_panel.DynamicContentController;
 import app.service.branch_panel.delivery_section.Delivery;
-import app.service.SceneManager;
 
 
 public class ConfirmDelivery implements DynamicContentController {
     private MainController mainController;
     @Override
-    public void setMainController(MainController mainController) {
+    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala
         this.mainController = mainController;
-    }
-    @FXML
-    private void goToAnotherView(String fxml) {
-        if (mainController != null) {
-            mainController.loadContent(fxml);
-        }
     }
     @FXML
     private TextField deliveryID;
@@ -31,6 +25,6 @@ public class ConfirmDelivery implements DynamicContentController {
     }   
     @FXML
     public void goBackButton(ActionEvent event){
-        goToAnotherView("delivery_panel");
+        mainController.showDynamicContent(PanelList.getFXMLFile("delivery_panel"));
     }
 }
