@@ -1,5 +1,4 @@
 G:\Pulpit\main\src\main\java\app\model\PromotionModel.java
-G:\Pulpit\main\src\main\java\app\controllers\business_panel\MainController.java
 G:\Pulpit\main\src\main\java\app\controllers\control_panel\logistics_coordinator_section\ModifyDeliveryController.java
 G:\Pulpit\main\src\main\java\app\controllers\branch_panel\discount_section\DiscountMenuController.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\ClientSimulation\ClientTask.java
@@ -9,7 +8,6 @@ G:\Pulpit\main\src\main\java\app\controllers\control_panel\rewards_coordinator_s
 G:\Pulpit\main\src\main\java\app\controllers\branch_panel\delivery_section\DeliveryMenuController.java
 G:\Pulpit\main\src\main\java\app\controllers\control_panel\logistics_coordinator_section\LogisticsMainController.java
 G:\Pulpit\main\src\main\java\app\model\OutletModel.java
-G:\Pulpit\main\src\main\java\app\controllers\business_panel\SidebarController.java
 G:\Pulpit\main\src\main\java\app\service\TypeValidation.java
 G:\Pulpit\main\src\main\java\app\service\LoginValidation.java
 G:\Pulpit\main\src\main\java\app\service\branch_panel\discount_section\Promotions.java
@@ -32,6 +30,7 @@ G:\Pulpit\main\src\main\java\app\service\Session.java
 G:\Pulpit\main\src\main\java\app\controllers\branch_panel\RewardTableController.java
 G:\Pulpit\main\src\main\java\app\service\control_panel\rewards\CreateRewardService.java
 G:\Pulpit\main\src\main\java\app\model\UserModel.java
+G:\Pulpit\main\src\main\java\app\controllers\business_panel\buttonPageController.java
 G:\Pulpit\main\src\main\java\app\service\control_panel\logistics_coordinator_section\ModifyDeliveryService.java
 G:\Pulpit\main\src\main\java\app\model\RewardToIssuanceModel.java
 G:\Pulpit\main\src\main\java\app\service\control_panel\rewards\ModifyRewardService.java
