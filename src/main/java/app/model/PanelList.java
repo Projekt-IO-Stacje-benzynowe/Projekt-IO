@@ -9,7 +9,7 @@ public class PanelList {
         TreeMap<String, String> result = new TreeMap<>();
         result.put("sidebar", "/view/shared/sidebar.fxml");
 
-        result.put("rewards", "/view/control_panel/rewards/Main.fxml");
+        result.put("rewards", "/view/control_panel/rewards/rewardsPanel.fxml");
         result.put("login", "/view/login.fxml");
 
         result.put("branch", "/view/branch_panel/menu_branch.fxml");

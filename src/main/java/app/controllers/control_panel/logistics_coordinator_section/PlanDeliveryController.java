@@ -26,8 +26,6 @@ public class PlanDeliveryController extends MainController implements DynamicCon
             this.mainController = mainController;
     }
     @FXML
-    private GridPane deliveryGrid;
-    @FXML
     private Text outletText;
     @FXML
     private ComboBox<RewardModel> rewardComboBox;
@@ -37,9 +35,6 @@ public class PlanDeliveryController extends MainController implements DynamicCon
     private DatePicker deliveryDatePicker;
     @FXML
     private Text errorText;
-    @FXML
-    private VBox sidebarContainer;
-
     public void initialize() {
         try {
             outletText.setText(Session.getOutlet().getName());
