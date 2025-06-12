@@ -1,11 +1,11 @@
 package app.controllers.control_panel.logistics_coordinator_section;
 
-import java.time.LocalDate;
 import app.controllers.shared.*;
 import app.model.RewardModel;
 import app.service.SceneManager;
 import app.service.Session;
 import app.service.control_panel.logistics_coordinator_section.PlanDeliveryService;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,10 +13,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
+import java.time.LocalDate;
 
 public class PlanDeliveryController extends MainController implements DynamicContentController {
     private MainController mainController;
@@ -42,7 +43,7 @@ public class PlanDeliveryController extends MainController implements DynamicCon
 
     public void initialize() {
         try {
-            outletText.setText(Session.getOutlet().getName());
+            outletText.setText(PlanDeliveryService.getOutletName());
 
             // Initialize the reward combo box with available rewards
 
@@ -56,9 +57,8 @@ public class PlanDeliveryController extends MainController implements DynamicCon
                 public void updateItem(LocalDate date, boolean empty) {
                     super.updateItem(date, empty);
                     setDisable(empty || date.compareTo(LocalDate.now().plusDays(1)) < 0 );
-            }
-    });
-
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,7 +93,7 @@ public class PlanDeliveryController extends MainController implements DynamicCon
     }
 
     public void goBack(ActionEvent event) {
-        Session.setOutletNull();
+        PlanDeliveryService.setSessionOutlet(null);
         mainController.showDynamicContent("logistics_main");
         SceneManager.clearScene("plan_delivery");
     }

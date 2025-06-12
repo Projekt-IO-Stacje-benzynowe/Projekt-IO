@@ -17,8 +17,6 @@ public class Main extends Application {
         SceneManager.setStage(primaryStage);
         SceneManager.addScene("branch");
         SceneManager.addScene("login");
-
-        //SceneManager.addScene("Analysis", "/view/business_panel/logistics_main_panel.fxml"); // scena Main z Centrali po zalogowaniu
         // trzeba dodać inne panele
         SceneManager.showScene("login");
 
