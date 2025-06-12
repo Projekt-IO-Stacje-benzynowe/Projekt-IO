@@ -1,7 +1,6 @@
 package app.controllers.branch_panel;
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-import app.model.PanelList;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;

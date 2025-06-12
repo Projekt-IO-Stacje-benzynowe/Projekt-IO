@@ -51,7 +51,7 @@ public class RewardsMainPanel implements DynamicContentController {
     public void goToModifyReward(ActionEvent event) {
         Session.setPromotion(PromotionsTableView.getSelectionModel().getSelectedItem());
         SceneManager.addScene("modifyDelivery");
-        SceneManager.showScene("modifyDelivery");
+        mainController.showDynamicContent("modifyDelivery");
     }
 
 }
