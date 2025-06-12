@@ -53,7 +53,8 @@ public class ChooseDeliveryController implements DynamicContentController {
     public void goToModifyDelivery(ActionEvent event) {
         if (deliveriesTableView.getSelectionModel().getSelectedItem() != null) {
             ChooseDeliveryService.setSessionDelivery(deliveriesTableView.getSelectionModel().getSelectedItem());
-            SceneManager.showScene("modify_delivery");
+            SceneManager.addScene("modify_delivery");
+            mainController.showDynamicContent("modify_delivery");
         } else {
             messageText.setText("Please select a delivery to modify.");
         }

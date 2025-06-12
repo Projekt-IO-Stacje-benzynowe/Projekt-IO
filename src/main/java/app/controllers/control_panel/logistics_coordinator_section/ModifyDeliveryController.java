@@ -2,10 +2,9 @@ package app.controllers.control_panel.logistics_coordinator_section;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-import app.model.OutletModel;
 import app.model.RewardModel;
 import app.service.SceneManager;
-import app.service.Session;
+import app.service.control_panel.logistics_coordinator_section.ModifyDeliveryService;
 import app.service.control_panel.logistics_coordinator_section.PlanDeliveryService;
 
 import javafx.collections.ObservableList;
@@ -45,13 +44,16 @@ public class ModifyDeliveryController extends MainController implements DynamicC
 
     public void initialize() {
         try {
-            outletText.setText(Session.getOutlet().getName());
+            outletText.setText(ModifyDeliveryService.getOutletName());
 
             // Initialize the reward combo box with available rewards
 
             ObservableList<RewardModel> rewards = PlanDeliveryService.getRewards();
             rewardComboBox.setItems(rewards);
-            rewardComboBox.setPromptText("Select a reward");
+            Integer rewardID = ModifyDeliveryService.getRewardID();
+            rewardComboBox.getSelectionModel().select(rewards.stream().filter(reward -> reward.getRewardProductID() == rewardID).findFirst().get());
+
+            quantityField.setText(ModifyDeliveryService.getQuantity());
 
             // Ensures that only future dates can be selected
             deliveryDatePicker.setDayCellFactory(_ -> new DateCell() {
@@ -61,12 +63,13 @@ public class ModifyDeliveryController extends MainController implements DynamicC
                     setDisable(empty || date.compareTo(LocalDate.now().plusDays(1)) < 0 );
                 }
             });
+            deliveryDatePicker.setValue(ModifyDeliveryService.getDate());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void planDelivery(ActionEvent event) {
+    public void modifyDelivery(ActionEvent event) {
         RewardModel selectedReward = rewardComboBox.getValue();
         if (selectedReward == null) {
             errorText.setText("Please select a reward.");
@@ -89,14 +92,13 @@ public class ModifyDeliveryController extends MainController implements DynamicC
             errorText.setText("Please select a delivery date.");
             return;
         }
-
-        PlanDeliveryService.addDelivery(selectedReward, quantity, deliveryDate);
-        errorText.setText("Successfully added a delivery");
+        ModifyDeliveryService.modifyDelivery(selectedReward, quantity, deliveryDate);
+        errorText.setText("Successfully modified the delivery");
     }
 
     public void goBack(ActionEvent event) {
-        Session.setOutletNull();
-        mainController.showDynamicContent("logistics_main");
-        SceneManager.clearScene("plan_delivery");
+        ModifyDeliveryService.setSessionDelivery(null);
+        mainController.showDynamicContent("choose_delivery");
+        SceneManager.clearScene("modify_delivery");
     }
 }

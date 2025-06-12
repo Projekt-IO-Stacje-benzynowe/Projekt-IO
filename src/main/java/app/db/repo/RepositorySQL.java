@@ -1,27 +1,26 @@
 package app.db.repo;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-
-import java.util.List;
-
-
-import java.util.ArrayList;
-
 import app.db.connection.MySQLConnection;
 import app.model.DeliveryModel;
 import app.model.OutletModel;
 import app.model.PromotionModel;
 import app.model.UserModel;
+import app.model.RewardModel;
+import app.model.RewardToIssuanceModel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
-import app.model.RewardModel;
-import app.model.RewardToIssuanceModel;
+
 
 public class RepositorySQL {
     public static String getBranchNameForUser(int userID) {
@@ -187,7 +186,7 @@ public class RepositorySQL {
             int rs = stmt.executeUpdate();
             return rs == 1;
         } catch (SQLException err) {
-            System.err.println("Error while deleting a delivery: " + err.getMessage());
+            System.err.println("Error while deleting delivery: " + err.getMessage());
             return false;
         }
     }
@@ -207,6 +206,25 @@ public class RepositorySQL {
             return rs == 1;
         } catch (SQLException e) {
             System.err.println("Error while adding delivery: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean modifyDelivery(Integer rewardID, Integer quantity, LocalDate deliveryDate, Integer deliveryID) {
+        String querySQL = """
+                UPDATE Deliveries
+                SET RewardProductID = ?, Quantity = ?, ShipmentDate = ?, Status = "Shipped"
+                WHERE DeliveryID = ?
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setInt(1, rewardID);
+            stmt.setInt(2, quantity);
+            stmt.setTimestamp(3, Timestamp.valueOf(deliveryDate.atStartOfDay()));
+            stmt.setInt(4, deliveryID);
+            int rs = stmt.executeUpdate();
+            return rs == 1;
+        } catch (SQLException err) {
+            System.err.println("Error while modifying delivery: " + err.getMessage());
             return false;
         }
     }
@@ -236,10 +254,10 @@ public class RepositorySQL {
 
     public static int confirmDelivery(String ID) {
         String querySQL = """
-         UPDATE Deliveries
-         SET status = 'completed' 
-         WHERE DeliveryID = ?
-         """;
+            UPDATE Deliveries
+            SET status = 'completed' 
+            WHERE DeliveryID = ?
+            """;
         try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
             stmt.setString(1, ID);
             return stmt.executeUpdate();

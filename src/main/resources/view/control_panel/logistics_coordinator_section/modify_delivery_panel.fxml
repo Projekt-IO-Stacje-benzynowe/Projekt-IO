@@ -23,7 +23,7 @@
             <TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
             <Label text="Shipment Date:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
             <DatePicker fx:id="deliveryDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            <Button mnemonicParsing="false" onAction="#planDelivery" text="Modify delivery" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <Button mnemonicParsing="false" onAction="#modifyDelivery" text="Modify delivery" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
         </GridPane>
     </center>
     <right>

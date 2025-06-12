@@ -95,7 +95,6 @@ public class PlanDeliveryController extends MainController implements DynamicCon
         else {
             errorText.setText("Failed to add a delivery");
         }
-        
     }
 
     public void goBack(ActionEvent event) {
