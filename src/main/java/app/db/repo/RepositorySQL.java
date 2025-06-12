@@ -192,7 +192,7 @@ public class RepositorySQL {
         }
     }
 
-    public static void addDelivery(DeliveryModel delivery) {
+    public static boolean addDelivery(DeliveryModel delivery) {
         String querySQL = """
                 INSERT
                 INTO Deliveries (OutletID, RewardProductID, Quantity, ShipmentDate, Status)
@@ -203,10 +203,11 @@ public class RepositorySQL {
             stmt.setInt(2, delivery.getRewardID());
             stmt.setInt(3, delivery.getQuantity());
             stmt.setTimestamp(4, Timestamp.valueOf(delivery.getShipmentDate().atStartOfDay()));
-            stmt.executeUpdate();
-            MySQLConnection.conn.commit();
+            int rs = stmt.executeUpdate();
+            return rs == 1;
         } catch (SQLException e) {
-            System.err.println("Error while finding user data: " + e.getMessage());
+            System.err.println("Error while adding delivery: " + e.getMessage());
+            return false;
         }
     }
 

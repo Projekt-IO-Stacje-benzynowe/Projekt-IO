@@ -15,9 +15,9 @@ public class PlanDeliveryService {
         return RepositorySQL.getAllRewards();
     }
 
-    public static void addDelivery(RewardModel selectedReward, int quantity, LocalDate deliveryDate) {
+    public static boolean addDelivery(RewardModel selectedReward, int quantity, LocalDate deliveryDate) {
         DeliveryModel delivery = new DeliveryModel(null, Session.getOutlet().getID(), selectedReward.getPromotionID(), null, quantity, deliveryDate);
-        RepositorySQL.addDelivery(delivery);
+        return RepositorySQL.addDelivery(delivery);
     }
 
     public static String getOutletName() {
