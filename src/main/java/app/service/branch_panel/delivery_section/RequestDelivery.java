@@ -1,15 +1,10 @@
 package app.service.branch_panel.delivery_section;
 
-import javafx.scene.control.TextField;
-
 import app.service.TypeValidation;
-import app.service.branch_panel.ClientSimulation.Parser;
+import app.service.Session;
 import app.db.repo.RepositorySQL;
 
-import app.service.Session;
-
-import java.util.Map;
-
+import javafx.scene.control.TextField;
 
 public class RequestDelivery {
     public static void sendRequest(TextField productID, TextField quantity, TextField deliveryID){

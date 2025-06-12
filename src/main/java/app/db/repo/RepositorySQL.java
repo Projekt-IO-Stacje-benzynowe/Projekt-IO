@@ -24,7 +24,7 @@ import app.model.RewardModel;
 import app.model.RewardToIssuanceModel;
 
 public class RepositorySQL {
-    public static String GetBranchNameForUser(int userID) {
+    public static String getBranchNameForUser(int userID) {
         String querySQL = "SELECT outletName FROM UsersOutlet WHERE ID_user = ?"; 
 
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
@@ -39,7 +39,7 @@ public class RepositorySQL {
         return null;
     }
 
-    public static void InsertValue(String tableName, String[][] values) {
+    public static void insertValue(String tableName, String[][] values) {
         String insertSQL = String.format("INSERT INTO %s (ID, Name, ProducerID) VALUES (?, ?, ?)", tableName);
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(insertSQL)) {  // ZAMIANA TUTAJ
             for (String[] row : values) {
@@ -152,7 +152,7 @@ public class RepositorySQL {
                 SELECT d.DeliveryID, d.OutletID, d.RewardProductID, d.Quantity, d.ShipmentDate, p.Name AS RewardName
                 FROM Deliveries d
                 JOIN RewardProducts p ON d.RewardProductID = p.RewardProductID
-                WHERE d.OutletID = ? AND d.ShipmentDate IS NOT NULL AND d.DeliveryDate IS NULL
+                WHERE d.OutletID = ? AND d.ShipmentDate IS NOT NULL AND d.ShipmentDate > CAST(NOW() AS DATE) AND d.DeliveryDate IS NULL
                 """;
 
         ObservableList<DeliveryModel> result = FXCollections.observableArrayList();
@@ -175,24 +175,58 @@ public class RepositorySQL {
         return result;
     }
 
-    public static UserModel FindUser(String email) {
+    public static void deleteDelivery(Integer deliveryID) {
+        String querySQL = """
+                DELETE
+                FROM Deliveries d
+                WHERE d.DeliveryID = ?
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setInt(1, deliveryID);
+            System.out.println(stmt.toString());
+            int rs = stmt.executeUpdate();
+            System.out.println(rs);
+        } catch (SQLException err) {
+            System.err.println("Error while deleting a delivery: " + err.getMessage());
+        }
+    }
+
+    public static void addDelivery(DeliveryModel delivery) {
+        String querySQL = """
+                INSERT
+                INTO Deliveries (OutletID, RewardProductID, Quantity, ShipmentDate, Status)
+                VALUES(?, ?, ?, ?, "Shipped")
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
+            stmt.setInt(1, delivery.getOutletID());
+            stmt.setInt(2, delivery.getRewardID());
+            stmt.setInt(3, delivery.getQuantity());
+            stmt.setTimestamp(4, Timestamp.valueOf(delivery.getShipmentDate().atStartOfDay()));
+            stmt.executeUpdate();
+            MySQLConnection.conn.commit();
+        } catch (SQLException e) {
+            System.err.println("Error while finding user data: " + e.getMessage());
+        }
+    }
+
+    public static UserModel findUser(String email) {
         String querySQL = "SELECT * FROM Users WHERE email = ?";
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 return new UserModel(
                     rs.getInt("ID"),
                     rs.getString("email"),
                     rs.getString("password"),
                     rs.getString("panel"),
                     null
-                    // rs.getString("nameBranch")
                 );
-            }else{
+            }
+            else {
                 return null;
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("Error while finding user data: " + e.getMessage());
             return null;
         }
@@ -204,7 +238,7 @@ public class RepositorySQL {
          SET status = 'completed' 
          WHERE DeliveryID = ?
          """;
-        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
+        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
             stmt.setString(1, ID);
             return stmt.executeUpdate();
         } catch (SQLException e) {
@@ -213,7 +247,7 @@ public class RepositorySQL {
         }
     }
 
-    public static void sendReport(int outletID, int productID, int quantity, String desc, Timestamp date){
+    public static void sendReport(int outletID, int productID, int quantity, String desc, Timestamp date) {
         String querySQL = """
             INSERT INTO Disposals (
                 DisposalID, 
@@ -229,9 +263,9 @@ public class RepositorySQL {
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
-        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
             // int newID = GetLastIndexFromDisposals() + 1;
-            int newID = GetLastIndex("DisposalID", "Disposals") + 1;
+            int newID = getLastIndex("DisposalID", "Disposals") + 1;
             stmt.setInt(1, newID);
             stmt.setInt(2, outletID);
             stmt.setInt(3, productID);
@@ -244,21 +278,21 @@ public class RepositorySQL {
             stmt.setString(10, null);
 
             stmt.executeUpdate();
-        }catch(SQLException e){
+        } catch(SQLException e) {
             System.out.println("Error while sending report" + e);
         }
     }
 
-    private static int GetLastIndex(String tableName, String columnName){
+    private static int getLastIndex(String tableName, String columnName) {
         String querySQL = "SELECT MAX(" + columnName + ") FROM " + tableName;
 
-        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 int id = rs.getInt(1);
                 return id;
             }
-        }catch(SQLException e){
+        } catch(SQLException e) {
             System.out.println("Error while fetching last row index " + e);
         }
         return 0;
@@ -280,8 +314,8 @@ public class RepositorySQL {
                 Notes
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
-        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
-            int newID = GetLastIndex("Deliveries", "DeliveryID") + 1;
+        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
+            int newID = getLastIndex("Deliveries", "DeliveryID") + 1;
             stmt.setInt(1, newID);
             stmt.setInt(2, outletID);
             stmt.setInt(3, productID);
@@ -294,7 +328,7 @@ public class RepositorySQL {
             stmt.setInt(10, 0);
             stmt.setString(11, null);
             stmt.executeUpdate();
-        }catch(SQLException e){
+        } catch(SQLException e) {
             System.out.println("Error while sending request " + e);
         }        
     }
@@ -321,14 +355,14 @@ public class RepositorySQL {
         return ids;
     }
 
-    public static List<RewardModel> findProductReward(int PromotionID){
+    public static List<RewardModel> findProductReward(int PromotionID) {
         String querySQL = """
             SELECT * FROM RewardProducts p
             WHERE p.PromotionID = ?
             """;
         List<RewardModel> result = new ArrayList<>();
         
-        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
             stmt.setInt(1, PromotionID);
 
             ResultSet rs = stmt.executeQuery();
@@ -551,7 +585,6 @@ public class RepositorySQL {
             e.printStackTrace();
         }
     }
-
 
     public static Double getProductPriceById(int productId) {
             String query = "SELECT Price FROM Products WHERE ProductID = ?";

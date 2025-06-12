@@ -2,8 +2,6 @@ package app.service.branch_panel.ClientSimulation;
 
 import java.util.Random;
 
-import app.service.Session;
-
 public class ClientTask {
     public ClientTask(){};
     

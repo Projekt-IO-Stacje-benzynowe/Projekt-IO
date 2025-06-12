@@ -3,55 +3,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
-<AnchorPane
-    fx:id="mainContainer"
-    xmlns:fx="http://javafx.com/fxml"
+<BorderPane
+    fx:id="mainContent"
+    style="-fx-background-color: #fafafa;"
     xmlns="http://javafx.com/javafx"
-    fx:controller="app.controllers.control_panel.logistics_coordinator_section.ModifyDeliveryController"
-    prefHeight="800"
-    prefWidth="800">
-    <BorderPane fx:id="background">
-        <top>
-            <HBox fx:id="topBar" prefHeight="60" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" prefWidth="-Infinity">
-                <stylesheets>
-                    <URL value="@/css/top.css"/>
-                </stylesheets>
-            </HBox>
-        </top>
-        <left>
-            <VBox fx:id="sidebar" prefWidth="120" maxWidth="220" minWidth="100"/>
-        </left>
-        <center>
-            <BorderPane fx:id="mainContent">
-                <top>
-                </top>
-                <left>
-                </left>
-                <center>
-                    <GridPane fx:id="deliveryGrid" hgap="10" vgap="10" style="-fx-padding: 20;" alignment="center">
-                        <Label text="Outlet:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                        <Text fx:id="outletText" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                        <Label text="Reward:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                        <ComboBox fx:id="rewardComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                        <TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <Label text="Shipment Date:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                        <DatePicker fx:id="deliveryDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <Button mnemonicParsing="false" onAction="#planDelivery" text="Modify delivery" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                    </GridPane>
-                </center>
-                <right>
-                    <VBox minWidth="100">
-                        <Text text="" fx:id="errorText"/>
-                        <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
-                    </VBox>
-                </right>
-                <bottom>
-                </bottom>
-            </BorderPane>
-        </center>
-    </BorderPane>
-    <!-- Sidebar -->
-    <VBox fx:id="sidebarContainer"/>
-</AnchorPane>
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="app.controllers.control_panel.logistics_coordinator_section.ModifyDeliveryController">
+    <top>
+    </top>
+    <left>
+    </left>
+    <center>
+        <GridPane fx:id="deliveryGrid" hgap="10" vgap="10" style="-fx-padding: 20;" alignment="center">
+            <Label text="Outlet:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Text fx:id="outletText" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Reward:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="rewardComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Shipment Date:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <DatePicker fx:id="deliveryDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <Button mnemonicParsing="false" onAction="#planDelivery" text="Modify delivery" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        </GridPane>
+    </center>
+    <right>
+        <VBox minWidth="100">
+            <Text text="" fx:id="errorText"/>
+            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
+        </VBox>
+    </right>
+    <bottom>
+    </bottom>
+</BorderPane>

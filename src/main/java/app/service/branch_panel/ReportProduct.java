@@ -1,14 +1,11 @@
 package app.service.branch_panel;
 
-import java.sql.Timestamp;
-
 import app.db.repo.RepositorySQL;
 import app.service.Session;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 import java.sql.Timestamp;
 

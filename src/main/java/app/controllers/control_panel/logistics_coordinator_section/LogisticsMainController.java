@@ -18,18 +18,20 @@ import java.io.IOException;
 
 public class LogisticsMainController implements DynamicContentController {
     private MainController mainController;
+
     @Override
-    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala
+    public void setMainController(MainController mainController) { // funkcja, która pozwala
         this.mainController = mainController;
     }
+
     @FXML
     private StackPane tablePane;
     @FXML
-    private BorderPane ContentPane;
+    private BorderPane contentPane;
     @FXML
     private Text messageText;
-
     private TableView<OutletModel> outletsTableView;
+
     public void initialize() {
         outletsTableView = MainService.getAllOutletsView();
         outletsTableView.setOnMouseClicked(e -> clickTable(e));
@@ -40,6 +42,7 @@ public class LogisticsMainController implements DynamicContentController {
         String text = outletsTableView.getSelectionModel().getSelectedItem().getName();
         messageText.setText(text);
     }
+
     public void goToViewRequests(ActionEvent event) {
         messageText.setText("view requests?");
     }
@@ -49,6 +52,7 @@ public class LogisticsMainController implements DynamicContentController {
         if (outletsTableView.getSelectionModel().getSelectedItem() != null) {
             Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
             SceneManager.addScene("plan_delivery");
+            mainController.showDynamicContent("plan_delivery");
 
         } else {
             messageText.setText("Please select an outlet to add a delivery to.");
@@ -59,7 +63,7 @@ public class LogisticsMainController implements DynamicContentController {
         if (outletsTableView.getSelectionModel().getSelectedItem() != null) {
             Session.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
             SceneManager.addScene("choose_delivery");
-            mainController.showDynamicContent("/view/control_panel/logistics/choose_delivery_panel.fxml");
+            mainController.showDynamicContent("choose_delivery");
         } else {
             messageText.setText("Please select an outlet to modify deliveries for.");
         }

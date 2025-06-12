@@ -1,10 +1,7 @@
 package app.controllers.control_panel.rewards_coordinator_section;
 
-import app.service.SceneManager;
-import app.service.Session;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,24 +12,24 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class SidebarController implements DynamicContentController {
-    private ChangeListener<Number> widthListener;
     private MainController mainController;
+
+    @FXML private VBox Box1;
+    @FXML private Button homeButton, settingsButton, logoutButton;
+    @FXML private Label homeLabel, settingsLabel, logoutLabel;
+    @FXML private HBox homeHBox, settingsHBox, logoutHBox;
+
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
+
     @FXML
     private void goToAnotherView(String fxml) {
         if (mainController != null) {
             mainController.loadContent(fxml);
         }
     }
-
-    @FXML private VBox Box1;
-
-    @FXML private Button homeButton, settingsButton, logoutButton;
-    @FXML private Label homeLabel, settingsLabel, logoutLabel;
-    @FXML private HBox homeHBox, settingsHBox, logoutHBox;
 
     @FXML
     public void initialize() {
@@ -51,21 +48,7 @@ public class SidebarController implements DynamicContentController {
         logIcon.fitHeightProperty().bind(Box1.widthProperty().multiply(0.25));
         Box1.setAlignment(Pos.CENTER);
     }
-
-    private void forceResize(){
-        double width = Box1.getWidth();
-        double iconSize = width * 0.25;
-        resizeIcon(homeButton, iconSize*1.3);
-        resizeIcon(settingsButton, iconSize);
-        resizeIcon(logoutButton, iconSize);
-    }
-    private void resizeIcon(Button button, double size) {
-        if (button.getGraphic() instanceof ImageView iv) {
-            iv.setFitWidth(size);
-            iv.setFitHeight(size);
-        }
-    }
-
+    
     private void setupButton(Button button, Label label, HBox container, Runnable action) {
         if (button != null && label != null && container != null) {
             button.setOnMouseEntered(e -> {
@@ -106,7 +89,7 @@ public class SidebarController implements DynamicContentController {
 
     private void handleHomeClick() {
         if (mainController != null) {
-           goToAnotherView("/view/control_panel/rewards/Main.fxml");
+           goToAnotherView("/view/control_panel/rewards/main.fxml");
         }
     }
 

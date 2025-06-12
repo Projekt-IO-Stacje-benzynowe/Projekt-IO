@@ -1,17 +1,11 @@
 package app.controllers.shared;
 
-import app.model.OutletModel;
 import app.service.SceneManager;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
-
-import java.io.IOException;
 
 public class MainController implements Controller {
 
@@ -27,13 +21,14 @@ public class MainController implements Controller {
     private BorderPane mainContent;
     @FXML
     private VBox sidebarContainer;
-    private TableView<OutletModel> outletsTableView;
+
     public void setPanel(String panelName) {
         SceneManager.setPanel(panelName); //ustawiamy panel w dynamicznej zawartosci
     }
+
     public void initialize() {
         try {
-            SceneManager.setMainController(this); // ustawiamy sceneManagerowi mainKontroler sceny jako ten główny
+            SceneManager.setMainController(this); // ustawiamy sceneManagerowi mainController sceny jako ten główny
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/sidebar.fxml"));
             sidebarContainer = loader.load();
 
@@ -57,20 +52,8 @@ public class MainController implements Controller {
         }
     }
 
-
-    public void showDynamicContent(String fxmlPath) {
-        try {
-            FXMLLoader loader =  new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent content = loader.load();
-
-            // PRZEKAZUJEMY REFERENCJĘ DO MAINCONTROLLER
-            Object controller = loader.getController();
-            if (controller instanceof DynamicContentController) {
-                ((DynamicContentController) controller).setMainController(this);
-            }
-            mainContent.setCenter(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void showDynamicContent(String name) {
+        Parent content = SceneManager.setSubPanel(this, name);
+        mainContent.setCenter(content);
     }
 }

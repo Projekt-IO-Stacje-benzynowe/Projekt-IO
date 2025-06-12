@@ -1,6 +1,11 @@
 package app.service;
 
 import app.controllers.shared.MainController;
+import app.db.connection.MySQLConnection;
+import app.db.repo.RepositorySQL;
+import app.model.UserModel;
+import app.service.branch_panel.ClientSimulation.Launcher;
+
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,10 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import app.db.connection.MySQLConnection;
-import app.db.repo.RepositorySQL;
-import app.model.UserModel;
-import app.service.branch_panel.ClientSimulation.Launcher;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,13 +23,14 @@ public class LoginValidation{
     private TextField emailField;
     @FXML
     private TextField passwordField;
+
     @FXML
     private void loginScene(ActionEvent event) throws IOException {
         MySQLConnection.makeConnection();
 
         String email = emailField.getText();
         String password = passwordField.getText();
-        UserModel user = RepositorySQL.FindUser(email);
+        UserModel user = RepositorySQL.findUser(email);
         System.out.println(user.getPanel());
         
         if (user == null){
@@ -46,7 +48,7 @@ public class LoginValidation{
             stage.close();
 
             // Załaduj główną scenę
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/Main.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/main.fxml"));
             Parent root = loader.load();
 
             // Pokaż główne okno
@@ -59,7 +61,7 @@ public class LoginValidation{
             MainController mainController = loader.getController();
             mainController.setPanel(user.getPanel());
             if (panel.equals("branch")){
-                user.setNameBranch(RepositorySQL.GetBranchNameForUser(user.getID()));
+                user.setNameBranch(RepositorySQL.getBranchNameForUser(user.getID()));
             
                 Launcher launcher = new Launcher();
         

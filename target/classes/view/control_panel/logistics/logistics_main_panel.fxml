@@ -3,65 +3,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<<<<<<< HEAD:src/main/resources/view/control_panel/Main.fxml
-<?import java.net.URL?>
-<AnchorPane
-    fx:id="mainContainer"
+<BorderPane
+    fx:id="contentPane"
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="app.controllers.control_panel.logistics_coordinator_section.MainController"
-    prefHeight="800"
-    prefWidth="800">
-    <BorderPane fx:id="background">
-        <top>
-            <HBox fx:id="topBar" prefHeight="60" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" prefWidth="-Infinity">
-                <stylesheets>
-                    <URL value="@/css/top.css"/>
-                </stylesheets>
-            </HBox>
-        </top>
-        <left>
-            <VBox fx:id="sidebar" prefWidth="120" maxWidth="220" minWidth="100"/>
-        </left>
-        <center>
-            <BorderPane fx:id="mainContent">
-                <top>
-=======
-            <BorderPane fx:id="ContentPane" xmlns="http://javafx.com/javafx"
-                        xmlns:fx="http://javafx.com/fxml"
-                        fx:controller="app.controllers.control_panel.logistics_coordinator_section.LogisticsMainController">
-                <top>
-                    <HBox alignment="CENTER" spacing="10" >
-                        <Button mnemonicParsing="false" onAction="#goToViewRequests" prefHeight="35.0" prefWidth="100.0" text="View requests"/>
+    fx:controller="app.controllers.control_panel.logistics_coordinator_section.LogisticsMainController">
+    <top>
+        <HBox alignment="CENTER" spacing="10" >
+            <Button mnemonicParsing="false" onAction="#goToViewRequests" prefHeight="35.0" prefWidth="100.0" text="View requests"/>
 
-                        <Button mnemonicParsing="false" onAction="#goToPlanDelivery" prefHeight="35.0" prefWidth="100.0" text="Plan a new delivery"/>
+            <Button mnemonicParsing="false" onAction="#goToPlanDelivery" prefHeight="35.0" prefWidth="100.0" text="Plan a new delivery"/>
 
-                        <Button mnemonicParsing="false" onAction="#goToChooseDelivery" prefHeight="35.0" prefWidth="100.0" text="Choose a delivery\nto modify"/>
-                    </HBox>
->>>>>>> 1dba1f0cde51e905ac8dea6f978f8de0863bd9f1:src/main/resources/view/control_panel/logistics/logistics_main_panel.fxml
-                </top>
-                <left>
-                </left>
-                <center>
-                    <StackPane fx:id="tablePane">
-                    </StackPane>
-                </center>
-                <right>
-                    <VBox minWidth="100">
-                        <Label text="Select an option:"/>
-                        <Text text="" fx:id="messageText"/>
-<<<<<<< HEAD:src/main/resources/view/control_panel/Main.fxml
-                        <Button mnemonicParsing="false" onAction="#logOut" prefHeight="50.0" prefWidth="130.0" text="Log out"/>
-                        
-                        <Button mnemonicParsing="false" onAction="#goToViewRequests" prefHeight="50.0" prefWidth="130.0" text="View requests"/>
-
-                        <Button mnemonicParsing="false" onAction="#goToPlanDelivery" prefHeight="50.0" prefWidth="130.0" text="Plan a new delivery"/>
-
-                        <Button mnemonicParsing="false" onAction="#goToChooseDelivery" prefHeight="50.0" prefWidth="130.0" text="Choose delivery to modify" wrapText="true" textAlignment="CENTER"/>
-=======
->>>>>>> 1dba1f0cde51e905ac8dea6f978f8de0863bd9f1:src/main/resources/view/control_panel/logistics/logistics_main_panel.fxml
-                    </VBox>
-                </right>
-                <bottom>
-                </bottom>
-            </BorderPane>
+            <Button mnemonicParsing="false" onAction="#goToChooseDelivery" prefHeight="35.0" prefWidth="100.0" text="Choose a delivery\nto modify"/>
+        </HBox>
+    </top>
+    <left>
+    </left>
+    <center>
+        <StackPane fx:id="tablePane">
+        </StackPane>
+    </center>
+    <right>
+        <VBox minWidth="100">
+            <Label text="Select an option:"/>
+            <Text text="" fx:id="messageText"/>
+        </VBox>
+    </right>
+    <bottom>
+    </bottom>
+</BorderPane>

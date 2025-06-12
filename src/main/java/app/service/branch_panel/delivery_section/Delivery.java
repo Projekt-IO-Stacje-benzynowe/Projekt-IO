@@ -1,15 +1,16 @@
 package app.service.branch_panel.delivery_section;
+
 import app.controllers.branch_panel.DynamicContentController;
 import app.controllers.branch_panel.MainController;
 import app.db.repo.RepositorySQL;
+import app.service.SceneManager;
+
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import java.util.Optional;
 
-import app.service.SceneManager;
+import java.util.Optional;
 
 public class Delivery implements DynamicContentController {
     private MainController mainController;

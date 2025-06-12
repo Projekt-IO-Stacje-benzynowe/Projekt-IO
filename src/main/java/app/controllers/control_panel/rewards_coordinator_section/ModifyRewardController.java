@@ -91,7 +91,7 @@ public class ModifyRewardController implements Controller, DynamicContentControl
 
     public void goBack(ActionEvent event) {
         Session.setOutletNull();
-        SceneManager.showScene("Main");
+        SceneManager.showScene("main");
         SceneManager.clearScene("plan_delivery");
     }
 }
