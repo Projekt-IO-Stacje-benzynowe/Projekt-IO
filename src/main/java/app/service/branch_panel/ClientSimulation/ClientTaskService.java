@@ -13,7 +13,7 @@ public class ClientTaskService {
         while(true){
             client.send(GenerateRandomJsonQuery());
             
-            System.out.println("Wysłano wiadomość");
+            // System.out.println("Wysłano wiadomość");
             try{
                 Thread.sleep(15000);
             } catch (InterruptedException e) {
