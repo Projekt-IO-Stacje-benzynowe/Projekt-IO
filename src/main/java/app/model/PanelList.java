@@ -12,13 +12,13 @@ public class PanelList {
         result.put("rewards", "/view/control_panel/rewards/rewardsPanel.fxml");
         result.put("login", "/view/login.fxml");
 
-        result.put("branch", "/view/branch_panel/menu_branch.fxml");
-        result.put("confirm_delivery", "/view/branch_panel/confirm_delivery.fxml");
-        result.put("additional_delivery", "/view/branch_panel/additional_delivery.fxml");
-        result.put("table_promotions", "/view/branch_panel/discount_panel_table_promotions.fxml");
+        result.put("branch", "/view/branch_panel/menu_branch_panel.fxml");
+        result.put("confirm_delivery", "/view/branch_panel/confirm_delivery_panel.fxml");
+        result.put("additional_delivery", "/view/branch_panel/additional_delivery_panel.fxml");
+        // result.put("table_promotions", "/view/branch_panel/discount_table_promotions_panel.fxml");
         result.put("delivery_panel", "/view/branch_panel/delivery_panel.fxml");
-        result.put("report_product", "/view/branch_panel/reportPanel.fxml");
-        result.put("rewards_table", "/view/branch_panel/tableRewards.fxml");
+        result.put("report_product", "/view/branch_panel/report_panel.fxml");
+        result.put("rewards_table", "/view/branch_panel/table_rewards_panel.fxml");
         result.put("promotions_table_scene", "/view/branch_panel/discount_panel_table_promotions.fxml");
 
         result.put("logistics_main", "/view/control_panel/logistics_coordinator_section/logistics_main_panel.fxml");
