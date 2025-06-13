@@ -1,9 +1,6 @@
 package app.service;
 
-import app.model.DeliveryModel;
-import app.model.OutletModel;
-import app.model.PromotionModel;
-import app.model.UserModel;
+import app.model.*;
 
 //stores logged user data
 public class Session {
@@ -11,12 +8,14 @@ public class Session {
     private static PromotionModel promotion = null;
     private static OutletModel outlet = null;
     private static DeliveryModel delivery = null;
+    private static ProductModel product = null;
 
     public static void endSession(){
         user = null;
         promotion = null;
         outlet = null;
         delivery = null;
+        product = null;
     }
 
     public static boolean isUserInitialized(){
@@ -71,4 +70,11 @@ public class Session {
         delivery = null;
     }
 
+    public static boolean isProductInitialized() {return product != null;}
+
+    public static void setProduct(ProductModel product){Session.product = product;}
+
+    public static ProductModel getProduct() {return product;}
+
+    public static void setProductNull() {product = null;}
 }

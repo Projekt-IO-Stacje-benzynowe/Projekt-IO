@@ -29,6 +29,8 @@ public class PanelList {
 
         result.put("Analysis", "/view/business_panel/buttonPage.fxml" );
         result.put("rewardsPanel", "/view/business_panel/rewardsBusiness.fxml");
+        result.put("ProductPage", "/view/business_panel/productsPanel.fxml");
+        result.put("choose_product_business", "/view/business_panel/normalOrOutlet.fxml");
         return result;
     }
 

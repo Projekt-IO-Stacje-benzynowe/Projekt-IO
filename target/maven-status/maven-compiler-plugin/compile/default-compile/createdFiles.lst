@@ -1,6 +1,5 @@
 app\Main.class
 app\service\branch_panel\ReportProduct.class
-app\controllers\business_panel\ReportGenerator.class
 app\service\control_panel\logistics_coordinator_section\LogisticsMainService.class
 app\model\PromotionModel.class
 app\controllers\branch_panel\RewardTableController.class
@@ -11,6 +10,8 @@ app\service\branch_panel\delivery_section\RequestDelivery.class
 app\controllers\control_panel\rewards_coordinator_section\CreateRewardController.class
 app\service\control_panel\logistics_coordinator_section\ChooseDeliveryService.class
 app\model\RewardToIssuanceModel.class
+app\controllers\business_panel\productPageController.class
+app\controllers\business_panel\normalOrOutletController.class
 app\service\TypeValidation.class
 app\service\branch_panel\delivery_section\Delivery.class
 app\model\RewardModel.class
@@ -20,6 +21,7 @@ app\controllers\business_panel\rewardsBusinessController.class
 app\controllers\control_panel\logistics_coordinator_section\ViewRequestsController.class
 app\service\branch_panel\ClientSimulation\ClientTask.class
 app\service\control_panel\rewards\CreateRewardService.class
+app\service\business_panel\ProductsMainService.class
 app\controllers\control_panel\logistics_coordinator_section\LogisticsMainController.class
 app\controllers\control_panel\rewards_coordinator_section\RewardsMainPanel.class
 app\controllers\branch_panel\delivery_section\AdditionalDelivery.class
@@ -37,7 +39,9 @@ app\controllers\control_panel\logistics_coordinator_section\PlanDeliveryControll
 app\model\DeliveryModel.class
 app\controllers\shared\DynamicContentController.class
 app\controllers\shared\SidebarController.class
+app\service\business_panel\ProductReport.class
 app\service\control_panel\logistics_coordinator_section\PlanDeliveryService.class
+app\model\ProductModel.class
 app\service\control_panel\logistics_coordinator_section\ModifyDeliveryService.class
 app\controllers\shared\MainController.class
 app\model\UserModel.class
@@ -46,10 +50,10 @@ app\service\branch_panel\ClientSimulation\Client.class
 app\service\control_panel\logistics_coordinator_section\ViewRequestsService.class
 app\controllers\branch_panel\delivery_section\ConfirmDelivery.class
 app\controllers\branch_panel\discount_section\DiscountMenuController.class
-app\controllers\business_panel\ProductReport.class
 app\controllers\branch_panel\ReportIssuesProduct.class
 app\model\PanelList.class
 app\service\branch_panel\ClientSimulation\Parser.class
+app\service\business_panel\ReportGenerator.class
 app\db\connection\MySQLConnection.class
 app\controllers\control_panel\rewards_coordinator_section\RewardOverviewController.class
 app\service\TableService.class
