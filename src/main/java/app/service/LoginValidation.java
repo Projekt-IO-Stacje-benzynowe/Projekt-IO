@@ -4,7 +4,7 @@ import app.controllers.shared.MainController;
 import app.db.connection.MySQLConnection;
 import app.db.repo.RepositorySQL;
 import app.model.UserModel;
-import app.service.branch_panel.ClientSimulation.Launcher;
+import app.service.branch_panel.ClientSimulation.LauncherService;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -49,6 +49,7 @@ public class LoginValidation{
 
             // Załaduj główną scenę
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/Main.fxml"));
+            
             Parent root = loader.load();
 
             // Pokaż główne okno
@@ -61,7 +62,7 @@ public class LoginValidation{
             if (panel.equals("branch")){
                 user.setNameBranch(RepositorySQL.getBranchNameForUser(user.getID()));
             
-                Launcher launcher = new Launcher();
+                LauncherService launcher = new LauncherService();
         
 
                 launcher.runServerTask();   
