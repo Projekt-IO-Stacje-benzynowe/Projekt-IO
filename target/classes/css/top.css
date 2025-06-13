@@ -1,5 +1,0 @@
-#topBar{
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #062f67, #0f77aa);
-    -fx-padding: 15 0 15 0;  /* odstęp od góry/dół */
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 8,0,2,2);
-}

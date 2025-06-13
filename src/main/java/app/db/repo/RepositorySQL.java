@@ -15,7 +15,9 @@ import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.PreparedStatement;
@@ -28,7 +30,7 @@ public class RepositorySQL {
     public static String getBranchNameForUser(int userID) {
         String querySQL = "SELECT outletName FROM UsersOutlet WHERE ID_user = ?"; 
 
-        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
             stmt.setInt(1, userID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -42,7 +44,7 @@ public class RepositorySQL {
 
     public static void insertValue(String tableName, String[][] values) {
         String insertSQL = String.format("INSERT INTO %s (ID, Name, ProducerID) VALUES (?, ?, ?)", tableName);
-        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(insertSQL)) {  // ZAMIANA TUTAJ
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(insertSQL)) {
             for (String[] row : values) {
                 stmt.setString(1, row[0]);
                 stmt.setString(2, row[1]);
@@ -367,6 +369,44 @@ public class RepositorySQL {
             System.out.println("Error while fetching last row index " + e);
         }
         return 0;
+    }   
+    
+
+    public static boolean doesRewardProductExist(int rewardProductId) {
+        String query = "SELECT 1 FROM RewardProducts WHERE RewardProductID = ? LIMIT 1";
+
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query)) {
+
+            stmt.setInt(1, rewardProductId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();  // true jeśli istnieje, false jeśli nie
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Błąd bazy danych: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static Integer getMaxDeliveryId() {
+        String query = "SELECT MAX(DeliveryID) AS MaxID FROM Deliveries";
+
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                int maxId = rs.getInt("MaxID");
+                return rs.wasNull() ? null : maxId;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Błąd podczas pobierania max DeliveryID: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public static void sendRequestForDelivery(int outletID, int deliveryID, int productID, int quantity){
