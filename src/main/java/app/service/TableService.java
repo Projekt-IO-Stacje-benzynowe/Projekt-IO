@@ -6,6 +6,7 @@ import java.util.Arrays;
 import app.db.repo.RepositorySQL;
 import app.model.DeliveryModel;
 import app.model.OutletModel;
+import app.model.ProductModel;
 import app.model.PromotionModel;
 import app.model.RequestModel;
 import javafx.scene.control.TableColumn;
@@ -98,6 +99,19 @@ public class TableService {
         requestsTableView.getColumns().addAll(Arrays.asList(rewardNameCol, quantityCol, reportDateCol));
         requestsTableView.setMaxWidth(600);
         return requestsTableView;
+    }
 
+    public static TableView<ProductModel> getAllProdutsTable() {
+        TableView<ProductModel> productsTableView = new TableView<>();
+        productsTableView.setEditable(true);
+        productsTableView.setPrefWidth(400);
+
+        TableColumn<ProductModel, String> productNameCol = createTableColumn("Product name", "name", 200);
+        TableColumn<ProductModel, String> productBrandCol = createTableColumn("Brand", "brand", 200);
+
+        productsTableView.setItems(RepositorySQL.getAllProducts());
+        productsTableView.getColumns().addAll(Arrays.asList(productNameCol, productBrandCol));
+        productsTableView.setMaxWidth(600);
+        return productsTableView;
     }
 }

@@ -3,8 +3,6 @@ package app.controllers.control_panel.logistics_coordinator_section;
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
 import app.model.RequestModel;
-import app.service.SceneManager;
-import app.service.control_panel.logistics_coordinator_section.ModifyDeliveryService;
 import app.service.control_panel.logistics_coordinator_section.ViewRequestsService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
