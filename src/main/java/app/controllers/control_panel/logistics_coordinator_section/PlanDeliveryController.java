@@ -3,7 +3,6 @@ package app.controllers.control_panel.logistics_coordinator_section;
 import app.controllers.shared.*;
 import app.model.RewardModel;
 import app.service.SceneManager;
-import app.service.Session;
 import app.service.control_panel.logistics_coordinator_section.PlanDeliveryService;
 
 import javafx.collections.ObservableList;
@@ -13,8 +12,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.time.LocalDate;

@@ -3,6 +3,7 @@ package app.db.repo;
 import app.db.connection.MySQLConnection;
 import app.model.DeliveryModel;
 import app.model.OutletModel;
+import app.model.ProductModel;
 import app.model.PromotionModel;
 import app.model.RequestModel;
 import app.model.UserModel;
@@ -143,6 +144,28 @@ public class RepositorySQL {
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching rewards: " + err.getMessage());
+        }
+        return result;
+    }
+
+    public static ObservableList<ProductModel> getAllProducts() {
+        String querySQL = """
+                SELECT *
+                FROM Products
+                """;
+
+        ObservableList<ProductModel> result = FXCollections.observableArrayList();
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new ProductModel(
+                    rs.getInt("ProductID"),
+                    rs.getString("Name"),
+                    rs.getString("Brand")
+                ));
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching products: " + err.getMessage());
         }
         return result;
     }
