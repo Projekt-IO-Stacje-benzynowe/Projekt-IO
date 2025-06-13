@@ -11,8 +11,8 @@ import java.sql.Timestamp;
 
 public class ReportProduct {
     public static void report(TextField prodID, TextField quan, TextField desc, TextField date){
-        int quantity = intValidation(quan);
-        int productID = intValidation(prodID);
+        Integer quantity = intValidation(quan);
+        Integer productID = intValidation(prodID);
         
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Informacja");
@@ -21,7 +21,7 @@ public class ReportProduct {
         Timestamp validDate;
         try{
             validDate = Timestamp.valueOf(date.getText());
-        }catch(Exception e){
+        } catch (Exception e){
             alert.setAlertType(AlertType.WARNING);
             alert.setContentText("Nie znaleziono dostawy o podanym ID.");
             alert.showAndWait();
@@ -29,7 +29,7 @@ public class ReportProduct {
         }   
 
         if(quantity != -1 && productID != -1)
-            RepositorySQL.sendReport(Session.user.getID(), productID, quantity, desc.getText(), validDate);
+            RepositorySQL.sendReport(Session.getUser().getID(), productID, quantity, desc.getText(), validDate);
         
         if (quantity >= 1){
             alert.setContentText("Zgłoszono usterkę produktów");

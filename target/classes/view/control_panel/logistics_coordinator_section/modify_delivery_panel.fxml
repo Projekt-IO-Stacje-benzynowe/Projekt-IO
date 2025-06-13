@@ -27,10 +27,6 @@
         </GridPane>
     </center>
     <right>
-        <VBox minWidth="100">
-            <Text text="" fx:id="errorText"/>
-            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
-        </VBox>
     </right>
     <bottom>
     </bottom>

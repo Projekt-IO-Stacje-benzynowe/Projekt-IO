@@ -5,9 +5,12 @@ import app.model.OutletModel;
 import app.model.PromotionModel;
 import app.model.UserModel;
 
-//stores logged user data
+/**
+ * Session class to manage the current state of the application.
+ * It provides methods to set and retrieve object representing the state, as well as to check if they are initialized.
+ */
 public class Session {
-    public static UserModel user = null;
+    private static UserModel user = null;
     private static PromotionModel promotion = null;
     private static OutletModel outlet = null;
     private static DeliveryModel delivery = null;
@@ -19,8 +22,26 @@ public class Session {
         delivery = null;
     }
 
+    public static void clearNonUserData() {
+        promotion = null;
+        outlet = null;
+        delivery = null;
+    }
+
+    public static void setUser(UserModel user) {
+        Session.user = user;
+    }
+
+    public static UserModel getUser() {
+        return user;
+    }
+
     public static boolean isUserInitialized(){
         return user != null;
+    }
+
+    public static void setUserNull() {
+        user = null;
     }
 
     public static void setPromotion(PromotionModel promotion) {

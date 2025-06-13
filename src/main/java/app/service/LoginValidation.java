@@ -73,7 +73,7 @@ public class LoginValidation{
 
                 launcher.runClientTask();            
             }
-            Session.user = user;
+            Session.setUser(user);
         };
     }
 }

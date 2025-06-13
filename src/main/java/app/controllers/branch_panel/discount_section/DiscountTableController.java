@@ -38,7 +38,7 @@ public class DiscountTableController implements DynamicContentController {
 
 
     // do poprawki, przeneis do service
-        List<PromotionModel> promotions = Promotions.GetPromotions(Session.user.getNameBranch());
+        List<PromotionModel> promotions = Promotions.GetPromotions(Session.getUser().getNameBranch());
         table.getItems().addAll(promotions);
     }
 

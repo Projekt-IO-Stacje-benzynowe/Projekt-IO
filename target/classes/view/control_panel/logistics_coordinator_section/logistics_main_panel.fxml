@@ -24,10 +24,6 @@
         </StackPane>
     </center>
     <right>
-        <VBox minWidth="100">
-            <Label text="Select an option:"/>
-            <Text text="" fx:id="messageText"/>
-        </VBox>
     </right>
     <bottom>
     </bottom>

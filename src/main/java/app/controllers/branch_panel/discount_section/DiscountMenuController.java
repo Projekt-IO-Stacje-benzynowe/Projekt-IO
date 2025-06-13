@@ -6,11 +6,14 @@ import javafx.event.ActionEvent;
 
 public class DiscountMenuController {
     @FXML
+
+    /**
+     * This method is called when the user clicks the "Go to Table" button.
+     * It navigates to the "table_promotions" scene where the current promotions are displayed.
+     * @param event
+     */
     public void goToTable(ActionEvent event){
-        //przenosi nas do nastepnego screena gdzie bedzie tabela z aktualnymi promocjami
-        // List<PromotionsModel> promotions = RepositorySQL.GetPromotions(Session.User.getNameBranch());
         SceneManager.addScene("table_promotions");
-        // SceneManager.addScene("table_promotions", "/resources/view/branch_panel/discount_panel_table_promotions.fxml");
         SceneManager.showScene("table_promotions");
     }
 

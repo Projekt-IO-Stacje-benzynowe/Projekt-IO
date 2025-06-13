@@ -58,41 +58,14 @@ public class PlanDeliveryController extends MainController implements DynamicCon
 
     public void planDelivery(ActionEvent event) {
         RewardModel selectedReward = rewardComboBox.getValue();
-        if (selectedReward == null) {
-            errorText.setText("Please select a reward.");
-            return;
-        }
-        int quantity;
         String quantityText = quantityField.getText();
-        try {
-            quantity = Integer.parseInt(quantityText);
-            if (quantity <= 0) {
-                errorText.setText("Quantity must be a positive number.");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            errorText.setText("Invalid quantity format.");
-            return;
-        }
         LocalDate deliveryDate = deliveryDatePicker.getValue();
-        if (deliveryDate == null) {
-            errorText.setText("Please select a delivery date.");
-            return;
+        int result = PlanDeliveryService.addDelivery(selectedReward, quantityText, deliveryDate);
+        if (result == 0) {
+            PlanDeliveryService.clearNonUserData();
+            mainController.showDynamicContent("logistics_main");
+            SceneManager.clearScene("plan_delivery");
         }
-
-        boolean result = PlanDeliveryService.addDelivery(selectedReward, quantity, deliveryDate);
-        if (result == true) {
-            errorText.setText("Successfully added a delivery");
-        }
-        else {
-            errorText.setText("Failed to add a delivery");
-        }
-    }
-
-    public void goBack(ActionEvent event) {
-        PlanDeliveryService.setSessionOutlet(null);
-        mainController.showDynamicContent("logistics_main");
-        SceneManager.clearScene("plan_delivery");
     }
 
 

@@ -1,5 +1,6 @@
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\LoginValidation.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\TypeValidation.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\ProductModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\control_panel\logistics_coordinator_section\PlanDeliveryService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\business_panel\buttonPageController.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\ReportIssuesProduct.java
@@ -18,6 +19,8 @@ C:\Users\Diego\Documents\IO\Kod\src\main\java\app\Main.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\branch_panel\ClientSimulation\Server.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\TableService.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\shared\MainController.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\Dialogs.java
+C:\Users\Diego\Documents\IO\Kod\src\main\java\app\service\Alerts.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\PromotionModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\model\RewardToIssuanceModel.java
 C:\Users\Diego\Documents\IO\Kod\src\main\java\app\controllers\branch_panel\MainMenuController.java

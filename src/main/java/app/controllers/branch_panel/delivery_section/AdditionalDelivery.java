@@ -1,7 +1,6 @@
 package app.controllers.branch_panel.delivery_section;
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-import app.model.PanelList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;

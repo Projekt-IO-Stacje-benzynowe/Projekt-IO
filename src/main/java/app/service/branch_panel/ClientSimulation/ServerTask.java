@@ -40,7 +40,7 @@ public class ServerTask{
                     rewards.add(reward);
                 }
             }
-            System.out.println(Session.user.getNameBranch());
+            System.out.println(Session.getUser().getNameBranch());
             
             int nextSaleID = RepositorySQL.getMaxSaleID() + 1;
             int nextIssuanceID = RepositorySQL.getMaxIssuanceID() + 1; 
@@ -49,8 +49,8 @@ public class ServerTask{
             for(RewardModel reward : rewards){
                 int issued = quantity / reward.getRequiredProductsNumber();
 
-                if(Session.user == null) break;
-                int OutletID = RepositorySQL.findOutletIDByName(Session.user.getNameBranch());
+                if(!Session.isUserInitialized()) break;
+                int OutletID = RepositorySQL.findOutletIDByName(Session.getUser().getNameBranch());
 
                 double priceAfterPromotion = RepositorySQL.getPromotionPrice(reward.getPromotionID());
 

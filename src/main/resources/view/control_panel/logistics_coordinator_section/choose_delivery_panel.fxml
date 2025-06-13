@@ -20,8 +20,6 @@
     <right>
         <VBox minWidth="100">
             <Label text="Select an option:"/>
-            <Text text="" fx:id="messageText"/>
-            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="100.0" text="Go back"/>
             <Button mnemonicParsing="false" onAction="#goToModifyDelivery" prefHeight="35.0" prefWidth="100.0" text="Modify delivery"/>
             <Button mnemonicParsing="false" onAction="#deleteDelivery" prefHeight="35.0" prefWidth="100.0" text="Delete delivery"/>
         </VBox>

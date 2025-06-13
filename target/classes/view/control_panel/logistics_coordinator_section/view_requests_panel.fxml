@@ -21,8 +21,8 @@
         <VBox minWidth="100">
             <Label text="Select an option:"/>
             <Text text="" fx:id="messageText"/>
-            <Button mnemonicParsing="false" onAction="#goToApproveRequest" prefHeight="35.0" prefWidth="100.0" text="Modify delivery"/>
-            <Button mnemonicParsing="false" onAction="#deleteRequest" prefHeight="35.0" prefWidth="100.0" text="Delete delivery"/>
+            <Button mnemonicParsing="false" onAction="#goToApproveRequest" prefHeight="35.0" prefWidth="100.0" text="Approve request"/>
+            <Button mnemonicParsing="false" onAction="#deleteRequest" prefHeight="35.0" prefWidth="100.0" text="Delete request"/>
         </VBox>
     </right>
     <bottom>
