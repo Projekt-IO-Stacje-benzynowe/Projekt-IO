@@ -28,6 +28,8 @@ public class DiscountTableController implements DynamicContentController {
     @FXML
     private TableView<PromotionModel> table;
 
+
+    // initialize the table and fill it with data
     @FXML
     public void initialize() {
         nameColumn.setCellValueFactory(cellData ->
@@ -36,9 +38,7 @@ public class DiscountTableController implements DynamicContentController {
         descColumn.setCellValueFactory(cellData ->
             new ReadOnlyStringWrapper(cellData.getValue().getDesc()));
 
-
-    // do poprawki, przeneis do service
-        List<PromotionModel> promotions = Promotions.GetPromotions(Session.getUser().getNameBranch());
+        List<PromotionModel> promotions = Promotions.GetPromotions(Session.user.getNameBranch());
         table.getItems().addAll(promotions);
     }
 

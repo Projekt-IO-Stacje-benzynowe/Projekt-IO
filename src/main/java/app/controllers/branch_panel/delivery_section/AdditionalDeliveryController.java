@@ -26,5 +26,4 @@ public class AdditionalDeliveryController implements DynamicContentController {
         mainController.showDynamicContent("delivery_panel");
     }
 
-
 }
