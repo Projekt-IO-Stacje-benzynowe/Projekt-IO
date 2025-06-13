@@ -12,3 +12,4 @@ docs/*.svg
 .vscode
 build.*
 run.*
+target/
