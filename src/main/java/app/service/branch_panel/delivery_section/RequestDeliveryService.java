@@ -33,7 +33,7 @@ public class RequestDeliveryService  {
         }
 
         int newDelID = RepositorySQL.getMaxDeliveryId() + 1;
-        RepositorySQL.sendRequestForDelivery(Session.user.getID(), newDelID, prodID, quan);
+        RepositorySQL.sendRequestForDelivery(Session.getUser().getID(), newDelID, prodID, quan);
 
         alert.setTitle("Informacja");
         alert.setHeaderText(null);
