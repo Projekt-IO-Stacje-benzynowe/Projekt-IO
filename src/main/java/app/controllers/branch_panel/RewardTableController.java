@@ -34,6 +34,8 @@ public class RewardTableController implements DynamicContentController {
 
     private final ObservableList<RewardToIssuanceModel> rewardList = FXCollections.observableArrayList();
 
+
+    // initialize the table and fill it with data
     @FXML
     private void initialize() {
         issuanceCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("issuanceID"));
@@ -49,10 +51,12 @@ public class RewardTableController implements DynamicContentController {
         confirmButton.setOnAction(e -> onConfirm());
     }
 
+
     @FXML
     private void onConfirm() {
         RewardToIssuanceModel selected = rewardTable.getSelectionModel().getSelectedItem();
         
+        // we remove selected reward from table and database
         if (selected != null) {
             rewardList.remove(selected);
             RewardsOperation.deleteIssuancedReward(selected.issuanceID);

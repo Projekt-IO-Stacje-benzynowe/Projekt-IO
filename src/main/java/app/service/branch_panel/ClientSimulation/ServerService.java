@@ -14,7 +14,7 @@ public class ServerService{
 
     public ServerService(int port){
         try(ServerSocket ss = new ServerSocket(port)){
-            System.out.println("Uruchomiono server");
+            // System.out.println("Uruchomiono server");
             this.serverSocket = ss;
 
             Socket cliSocket = serverSocket.accept();
