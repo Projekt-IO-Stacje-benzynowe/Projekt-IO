@@ -48,7 +48,7 @@ public class LoginValidation{
             stage.close();
 
             // Załaduj główną scenę
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/main.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/Main.fxml"));
             Parent root = loader.load();
 
             // Pokaż główne okno
