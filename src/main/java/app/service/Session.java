@@ -18,8 +18,26 @@ public class Session {
         product = null;
     }
 
+    public static void clearNonUserData() {
+        promotion = null;
+        outlet = null;
+        delivery = null;
+    }
+
+    public static void setUser(UserModel user) {
+        Session.user = user;
+    }
+
+    public static UserModel getUser() {
+        return user;
+    }
+
     public static boolean isUserInitialized(){
         return user != null;
+    }
+
+    public static void setUserNull() {
+        user = null;
     }
 
     public static void setPromotion(PromotionModel promotion) {

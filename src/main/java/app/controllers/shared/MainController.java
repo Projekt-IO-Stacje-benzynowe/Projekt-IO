@@ -45,8 +45,8 @@ public class MainController implements Controller {
             background.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
             mainContent.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.7));
-            System.out.println("dupa");
             SceneManager.setMainRoot(mainContent);
+            System.out.println(mainContent);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -50,8 +50,8 @@ public class ServerTaskService{
             for(RewardModel reward : rewards){
                 int issued = quantity / reward.getRequiredProductsNumber();
 
-                if(Session.user == null) break;
-                int OutletID = RepositorySQL.findOutletIDByName(Session.user.getNameBranch());
+                if(!Session.isUserInitialized()) break;
+                int OutletID = RepositorySQL.findOutletIDByName(Session.getUser().getNameBranch());
 
                 double priceAfterPromotion = RepositorySQL.getPromotionPrice(reward.getPromotionID());
 

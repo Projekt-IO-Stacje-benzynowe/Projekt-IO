@@ -5,7 +5,6 @@ import app.controllers.shared.MainController;
 import app.model.RewardModel;
 import app.service.SceneManager;
 import app.service.control_panel.logistics_coordinator_section.ModifyDeliveryService;
-import app.service.control_panel.logistics_coordinator_section.PlanDeliveryService;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,8 +37,6 @@ public class ModifyDeliveryController extends MainController implements DynamicC
     @FXML
     private DatePicker deliveryDatePicker;
     @FXML
-    private Text errorText;
-    @FXML
     private VBox sidebarContainer;
 
     public void initialize() {
@@ -48,7 +45,7 @@ public class ModifyDeliveryController extends MainController implements DynamicC
 
             // Initialize the reward combo box with available rewards
 
-            ObservableList<RewardModel> rewards = PlanDeliveryService.getRewards();
+            ObservableList<RewardModel> rewards = ModifyDeliveryService.getRewards();
             rewardComboBox.setItems(rewards);
             Integer rewardID = ModifyDeliveryService.getRewardID();
             rewardComboBox.getSelectionModel().select(rewards.stream().filter(reward -> reward.getRewardProductID() == rewardID).findFirst().get());
@@ -63,7 +60,10 @@ public class ModifyDeliveryController extends MainController implements DynamicC
                     setDisable(empty || date.compareTo(LocalDate.now().plusDays(1)) < 0 );
                 }
             });
-            deliveryDatePicker.setValue(ModifyDeliveryService.getDate());
+            LocalDate date = ModifyDeliveryService.getDate();
+            if (date != null) {
+                deliveryDatePicker.setValue(date);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,34 +71,13 @@ public class ModifyDeliveryController extends MainController implements DynamicC
 
     public void modifyDelivery(ActionEvent event) {
         RewardModel selectedReward = rewardComboBox.getValue();
-        if (selectedReward == null) {
-            errorText.setText("Please select a reward.");
-            return;
-        }
-        int quantity;
         String quantityText = quantityField.getText();
-        try {
-            quantity = Integer.parseInt(quantityText);
-            if (quantity <= 0) {
-                errorText.setText("Quantity must be a positive number.");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            errorText.setText("Invalid quantity format.");
-            return;
-        }
         LocalDate deliveryDate = deliveryDatePicker.getValue();
-        if (deliveryDate == null) {
-            errorText.setText("Please select a delivery date.");
-            return;
+        int result = ModifyDeliveryService.modifyDelivery(selectedReward, quantityText, deliveryDate);
+        if (result == 0) {
+            ModifyDeliveryService.clearNonUserData();
+            SceneManager.clearScene("modify_delivery");
+            mainController.showDynamicContent("logistics_main");
         }
-        ModifyDeliveryService.modifyDelivery(selectedReward, quantity, deliveryDate);
-        errorText.setText("Successfully modified the delivery");
-    }
-
-    public void goBack(ActionEvent event) {
-        ModifyDeliveryService.setSessionDelivery(null);
-        mainController.showDynamicContent("choose_delivery");
-        SceneManager.clearScene("modify_delivery");
     }
 }

@@ -17,7 +17,7 @@ public class RewardsOperation {
     }
 
     public static List<RewardToIssuanceModel> getRewardsToIssuance(){
-        return RepositorySQL.FetchRewardToIssuance(RepositorySQL.findOutletIDByName(Session.user.getNameBranch()));
+        return RepositorySQL.FetchRewardToIssuance(RepositorySQL.findOutletIDByName(Session.getUser().getNameBranch()));
     }
 
 }

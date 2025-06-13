@@ -30,7 +30,7 @@ public class ReportProduct {
         Timestamp validDate;
         try{
             validDate = Timestamp.valueOf(date.getText());
-        }catch(Exception e){
+        } catch (Exception e){
             alert.setAlertType(AlertType.WARNING);
             alert.setContentText("Wprowadzono niepoprawną datę");
             alert.showAndWait();

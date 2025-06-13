@@ -5,7 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import app.controllers.shared.MainController;
 import app.controllers.shared.DynamicContentController;
-
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 
 
 public class buttonPageController implements DynamicContentController{
@@ -19,13 +20,13 @@ public class buttonPageController implements DynamicContentController{
     public void initialize() {
     }
 
-    public void goToProductPage(ActionEvent actionEvent) { //przechodzimy do sceny z tabelką produktów
+    public void goToProductPage(ActionEvent actionEvent) {
         SceneManager.addScene("ProductPage");
         mainController.showDynamicContent("ProductPage");
     }
 
     public void goToRewardPage(ActionEvent actionEvent) {
-        SceneManager.addScene("rewardsPanel");
-        mainController.showDynamicContent("rewardsPanel");
+        SceneManager.addScene("rewards");
+        mainController.showDynamicContent("rewards");
     }
 }
