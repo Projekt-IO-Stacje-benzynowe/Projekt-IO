@@ -1,11 +1,11 @@
-package app.controllers.control_panel.rewards_coordinator_section;
+package app.controllers.control_panel.promotion_coordinator_section;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
 import app.model.PromotionModel;
 import app.service.SceneManager;
 import app.service.Session;
-import app.service.control_panel.rewards.MainService;
+import app.service.control_panel.promotions_coordinator_section.PromotionsMainService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 
 
 
-public class RewardsMainPanel implements DynamicContentController {
+public class PromotionsMainPanel implements DynamicContentController {
     private MainController mainController;
     @Override
     public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala przypisać główny kontroler do tego kontrolera
@@ -29,7 +29,7 @@ public class RewardsMainPanel implements DynamicContentController {
     private Text testText;
     public void initialize() { //inicjalizacja głównego Panelu tabelką z promocjami
         try {
-            PromotionsTableView = MainService.getAllPromotions();
+            PromotionsTableView = PromotionsMainService.getAllPromotions();
             PromotionsTableView.setOnMouseClicked(e -> clickTable(e));
             tablePane.getChildren().add(PromotionsTableView);
 

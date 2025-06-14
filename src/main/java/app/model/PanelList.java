@@ -27,6 +27,10 @@ public class PanelList {
         result.put("modify_delivery", "/view/control_panel/logistics_coordinator_section/modify_delivery_panel.fxml");
         result.put("view_requests", "/view/control_panel/logistics_coordinator_section/view_requests_panel.fxml");
 
+        result.put("promotions_main", "/view/control_panel/promotions_coordinator_section/promotions_main_panel.fxml");
+        result.put("create_promotion", "/view/control_panel/promotions_coordinator_section/create_promotion_panel.fxml");
+        result.put("modify_promotion", "/view/control_panel/promotions_coordinator_section/modify_promotion_panel.fxml");
+
         result.put("Analysis", "/view/business_panel/buttonPage.fxml" );
 
         return result;
