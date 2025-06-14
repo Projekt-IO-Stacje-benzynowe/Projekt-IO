@@ -1,4 +1,4 @@
-package app.controllers.control_panel.promotion_coordinator_section;
+package app.controllers.control_panel.promotions_coordinator_section;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;

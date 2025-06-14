@@ -15,7 +15,6 @@ public class Main extends Application {
         // but also the weeek starts on Monday
         Locale.setDefault(Locale.UK);
         SceneManager.setStage(primaryStage);
-        SceneManager.addScene("branch");
         SceneManager.addScene("login");
         SceneManager.showScene("login");
 

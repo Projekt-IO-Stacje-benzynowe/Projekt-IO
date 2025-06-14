@@ -3,33 +3,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
 <BorderPane
-
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="app.controllers.control_panel.rewards_coordinator_section.RewardsMainPanel"
-    fx:id="mainContent" style="-fx-background-color: #fafafa;">
-                <top>
-                    <HBox spacing="10" alignment="CENTER">
-                        <Button fx:id="addPromotionButton" text="Dodaj promocję"/>
-                        <Button fx:id="editPromotionButton" text="Modyfikuj zaznaczoną"/>
-                        <Button fx:id="deletePromotionButton" text="Usuń zaznaczoną"/>
-                    </HBox>
-                </top>
-                <left>
-                </left>
-                <center>
-                    <StackPane fx:id="tablePane">
-                    </StackPane>
-                </center>
-                <right>
-                    <VBox minWidth="100">
-                        <Label text="Select an option:" style="-fx-background-color: #fbe6fa;"/>
-                        <Text text="test" fx:id="testText"/>
-                    </VBox>
-                </right>
-                <bottom>
-
-                </bottom>
-            </BorderPane>
+    fx:controller="app.controllers.control_panel.promotions_coordinator_section.PromotionsMainController"
+    fx:id="contentPane" style="-fx-background-color: #fafafa;">
+    <top>
+        <HBox spacing="10" alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#goToCreatePromotion" prefHeight="35.0" prefWidth="140.0" text="Create new promotion"/>
+            <Button mnemonicParsing="false" onAction="#goToModifyPromotion" prefHeight="35.0" prefWidth="140.0" text="Modify promotion"/>
+            <Button mnemonicParsing="false" onAction="#deletePromotion" prefHeight="35.0" prefWidth="140.0" text="Delete promotion"/>
+        </HBox>
+    </top>
+    <left>
+    </left>
+    <center>
+        <StackPane fx:id="tablePane">
+        </StackPane>
+    </center>
+    <right>
+    </right>
+    <bottom>
+    </bottom>
+</BorderPane>
