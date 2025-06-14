@@ -15,9 +15,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.PreparedStatement;
@@ -282,9 +280,25 @@ public class RepositorySQL {
         }
     }
 
+    public static boolean deletePromotion(Integer promotionID) {
+        String querySQL = """
+                DELETE
+                FROM Promotions
+                WHERE PromotionID = ?
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setInt(1, promotionID);
+            int rs = stmt.executeUpdate();
+            return rs == 1;
+        } catch (SQLException err) {
+            System.err.println("Error while deleting promotion: " + err.getMessage());
+            return false;
+        }
+    }
+
     public static UserModel findUser(String email) {
         String querySQL = "SELECT * FROM Users WHERE email = ?";
-        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -311,7 +325,7 @@ public class RepositorySQL {
             SET status = 'completed' 
             WHERE DeliveryID = ?
             """;
-        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) { // ZAMIANA TUTAJ
+        try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
             stmt.setString(1, ID);
             return stmt.executeUpdate();
         } catch (SQLException e) {

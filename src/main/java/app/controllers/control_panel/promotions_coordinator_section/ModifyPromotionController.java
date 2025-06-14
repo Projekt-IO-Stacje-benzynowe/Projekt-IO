@@ -1,4 +1,4 @@
-package app.controllers.control_panel.rewards_coordinator_section;
+package app.controllers.control_panel.promotions_coordinator_section;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
@@ -13,7 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class ModifyRewardController implements DynamicContentController {
+public class ModifyPromotionController implements DynamicContentController {
     private MainController mainController;
     @Override
     public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala przypisać ten kontroler do głównego kontrolera

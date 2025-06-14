@@ -19,13 +19,16 @@ public class PanelList {
         result.put("delivery_panel", "/view/branch_panel/delivery_panel.fxml");
         result.put("report_product", "/view/branch_panel/report_panel.fxml");
         result.put("rewards_table", "/view/branch_panel/table_rewards_panel.fxml");
-        // result.put("promotions_table_scene", "/view/branch_panel/discount_panel_table_promotions.fxml");
 
         result.put("logistics_main", "/view/control_panel/logistics_coordinator_section/logistics_main_panel.fxml");
         result.put("plan_delivery", "/view/control_panel/logistics_coordinator_section/plan_delivery_panel.fxml");
         result.put("choose_delivery", "/view/control_panel/logistics_coordinator_section/choose_delivery_panel.fxml");
         result.put("modify_delivery", "/view/control_panel/logistics_coordinator_section/modify_delivery_panel.fxml");
         result.put("view_requests", "/view/control_panel/logistics_coordinator_section/view_requests_panel.fxml");
+
+        result.put("promotions_main", "/view/control_panel/promotions_coordinator_section/promotions_main_panel.fxml");
+        result.put("create_promotion", "/view/control_panel/promotions_coordinator_section/create_promotion_panel.fxml");
+        result.put("modify_promotion", "/view/control_panel/promotions_coordinator_section/modify_promotion_panel.fxml");
 
         result.put("Analysis", "/view/business_panel/buttonPage.fxml" );
         result.put("rewardsBusiness", "/view/business_panel/rewardsBusiness.fxml");

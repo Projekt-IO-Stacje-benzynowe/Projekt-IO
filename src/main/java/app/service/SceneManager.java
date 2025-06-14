@@ -38,7 +38,7 @@ public class SceneManager {
             case "branch": panelFxml = PanelList.getFXMLFile("branch"); break;
             case "Analysis": panelFxml = PanelList.getFXMLFile("Analysis"); break;
             case "logistics_main": panelFxml = PanelList.getFXMLFile("logistics_main"); break;
-            case "rewards": panelFxml = PanelList.getFXMLFile("rewards"); break;
+            case "rewards": panelFxml = PanelList.getFXMLFile("promotions_main"); break;
             default: throw new IllegalArgumentException("Nieznany panel");
         }
         try { // Tutaj pobieramy nowy fxml, i ładujemy go, oraz przypisujemy tej scenie jej kontroler "główny" czyli kontroler naszej sceny bazowej
