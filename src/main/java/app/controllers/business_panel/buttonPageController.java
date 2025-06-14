@@ -26,7 +26,8 @@ public class buttonPageController implements DynamicContentController{
     }
 
     public void goToRewardPage(ActionEvent actionEvent) {
-        SceneManager.addScene("rewards");
-        mainController.showDynamicContent("rewards");
+        SceneManager.addScene("rewardsBusiness");
+        mainController.showDynamicContent("rewardsBusiness");
+
     }
 }

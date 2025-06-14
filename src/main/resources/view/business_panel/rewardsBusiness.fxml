@@ -2,7 +2,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
-
+<?import javafx.geometry.Insets?>
 <?import java.net.URL?>
 <BorderPane
 
@@ -10,6 +10,14 @@
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="app.controllers.business_panel.rewardsBusinessController"
     fx:id="mainContent" style="-fx-background-color: #fafafa;">
+    <top>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="0" bottom="20" left="0"/>
+            </padding>
+            <Button fx:id="Choose Reward" text="Choose Reward" onAction="#goToChoice"/>
+        </HBox>
+    </top>
                 <center>
                     <StackPane fx:id="tablePane">
                     </StackPane>

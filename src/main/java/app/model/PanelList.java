@@ -28,9 +28,10 @@ public class PanelList {
         result.put("view_requests", "/view/control_panel/logistics_coordinator_section/view_requests_panel.fxml");
 
         result.put("Analysis", "/view/business_panel/buttonPage.fxml" );
-        result.put("rewardsPanel", "/view/business_panel/rewardsBusiness.fxml");
+        result.put("rewardsBusiness", "/view/business_panel/rewardsBusiness.fxml");
         result.put("ProductPage", "/view/business_panel/productsPanel.fxml");
         result.put("choose_product_business", "/view/business_panel/normalOrOutlet.fxml");
+        result.put("allOutlets", "/view/business_panel/allOutlets.fxml");
         return result;
     }
 
