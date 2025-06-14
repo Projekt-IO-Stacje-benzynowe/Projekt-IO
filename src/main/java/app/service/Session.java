@@ -12,6 +12,7 @@ public class Session {
     private static OutletModel outlet = null;
     private static DeliveryModel delivery = null;
     private static ProductModel product = null;
+    private static RewardModel reward = null;
 
     public static void endSession(){
         user = null;
@@ -19,26 +20,15 @@ public class Session {
         outlet = null;
         delivery = null;
         product = null;
+        reward = null;
     }
 
     public static void clearNonUserData() {
         promotion = null;
         outlet = null;
         delivery = null;
-    }
-
-    public static void setUser(UserModel user) {
-        Session.user = user;
-    }
-
-    public static UserModel getUser() {
-        return user;
-    }
-
-    public static void clearNonUserData() {
-        promotion = null;
-        outlet = null;
-        delivery = null;
+        reward = null;
+        product = null;
     }
 
     public static void setUser(UserModel user) {
@@ -112,4 +102,19 @@ public class Session {
     public static ProductModel getProduct() {return product;}
 
     public static void setProductNull() {product = null;}
+
+    public static void setReward(RewardModel reward) {
+        Session.reward = reward;
+    }
+
+    public static RewardModel getReward() {
+        return reward;
+    }
+
+    public static void setRewardNull(){
+        reward=null;
+    }
+    public static boolean isRewardInitialized(){
+        return reward != null;
+    }
 }

@@ -7,6 +7,6 @@ import javafx.scene.control.TableView;
 
 public class rewardService {
     public static TableView<RewardModel> getAllRewards() {
-        return TableService
+        return TableService.getAllRewardsTable();
     }
 }

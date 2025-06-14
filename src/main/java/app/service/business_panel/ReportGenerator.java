@@ -50,7 +50,7 @@ public class ReportGenerator {
             int minS = getMinStationId(conn);
             int maxS = getMaxStationId(conn);
             if( (stationID < minS || stationID > maxS) && stationID != 0){
-                System.out.print("Wrong StationID");
+                System.out.print("Wrong OutletID");
                 return;
             }
             int minP = getMinProductId(conn);
@@ -89,7 +89,7 @@ public class ReportGenerator {
     private double getTotalSales(Connection conn, String date, int stationId, int productId) throws SQLException {
         StringBuilder sql = new StringBuilder("SELECT SUM(GrossValue) FROM Sales WHERE MONTH(Month) = MONTH(?) AND YEAR(Month) = YEAR(?)");
 
-        if (stationId > 0) sql.append(" AND StationID = ?");// if we choose specific station
+        if (stationId > 0) sql.append(" AND OutletID = ?");// if we choose specific station
         if (productId > 0) sql.append(" AND ProductID = ?");// if we choose specific product
 
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())) {
@@ -109,7 +109,7 @@ public class ReportGenerator {
     private double getTotalQuantity(Connection conn, String date, int stationId, int productId) throws SQLException {
         StringBuilder sql = new StringBuilder("SELECT SUM(QuantitySold) FROM Sales WHERE MONTH(Month) = MONTH(?) AND YEAR(Month) = YEAR(?)");
 
-        if (stationId > 0) sql.append(" AND StationID = ?");// if we choose specific station
+        if (stationId > 0) sql.append(" AND OutletID = ?");// if we choose specific station
         if (productId > 0) sql.append(" AND ProductID = ?");// if we choose specific product
 
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())) {
@@ -144,7 +144,7 @@ public class ReportGenerator {
             int maxS = getMaxStationId(conn);
 
             if( (stationNumber < minS || stationNumber > maxS) && stationNumber != 0){
-                System.out.print("Wrong StationID");
+                System.out.print("Wrong OutletID");
                 return;
             }
 
@@ -177,7 +177,7 @@ public class ReportGenerator {
     private double getTotalRewardQuantity(Connection conn, String date, int stationId) throws SQLException {
         StringBuilder sql = new StringBuilder("SELECT SUM(QuantityIssued) FROM RewardIssuance WHERE MONTH(Month) = MONTH(?) AND YEAR(Month) = YEAR(?)");
         if (stationId > 0) {
-            sql.append(" AND StationID = ?");
+            sql.append(" AND OutletID = ?");
         }
 
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())) {
@@ -195,7 +195,7 @@ public class ReportGenerator {
     private double getTotalRewardValue(Connection conn, String date, int stationId) throws SQLException {
         StringBuilder sql = new StringBuilder("SELECT SUM(TotalValue) FROM RewardIssuance WHERE MONTH(Month) = MONTH(?) AND YEAR(Month) = YEAR(?)");
         if (stationId > 0) {// if we choose specific station
-            sql.append(" AND StationID = ?");
+            sql.append(" AND OutletID = ?");
         }
 
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())) {
