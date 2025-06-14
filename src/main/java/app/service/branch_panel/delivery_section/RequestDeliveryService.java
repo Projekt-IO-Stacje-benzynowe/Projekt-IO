@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 // class used for validation data and add additional delivery
 
-public class RequestDeliveryService {
+public class RequestDeliveryService  {
     public static void sendRequest(TextField productID, TextField quantity){
         int prodID = TypeValidation.intValidation(productID.getText());
         int quan = TypeValidation.intValidation(quantity.getText());
@@ -20,7 +20,7 @@ public class RequestDeliveryService {
             alert.setHeaderText(null);
             alert.setContentText("Wpisano błędne dane.");
             alert.showAndWait();
-
+            return;
         }
 
         // check if exist RewardIDProd in table
@@ -33,7 +33,7 @@ public class RequestDeliveryService {
         }
 
         int newDelID = RepositorySQL.getMaxDeliveryId() + 1;
-        RepositorySQL.sendRequestForDelivery(Session.user.getID(), newDelID, prodID, quan);
+        RepositorySQL.sendRequestForDelivery(Session.getUser().getID(), newDelID, prodID, quan);
 
         alert.setTitle("Informacja");
         alert.setHeaderText(null);

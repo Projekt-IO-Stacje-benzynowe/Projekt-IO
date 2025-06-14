@@ -9,6 +9,7 @@ import app.model.OutletModel;
 import app.model.ProductModel;
 import app.model.PromotionModel;
 import app.model.RequestModel;
+import app.model.RewardModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -113,5 +114,18 @@ public class TableService {
         productsTableView.getColumns().addAll(Arrays.asList(productNameCol, productBrandCol));
         productsTableView.setMaxWidth(600);
         return productsTableView;
+    }
+
+    public static TableView<RewardModel> getAllRewardsTable() {
+        TableView<RewardModel> rewardsTableView = new TableView<>();
+        rewardsTableView.setEditable(true);
+        rewardsTableView.setPrefWidth(400);
+
+        TableColumn<RewardModel, String> rewardNameCol = createTableColumn("Reward name", "name", 200);
+
+        rewardsTableView.setItems(RepositorySQL.getAllRewards());
+        rewardsTableView.getColumns().addAll(Arrays.asList(rewardNameCol));
+        rewardsTableView.setMaxWidth(600);
+        return rewardsTableView;
     }
 }

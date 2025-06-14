@@ -37,7 +37,7 @@ public class ReportProduct {
             return;
         }   
 
-        RepositorySQL.sendReport(Session.user.getID(), productID, quantity, desc.getText(), validDate);
+        RepositorySQL.sendReport(Session.getUser().getID(), productID, quantity, desc.getText(), validDate);
         
         if (quantity >= 1){
             alert.setContentText("Zgłoszono usterkę produktów");

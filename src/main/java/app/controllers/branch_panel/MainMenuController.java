@@ -14,22 +14,22 @@ public class MainMenuController implements DynamicContentController {
 
     @FXML
     public void goToDeliverySectionButton(ActionEvent event){
-        SceneManager.addScene("delivery_panel");
+        // SceneManager.addScene("delivery_panel");
         mainController.showDynamicContent("delivery_panel");
     }
     @FXML
     public void goToShowPromotionsButton(ActionEvent event){
-        SceneManager.addScene("promotions_table_scene");
-        mainController.showDynamicContent("promotions_table_scene");
+        // SceneManager.addScene("promotions_table_scene");
+        mainController.showDynamicContent("promotions_table");
     }      
     @FXML
     public void goToRewardsButton(ActionEvent event){
-        SceneManager.addScene("rewards_table");
+        // SceneManager.addScene("rewards_table");
         mainController.showDynamicContent("rewards_table");
     }  
     @FXML
     public void goToReportIssues(ActionEvent event){
-        SceneManager.addScene("report_product");
+        // SceneManager.addScene("report_product");
         mainController.showDynamicContent("report_product");
     }
 
