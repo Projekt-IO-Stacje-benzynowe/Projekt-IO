@@ -7,6 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.*;
 
+/**
+ *  MainController is responsible for managing the main layout of the application,
+ *  including the sidebar and dynamic content area.
+ *  It initializes the main components and allows for dynamic content switching.
+ *  This controller is used to set up the main application window and handle interactions
+ *  with the sidebar and main content area.
+ */
 public class MainController implements Controller {
 
     @FXML
@@ -22,13 +29,18 @@ public class MainController implements Controller {
     @FXML
     private VBox sidebarContainer;
 
+    /**
+     * Sets the panel to be displayed in the dynamic content area.
+     * @param panelName
+     */
     public void setPanel(String panelName) {
-        SceneManager.setPanel(panelName); //ustawiamy panel w dynamicznej zawartosci
+        SceneManager.setPanel(panelName);
     }
 
     public void initialize() {
         try {
-            SceneManager.setMainController(this); // ustawiamy sceneManagerowi mainController sceny jako ten główny
+            // Initialize the main controller and sidebar
+            SceneManager.setMainController(this);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/sidebar.fxml"));
             sidebarContainer = loader.load();
 
@@ -38,9 +50,9 @@ public class MainController implements Controller {
             }
             sidebarContainer.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebarContainer.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
-            // Dodaj do mainContainer na indeksie 1 (pod top, nad contentArea)
+            // Add the sidebar to the mainContainer and set the layout
             mainContainer.getChildren().add(sidebarContainer);
-            topBar.prefHeightProperty().bind(mainContainer.heightProperty().multiply(0.08)); // lub dowolna proporcja
+            topBar.prefHeightProperty().bind(mainContainer.heightProperty().multiply(0.08));
             background.prefWidthProperty().bind(mainContainer.widthProperty());
             background.prefHeightProperty().bind(mainContainer.heightProperty());
             sidebar.prefWidthProperty().bind(mainContainer.widthProperty().multiply(0.2));
@@ -52,6 +64,11 @@ public class MainController implements Controller {
         }
     }
 
+    /**
+     * Displays dynamic content in the main content area based on the provided name.
+     * This method uses SceneManager to set the sub-panel and updates the center of the mainContent.
+     * @param name The name of the content to be displayed.
+     */
     public void showDynamicContent(String name) {
         Parent content = SceneManager.setSubPanel(this, name);
         mainContent.setCenter(content);

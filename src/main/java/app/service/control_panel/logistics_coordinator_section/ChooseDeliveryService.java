@@ -6,8 +6,12 @@ import app.model.OutletModel;
 import app.service.Alerts;
 import app.service.Session;
 import app.service.TableService;
+
 import javafx.scene.control.TableView;
 
+/**
+ * Service class for choosing a delivery to modify or delete.
+ */
 public class ChooseDeliveryService {
     public static TableView<DeliveryModel> getDeliveriesForOutletView() {
         Integer outletID = Session.getOutlet().getID();

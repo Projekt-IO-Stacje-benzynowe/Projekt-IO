@@ -2,6 +2,9 @@ package app.model;
 
 import java.time.LocalDate;
 
+/**
+ * Model representing a promotion.
+ */
 public class PromotionModel {
     private Integer id = null;
     private String name = null;

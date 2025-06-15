@@ -1,7 +1,8 @@
 package app.service.branch_panel.ClientSimulation;
 
-// used for run client and server task's
-
+/**
+ *  LauncherService class for managing the execution of client and server tasks.
+ */
 public class LauncherService {
     
     public void runClientTask() {

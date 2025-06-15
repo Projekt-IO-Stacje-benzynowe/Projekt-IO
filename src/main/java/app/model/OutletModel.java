@@ -1,5 +1,8 @@
 package app.model;
 
+/**
+ *  Model representing an outlet.
+ */
 public class OutletModel {
     private Integer id = null;
     private String name = null;

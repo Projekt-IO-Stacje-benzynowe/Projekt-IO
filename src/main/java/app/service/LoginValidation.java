@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ *  Controller for validating user login credentials and transitioning to the main application scene.
+ */
 public class LoginValidation{
     @FXML
     private TextField emailField;

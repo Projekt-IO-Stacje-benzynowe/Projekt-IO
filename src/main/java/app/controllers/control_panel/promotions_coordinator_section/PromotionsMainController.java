@@ -11,21 +11,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
 
-
-
+/**
+ *   Controller for the main view of the promotions coordinator section in the control panel.
+ */
 public class PromotionsMainController implements DynamicContentController {
     private MainController mainController;
     @Override
-    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala przypisać główny kontroler do tego kontrolera
+    public void setMainController(app.controllers.shared.MainController mainController) {
         this.mainController = mainController;
     }
     @FXML
-    private StackPane tablePane; // stackPane do ładowania tabeli
+    private StackPane tablePane;
     @FXML
     private BorderPane contentPane;
     private TableView<PromotionModel> PromotionsTableView;
-    public void initialize() { //inicjalizacja głównego Panelu tabelką z promocjami
-        System.out.println("kanapki");
+    public void initialize() {
         try {
             PromotionsTableView = PromotionsMainService.getAllPromotions();
             tablePane.getChildren().add(PromotionsTableView);

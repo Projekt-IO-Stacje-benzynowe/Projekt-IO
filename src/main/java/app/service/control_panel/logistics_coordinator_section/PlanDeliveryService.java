@@ -7,10 +7,15 @@ import app.model.RewardModel;
 import app.service.Alerts;
 import app.service.Session;
 import app.service.TypeValidation;
+
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 
+/**
+ * Service class for planning deliveries in the logistics coordinator section.
+ * Provides methods to retrieve rewards, add deliveries, and manage session data.
+ */
 public class PlanDeliveryService {
     public static ObservableList<RewardModel> getRewards() {
         return RepositorySQL.getAllRewards();

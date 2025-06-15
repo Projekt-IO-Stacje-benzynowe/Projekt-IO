@@ -2,8 +2,11 @@ package app.service.branch_panel.ClientSimulation;
 
 import java.util.Random;
 
-// We simulate a client buying some items from our list, then send the data to our system via port 9999.
-
+/**
+ *  ClientTaskService class for simulating client tasks in a branch panel.
+ *  It generates random JSON queries and sends them to a server at specified intervals via port 9999.
+ *  This service runs indefinitely until interrupted.
+ */
 public class ClientTaskService{
     public ClientTaskService(){};
     

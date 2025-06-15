@@ -4,8 +4,13 @@ import app.model.OutletModel;
 import app.service.Alerts;
 import app.service.Session;
 import app.service.TableService;
+
 import javafx.scene.control.TableView;
 
+/**
+ * Service class for managing outlets in the logistics coordinator section.
+ * Provides methods to retrieve outlet data and set the current outlet.
+ */
 public class LogisticsMainService {
     public static TableView<OutletModel> getAllOutletsView() {
         return TableService.getAllOutletsTable();

@@ -3,8 +3,9 @@ package app.service.branch_panel.ClientSimulation;
 import java.io.*;
 import java.net.*;
 
-// we establish client socket's
-
+/**
+ *  ClientService class for managing client-side socket connections.
+ */
 public class ClientService{
     private Socket s = null;
     private DataOutputStream out = null;

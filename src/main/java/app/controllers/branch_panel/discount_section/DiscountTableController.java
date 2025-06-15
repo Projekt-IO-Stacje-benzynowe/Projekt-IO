@@ -1,18 +1,21 @@
 package app.controllers.branch_panel.discount_section;
-import java.util.List;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-import app.model.PanelList;
+import app.model.PromotionModel;
+import app.service.Session;
+import app.service.branch_panel.discount_section.Promotions;
+
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import app.model.PromotionModel;
 
-import app.service.Session;
-import app.service.branch_panel.discount_section.Promotions;
+import java.util.List;
 
+/**
+ * Controller for displaying a table of discounts in the branch panel.
+ */
 public class DiscountTableController implements DynamicContentController {
     private MainController mainController;
     @Override

@@ -2,15 +2,18 @@ package app.controllers.branch_panel.delivery_section;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
-import javafx.scene.control.TextField;
 import app.service.branch_panel.delivery_section.DeliveryService;
-
-
 import app.service.Dialogs;
 import app.service.Alerts;
 
+import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+
+
+/**
+ *  Controller for confirming delivery in the branch panel.
+ */
 public class ConfirmDeliveryController implements DynamicContentController {
     private MainController mainController;
     @Override

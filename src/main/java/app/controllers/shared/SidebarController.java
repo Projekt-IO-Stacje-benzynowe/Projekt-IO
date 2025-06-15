@@ -1,7 +1,5 @@
 package app.controllers.shared;
 
-
-import app.model.PanelList;
 import app.service.SceneManager;
 import app.service.Session;
 
@@ -17,8 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ *  Controller for the sidebar in the application, handling navigation and user interactions.
+ */
 public class SidebarController implements DynamicContentController {
     private MainController mainController;
+
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -43,28 +45,47 @@ public class SidebarController implements DynamicContentController {
         Box1.setAlignment(Pos.CENTER);
     }
 
+    /**
+     * Sets up the button with hover effects and action handling.
+     * @param button
+     * @param label
+     * @param container
+     * @param action
+     */
     private void setupButton(Button button, Label label, HBox container, Runnable action) {
         if (button != null && label != null && container != null) {
+            // The icon will be moved to the left when hovered
             button.setOnMouseEntered(_ -> {
-                animateMove(button, -10); // ikonka w lewo
+                animateMove(button, -10);
                 showLabel(label);
             });
 
+            // The icon will return to its original position when the mouse exits
             button.setOnMouseExited(_ -> {
-                animateMove(button, 0); // powrót
+                animateMove(button, 0);
                 hideLabel(label);
             });
 
+            // The button will execute the action when clicked
             button.setOnAction(_ -> action.run());
         }
     }
 
+    /**
+     * Animates the button movement to the specified offset.
+     * @param button
+     * @param offsetX
+     */
     private void animateMove(Button button, double offsetX) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(200), button);
         tt.setToX(offsetX);
         tt.play();
     }
 
+    /**
+     * Shows the label with a fade-in effect.
+     * @param label
+     */
     private void showLabel(Label label) {
         label.setVisible(true);
         FadeTransition ft = new FadeTransition(Duration.millis(200), label);
@@ -73,6 +94,10 @@ public class SidebarController implements DynamicContentController {
         ft.play();
     }
 
+    /**
+     * Hides the label with a fade-out effect.
+     * @param label
+     */
     private void hideLabel(Label label) {
         FadeTransition ft = new FadeTransition(Duration.millis(200), label);
         ft.setFromValue(1);
@@ -81,12 +106,20 @@ public class SidebarController implements DynamicContentController {
         ft.play();
     }
 
+    /**
+     * Handles the home button click event.
+     * It navigates to the user's panel.
+     */
     private void handleHomeClick() {
         if (mainController != null) {
             mainController.showDynamicContent(Session.getUser().getPanel());
         }
     }
 
+    /**
+     * Handles the logout button click event.
+     * It ends the session, clears the scene history, and navigates to the login scene.
+     */
     private void handleLogoutClick() {
         Session.endSession(); // kończymy sesję
         SceneManager.clear(); // usuwamy z historii hashmapy stare sceny

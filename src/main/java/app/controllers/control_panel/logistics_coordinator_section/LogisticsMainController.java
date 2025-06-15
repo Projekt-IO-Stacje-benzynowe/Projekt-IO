@@ -13,12 +13,14 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 
-
+/**
+ *  Controller for the main view of the logistics coordinator section in the control panel.
+ */
 public class LogisticsMainController implements DynamicContentController {
     private MainController mainController;
 
     @Override
-    public void setMainController(MainController mainController) { // funkcja, która pozwala
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 

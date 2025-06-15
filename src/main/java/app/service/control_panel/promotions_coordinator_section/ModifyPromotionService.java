@@ -1,7 +1,5 @@
 package app.service.control_panel.promotions_coordinator_section;
 
-import java.time.LocalDate;
-
 import app.db.repo.RepositorySQL;
 import app.model.ProductModel;
 import app.model.PromotionModel;
@@ -9,9 +7,15 @@ import app.model.RewardModel;
 import app.service.Alerts;
 import app.service.Session;
 import app.service.TypeValidation;
+
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
 
+/**
+ * Service class for modifying an existing promotion in the promotions coordinator section of the control panel.
+ * Provides methods to retrieve promotion data, rewards, products, and modify the promotion.
+ */
 public class ModifyPromotionService {
     public static PromotionModel getPromotion() {
         return Session.getPromotion();
@@ -57,7 +61,7 @@ public class ModifyPromotionService {
             return 0; // Success: Promotion modified
         } else {
             Alerts.warnFailedToModify("promotion");
-            return -3; // Error: Failed to modify promotion
+            return -1; // Error: Failed to modify promotion
         }
         
     }

@@ -12,6 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+/**
+ *  Controller for choosing a specific delivery in the logistics coordinator section of the control panel.
+ */
 public class ChooseDeliveryController implements DynamicContentController {
     private MainController mainController;
 

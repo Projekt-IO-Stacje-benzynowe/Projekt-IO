@@ -13,3 +13,4 @@ docs/*.svg
 build.*
 run.*
 target/
+*.log

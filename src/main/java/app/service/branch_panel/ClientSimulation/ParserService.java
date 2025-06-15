@@ -7,14 +7,18 @@ import java.util.Map;
 
 
 // we use jackson library to parse json data
-
+/**
+ *  ParserService class for handling JSON parsing and conversion.
+ *  It provides methods to parse JSON strings into a map and to convert product ID and quantity into a JSON string.
+ *  It uses the Jackson library for JSON processing.
+ */
 public class ParserService {
     public static Map<String, Integer> parseJson(String json){
         Map<String, Integer> dataMap = new HashMap<String, Integer>();
         ObjectMapper objectMapper = new ObjectMapper();
 
 
-        // parsing json text into map<string,Integer>
+        // Parsing json text into map<string,Integer>.
         try{
         dataMap = objectMapper.readValue(json, HashMap.class);
         }catch(Exception e){

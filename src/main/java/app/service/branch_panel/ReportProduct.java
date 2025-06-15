@@ -2,21 +2,22 @@ package app.service.branch_panel;
 
 import app.db.repo.RepositorySQL;
 import app.service.Session;
-
 import app.service.TypeValidation;
+import app.service.Alerts;
 
 import javafx.scene.control.TextField;
 
 import java.sql.Timestamp;
 
-import app.service.Alerts;
-
+/**
+ * Service for reporting product defects in the branch panel.
+ */
 public class ReportProduct {
     public static void report(TextField prodID, TextField quan, TextField desc, TextField date){
         int quantity = TypeValidation.intValidation(quan.getText());
         int productID = TypeValidation.intValidation(prodID.getText());
 
-        // it means that inserted data was not correct
+        // The inserted data was not correct.
         if(quantity == -1){
             Alerts.warnInvalidInput("quantity");
             quan.clear();

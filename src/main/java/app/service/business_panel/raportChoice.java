@@ -2,6 +2,9 @@ package app.service.business_panel;
 
 import java.time.LocalDate;
 
+/**
+ *  Service class for generating reports in the business panel.
+ */
 public class raportChoice {
     public static void generate(int typeOfReport, int stationNumber, int productID){
         ///////////////////////
@@ -29,7 +32,6 @@ public class raportChoice {
                     service.generateRewardProductsReport("Reward-Products-Report" + today.getYear() + "_" + (today.getMonthValue() - 1) + ".pdf", stationNumber);
                     break;
             }
-            //System.out.println("Report generated");
         } catch (Exception e) {
             e.printStackTrace();
         }

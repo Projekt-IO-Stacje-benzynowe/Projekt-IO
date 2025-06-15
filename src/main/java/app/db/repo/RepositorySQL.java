@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +22,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-
-
+/**
+ *  RepositorySQL class provides methods to interact with the SQL database.
+ *  It includes all the methods for fetching branch names, inserting values, and retrieving promotions, outlets, rewards, and products.
+ */
 public class RepositorySQL {
+
+    /**
+     *  Fetches the branch name for a given user ID.
+     * @param userID
+     * @return
+     */
     public static String getBranchNameForUser(int userID) {
         String querySQL = "SELECT outletName FROM UsersOutlet WHERE ID_user = ?"; 
 
@@ -41,6 +48,11 @@ public class RepositorySQL {
         return null;
     }
 
+    /**
+     *  Inserts values into a specified table.
+     * @param tableName
+     * @param values
+     */
     public static void insertValue(String tableName, String[][] values) {
         String insertSQL = String.format("INSERT INTO %s (ID, Name, ProducerID) VALUES (?, ?, ?)", tableName);
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(insertSQL)) {
@@ -56,6 +68,10 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Fetches all promotions from the database.
+     * @return
+     */
     public static ObservableList<PromotionModel> getAllPromotions() {
         String querySQL = """
                 SELECT *
@@ -81,6 +97,11 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Fetches promotions for a specific outlet by its name.
+     * @param outletName
+     * @return
+     */
     public static ObservableList<PromotionModel> getPromotionsForOutlet(String outletName) {
         String querySQL = """
         SELECT p.* 
@@ -110,6 +131,10 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Fetches all outlets from the database.
+     * @return
+     */
     public static ObservableList<OutletModel> getAllOutlets() {
         String querySQL = """
                 SELECT *
@@ -134,6 +159,10 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Fetches all rewards from the database.
+     * @return
+     */
     public static ObservableList<RewardModel> getAllRewards() {
         String querySQL = """
                 SELECT *
@@ -159,6 +188,10 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Fetches all products from the database.
+     * @return
+     */
     public static ObservableList<ProductModel> getAllProducts() {
         String querySQL = """
                 SELECT *
@@ -181,6 +214,10 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Fetches all future deliveries for a specific outlet from the database.
+     * @return
+     */
     public static ObservableList<DeliveryModel> getDeliveriesForOutlet(Integer outletID) {
         String querySQL = """
                 SELECT d.DeliveryID, d.OutletID, d.RewardProductID, d.Quantity, d.ShipmentDate, p.Name AS RewardName
@@ -209,6 +246,11 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Fetches all requests for a specific outlet from the database.
+     * @param outletID
+     * @return
+     */
     public static ObservableList<RequestModel> getRequestsForOutlet(Integer outletID) {
         String querySQL = """
                 SELECT d.DeliveryID, d.RewardProductID, rp.Name, d.Quantity, d.ReportDate
@@ -236,6 +278,11 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Deletes a delivery from the database by its ID.
+     * @param deliveryID
+     * @return
+     */
     public static boolean deleteDelivery(Integer deliveryID) {
         String querySQL = """
                 DELETE
@@ -253,6 +300,11 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Adds a new delivery to the database.
+     * @param delivery
+     * @return
+     */
     public static boolean addDelivery(DeliveryModel delivery) {
         String querySQL = """
                 INSERT
@@ -272,6 +324,14 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Modifies an existing delivery in the database.
+     * @param rewardID
+     * @param quantity
+     * @param deliveryDate
+     * @param deliveryID
+     * @return
+     */
     public static boolean modifyDelivery(Integer rewardID, Integer quantity, LocalDate deliveryDate, Integer deliveryID) {
         String querySQL = """
                 UPDATE Deliveries
@@ -291,6 +351,71 @@ public class RepositorySQL {
         }
     }
 
+    public static boolean createPromotion( String promotionName, String description, LocalDate startDate, LocalDate endDate, Integer rewardID, Integer productID, Integer outletID, Integer quantity) {
+        String querySQL = """
+                INSERT
+                INTO Promotions (PromotionName, Description, StartDate, EndDate, ProductID, OutletsID, Price, isActive)
+                VALUES(?, ?, ?, ?, ?, ?, ?, true)
+                """;
+        int rs1, rs3;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setString(1, promotionName);
+            stmt.setString(2, description);
+            stmt.setTimestamp(3, Timestamp.valueOf(startDate.atStartOfDay()));
+            stmt.setTimestamp(4, Timestamp.valueOf(endDate.atStartOfDay()));
+            stmt.setInt(5, productID);
+            stmt.setInt(6, outletID);
+            stmt.setDouble(7, quantity);
+            rs1 = stmt.executeUpdate();
+        } catch (SQLException err) {
+            System.err.println("Error while modifying promotion: " + err.getMessage());
+            return false;
+        }
+
+        int promotionID;
+        String querySQL2 = """
+                SELECT LAST_INSERT_ID() AS PromotionID
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL2)){
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                promotionID = rs.getInt("PromotionID");
+            } else {
+                System.err.println("Error while fetching last inserted promotion ID.");
+                return false;
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching last inserted promotion ID: " + err.getMessage());
+            return false;
+        }
+
+        String querySQL3 = """
+                Update RewardProducts
+                SET PromotionID = ?
+                WHERE RewardProductID = ?
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL3)){
+            stmt.setInt(1, promotionID);
+            stmt.setInt(2, rewardID);
+            rs3 = stmt.executeUpdate();
+        } catch (SQLException err) {
+            System.err.println("Error while modifying reward for promotion: " + err.getMessage());
+            return false;
+        }
+        return rs1 == 1 && rs3 == 1;
+    }
+
+    /**
+     *  Modifies an existing promotion to the database.
+     * @param promotionName
+     * @param description
+     * @param startDate
+     * @param endDate
+     * @param rewardID
+     * @param productID
+     * @param quantity
+     * @return
+     */
     public static boolean modifyPromotion(Integer promotionID, String promotionName, String description, LocalDate startDate, LocalDate endDate, Integer rewardID, Integer productID, Integer quantity) {
         String querySQL = """
                 UPDATE Promotions
@@ -328,6 +453,11 @@ public class RepositorySQL {
         return rs1 == 1 && rs2 == 1;
     }
 
+    /**
+     *  Deletes a promotion from the database by its ID.
+     * @param promotionID
+     * @return
+     */
     public static boolean deletePromotion(Integer promotionID) {
         String querySQL = """
                 DELETE
@@ -344,6 +474,11 @@ public class RepositorySQL {
         }
     }
     
+    /**
+     *  Fetches the reward ID for a specific promotion.
+     * @param promotionID
+     * @return
+     */
     public static int getRewardIDForPromotion(int promotionID) {
         String querySQL = """
                 SELECT RewardProductID
@@ -362,6 +497,11 @@ public class RepositorySQL {
         return -1; // Return -1 if no reward found
     }
 
+    /**
+     *  Finds a user by their email address.
+     * @param email
+     * @return
+     */
     public static UserModel findUser(String email) {
         String querySQL = "SELECT * FROM Users WHERE email = ?";
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
@@ -385,6 +525,11 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Confirms the delivery by updating its status in the database.
+     * @param ID
+     * @return
+     */
     public static int confirmDelivery(String ID) {
         String querySQL = """
             UPDATE Deliveries
@@ -400,7 +545,14 @@ public class RepositorySQL {
         }
     }
 
-
+    /**
+     *  Sends a report for disposal of a product.
+     * @param outletID
+     * @param productID
+     * @param quantity
+     * @param desc
+     * @param date
+     */
     public static void sendReport(int outletID, int productID, int quantity, String desc, Timestamp date) {
         String querySQL = """
             INSERT INTO Disposals (
@@ -436,6 +588,12 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Retrieves the last index of a specified column in a table.
+     * @param tableName
+     * @param columnName
+     * @return
+     */
     private static int getLastIndex(String tableName, String columnName) {
         String querySQL = "SELECT MAX(" + columnName + ") FROM " + tableName;
 
@@ -451,7 +609,11 @@ public class RepositorySQL {
         return 0;
     }   
     
-
+    /**
+     *  Checks if a reward product exists in the database by its ID.
+     * @param rewardProductId
+     * @return
+     */
     public static boolean doesRewardProductExist(int rewardProductId) {
         String query = "SELECT 1 FROM RewardProducts WHERE RewardProductID = ? LIMIT 1";
 
@@ -470,6 +632,10 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Retrieves the maximum DeliveryID from the Deliveries table.
+     * @return
+     */
     public static Integer getMaxDeliveryId() {
         String query = "SELECT MAX(DeliveryID) AS MaxID FROM Deliveries";
 
@@ -489,6 +655,13 @@ public class RepositorySQL {
         return null;
     }
 
+    /**
+     *  Sends a request for delivery of a product to a specific outlet.
+     * @param outletID
+     * @param deliveryID
+     * @param productID
+     * @param quantity
+     */
     public static void sendRequestForDelivery(int outletID, int deliveryID, int productID, int quantity){
         String querySQL = """
             INSERT INTO Deliveries (
@@ -524,6 +697,11 @@ public class RepositorySQL {
         }        
     }
 
+    /**
+     *  Finds promotions by product ID.
+     * @param productID
+     * @return
+     */
     public static ArrayList<Integer> findPromotionsByProductID(int productID) {
         String querySQL = """
             SELECT PromotionID FROM Promotions p
@@ -546,6 +724,11 @@ public class RepositorySQL {
         return ids;
     }
 
+    /**
+     *  Finds product rewards by promotion ID.
+     * @param PromotionID
+     * @return
+     */
     public static List<RewardModel> findProductReward(int PromotionID) {
         String querySQL = """
             SELECT * FROM RewardProducts p
@@ -573,6 +756,18 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Inserts a reward issuance into the RewardsToIssuance table.
+     * @param issuanceID
+     * @param rewardProductID
+     * @param promotionID
+     * @param outletID
+     * @param month
+     * @param quantityIssued
+     * @param unitPrice
+     * @param totalValue
+     * @param notes
+     */
     public static void insertRewardToIssuance(
             int issuanceID,
             int rewardProductID,
@@ -611,6 +806,11 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Finds the OutletID by its name.
+     * @param name
+     * @return
+     */
     public static Integer findOutletIDByName(String name) {
         String querySQL = """
             SELECT OutletsID FROM Outlets
@@ -631,6 +831,11 @@ public class RepositorySQL {
         return null;
     }
 
+    /**
+     *  Fetches all reward issuances for a specific outlet.
+     * @param outletID
+     * @return
+     */
     public static List<RewardToIssuanceModel> FetchRewardToIssuance(int outletID) {
         String query = """
             SELECT * FROM RewardsToIssuance
@@ -667,6 +872,10 @@ public class RepositorySQL {
         return result;
     }
 
+    /**
+     *  Retrieves the maximum IssuanceID from the RewardsToIssuance table.
+     * @return
+     */
     public static Integer getMaxIssuanceID() {
         String query = "SELECT MAX(IssuanceID) FROM RewardsToIssuance";
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query);
@@ -682,6 +891,10 @@ public class RepositorySQL {
         return null;
     }
 
+    /**
+     *  Deletes a reward issuance by its IssuanceID from the RewardsToIssuance table.
+     * @param issuanceID
+     */
     public static void deleteByIssuanceID(int issuanceID) {
         String sql = "DELETE FROM RewardsToIssuance WHERE IssuanceID = ?";
 
@@ -702,6 +915,10 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Retrieves the maximum IssuanceID from the RewardIssuance table.
+     * @return
+     */
     public static Integer getMaxIssuanceIDFromRewardIssuance() {
         String query = "SELECT MAX(IssuanceID) FROM RewardIssuance";
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query);
@@ -717,6 +934,10 @@ public class RepositorySQL {
         return null;
     }
 
+    /**
+     *  Inserts a new reward issuance into the RewardIssuance table.
+     * @param model
+     */
     public static void insertRewardIssuance(RewardToIssuanceModel model) {
         String sql = "INSERT INTO RewardIssuance " +
                 "(IssuanceID, RewardProductID, PromotionID, OutletID, Month, QuantityIssued, UnitPrice, TotalValue, Notes) " +
@@ -740,6 +961,10 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Retrieves the maximum SaleID from the Sales table.
+     * @return
+     */
     public static Integer getMaxSaleID() {
         String query = "SELECT MAX(SaleID) FROM Sales";
         try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(query);
@@ -755,6 +980,17 @@ public class RepositorySQL {
         return null;
     }
 
+    /**
+     *  Inserts a new sale into the Sales table.
+     * @param saleID
+     * @param PromotionID
+     * @param OutletID
+     * @param ProductID
+     * @param month
+     * @param soldQuantity
+     * @param GrossValue
+     * @param Margin
+     */
     public static void insertSale(int saleID,int PromotionID, int OutletID, int ProductID, Date month, int soldQuantity, double GrossValue, double Margin ){
         String sql = "INSERT INTO Sales " +
                 "(SaleID, PromotionID, StationID, ProductID, Month, QuantitySold, GrossValue, Margin) " +
@@ -777,6 +1013,11 @@ public class RepositorySQL {
         }
     }
 
+    /**
+     *  Retrieves the price of a product by its ID.
+     * @param productId
+     * @return
+     */
     public static Double getProductPriceById(int productId) {
             String query = "SELECT Price FROM Products WHERE ProductID = ?";
             
@@ -795,6 +1036,11 @@ public class RepositorySQL {
             return null;
         }
 
+    /**
+     *  Retrieves the price of a promotion by its ID.
+     * @param promotionID
+     * @return
+     */
     public static Double getPromotionPrice(int promotionID) {
         String query = "SELECT Price FROM Promotions WHERE PromotionID = ?";
         

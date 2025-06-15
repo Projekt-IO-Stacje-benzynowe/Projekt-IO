@@ -13,6 +13,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+/**
+ * Controller for viewing and managing requests in the logistics coordinator section of the control panel.
+ * This controller allows the user to view, approve, and delete requests.
+ */
 public class ViewRequestsController implements DynamicContentController {
     private MainController mainController;
 

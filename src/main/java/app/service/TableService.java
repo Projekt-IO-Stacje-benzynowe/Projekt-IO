@@ -1,8 +1,5 @@
 package app.service;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-
 import app.db.repo.RepositorySQL;
 import app.model.DeliveryModel;
 import app.model.OutletModel;
@@ -10,10 +7,18 @@ import app.model.ProductModel;
 import app.model.PromotionModel;
 import app.model.RequestModel;
 import app.model.RewardModel;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+
+/**
+ * Service class for managing tables in the application.
+ * Provides methods to create and retrieve various table views.
+ */
 public class TableService {
     private static <E, T> TableColumn<E, T> createTableColumn(String columnName, String propertyName, int width) {
         TableColumn<E, T> column = new TableColumn<E, T>(columnName);

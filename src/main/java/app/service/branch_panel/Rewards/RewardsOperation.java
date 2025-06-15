@@ -7,6 +7,9 @@ import app.service.Session;
 
 import java.util.List;
 
+/**
+ * Service for handling rewards operations in the branch panel.
+ */
 public class RewardsOperation {
     public static void deleteIssuancedReward(int issuanceID){
         RepositorySQL.deleteByIssuanceID(issuanceID);

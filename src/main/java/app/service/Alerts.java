@@ -2,6 +2,10 @@ package app.service;
 
 import javafx.scene.control.Alert;
 
+/**
+ * Alerts class provides static methods to display various types of alerts in the application.
+ * It includes methods for warnings, confirmations, and information alerts.
+ */
 public class Alerts {
     public static void warnSelectToDelete(String item) {
         Alert alert = new Alert(Alert.AlertType.WARNING);

@@ -1,4 +1,8 @@
 package app.controllers.shared;
 
-// Ten interfejs może być pusty lub zawierać wspólne metody
+/**
+ *  Interface for all controllers in the application.
+ *  This interface is purposefully empty and serves as a marker interface.
+ *  It can be used to identify all controllers in the application.
+ */
 public interface Controller {}

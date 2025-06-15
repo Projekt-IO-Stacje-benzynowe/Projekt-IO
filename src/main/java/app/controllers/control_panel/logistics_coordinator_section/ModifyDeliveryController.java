@@ -18,6 +18,9 @@ import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 
+/**
+ *  Controller for modifying delivery details in the logistics coordinator section of the control panel.
+ */
 public class ModifyDeliveryController extends MainController implements DynamicContentController {
     private MainController mainController;
 
@@ -41,9 +44,9 @@ public class ModifyDeliveryController extends MainController implements DynamicC
             outletText.setText(ModifyDeliveryService.getOutletName());
 
             // Initialize the reward combo box with available rewards
-
             ObservableList<RewardModel> rewards = ModifyDeliveryService.getRewards();
             rewardComboBox.setItems(rewards);
+            // Select the reward that is currently associated with the delivery
             Integer rewardID = ModifyDeliveryService.getRewardID();
             rewardComboBox.getSelectionModel().select(rewards.stream().filter(reward -> reward.getRewardProductID() == rewardID).findFirst().get());
 

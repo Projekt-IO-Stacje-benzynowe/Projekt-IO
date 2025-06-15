@@ -2,6 +2,9 @@ package app.model;
 
 import java.time.LocalDate;
 
+/**
+ * Model representing a request.
+ */
 public class RequestModel {
     private Integer deliveryID = null;
     private Integer rewardID = null;

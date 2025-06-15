@@ -20,10 +20,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ *  Controller for modifying an existing promotion in the promotions coordinator section of the control panel.
+ */
 public class ModifyPromotionController implements DynamicContentController {
     private MainController mainController;
     @Override
-    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala przypisać ten kontroler do głównego kontrolera
+    public void setMainController(app.controllers.shared.MainController mainController) {
         this.mainController = mainController;
     }
     @FXML

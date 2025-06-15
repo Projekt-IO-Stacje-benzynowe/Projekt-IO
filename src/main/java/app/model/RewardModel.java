@@ -1,7 +1,8 @@
 package app.model;
 
-
-// used for store data from RewardProducts table
+/**
+ *  Model representing a reward.
+ */
 public class RewardModel{
     Integer rewardProductID;
     Integer promotionID;

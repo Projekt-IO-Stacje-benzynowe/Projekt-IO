@@ -2,6 +2,9 @@ package app.model;
 
 import java.time.LocalDate;
 
+/**
+ *  Model representing a delivery.
+ */
 public class DeliveryModel {
     private Integer id = null;
     private Integer outletID = null;

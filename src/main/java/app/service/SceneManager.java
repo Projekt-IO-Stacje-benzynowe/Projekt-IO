@@ -2,6 +2,8 @@ package app.service;
 
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
+import app.model.PanelList;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,8 +15,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import app.model.PanelList;
-
+/**
+ *  SceneManager is responsible for managing different scenes in the application.
+ *  It allows switching between scenes, loading FXML files, and setting the main controller.
+ */
 public class SceneManager {
     private static MainController mainController;
     public static void setMainController(MainController controller) {

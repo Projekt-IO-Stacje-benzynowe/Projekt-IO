@@ -25,7 +25,13 @@ public class TypeValidation {
         return result;
     }   
 
-
+    /**
+     * Validates if the given string is a valid date-time format.
+     * The expected format is "YYYY-MM-DD HH:MM:SS".
+     *
+     * @param input the string to validate
+     * @return true if the input is a valid date-time, false otherwise
+     */
     public static boolean isValidDateTime(String input) {
         String regex = "^(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})$";
         Pattern pattern = Pattern.compile(regex);

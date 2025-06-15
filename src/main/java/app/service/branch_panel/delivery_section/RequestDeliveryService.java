@@ -3,11 +3,12 @@ package app.service.branch_panel.delivery_section;
 import app.service.TypeValidation;
 import app.service.Session;
 import app.db.repo.RepositorySQL;
-import javafx.scene.control.TextField;
-
 import app.service.Alerts;
-// class used for validation data and add additional delivery
 
+import javafx.scene.control.TextField;
+/**
+ *  Service for handling additional delivery requests in the branch panel.
+ */
 public class RequestDeliveryService  {
     public static void sendRequest(TextField productID, TextField quantity){
         int prodID = TypeValidation.intValidation(productID.getText());

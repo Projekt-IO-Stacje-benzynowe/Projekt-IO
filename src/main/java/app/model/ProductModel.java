@@ -1,5 +1,8 @@
 package app.model;
 
+/**
+ * Model representing a product.
+ */
 public class ProductModel {
     Integer id = null;
     String name = null;

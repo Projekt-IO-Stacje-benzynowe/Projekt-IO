@@ -1,5 +1,8 @@
 package app.model;
 
+/**
+ * Model representing the user currently logged in.
+ */
 public class UserModel {
     private int ID = 0;
     private String email = null;

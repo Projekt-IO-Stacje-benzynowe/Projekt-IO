@@ -6,7 +6,11 @@ import java.io.IOException;
 
 
 // used for establish connection on port 9999
-
+/**
+ *  ServerService class for managing server-side socket connections.
+ *  It listens for incoming client connections and handles data transmission.
+ *  It establishes a server socket on port 9999 and provides methods to read data from clients.
+ */
 public class ServerService{
     private ServerSocket serverSocket;
     private DataInputStream cliIn;

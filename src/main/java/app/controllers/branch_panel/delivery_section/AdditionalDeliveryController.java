@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 
 import app.service.branch_panel.delivery_section.RequestDeliveryService;
 
+/**
+ *  Controller for handling additional delivery requests in the branch panel.
+ */
 public class AdditionalDeliveryController implements DynamicContentController {
     @FXML
     TextField productIDField;

@@ -8,11 +8,13 @@ import app.service.business_panel.raportChoice;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-
+/**
+ *  Controller for managing general reports or outlet-specific actions in the business panel.
+ */
 public class normalOrOutletController implements DynamicContentController{
     private MainController mainController;
     @Override
-    public void setMainController(MainController mainController) { // funkcja, która pozwala
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 

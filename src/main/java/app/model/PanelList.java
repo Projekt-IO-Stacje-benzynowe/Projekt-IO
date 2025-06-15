@@ -2,6 +2,10 @@ package app.model;
 
 import java.util.TreeMap;
 
+/**
+ *  PanelList is a utility class that provides a mapping of panel names to their corresponding FXML file paths.
+ *  This class is used to retrieve the FXML file paths for different panels in the application.
+ */
 public class PanelList {
     private static TreeMap<String, String> panelMap = PanelList.initializeMap();
 

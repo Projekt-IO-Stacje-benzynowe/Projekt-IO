@@ -1,12 +1,16 @@
 package app.controllers.branch_panel;
+
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
+import app.service.branch_panel.ReportProduct;
+
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
-import app.service.branch_panel.ReportProduct;
-
+/**
+ *  Controller for reporting issues with products in the branch panel.
+ */
 public class ReportIssuesProductController implements DynamicContentController {
     private MainController mainController;
     @Override
@@ -25,10 +29,6 @@ public class ReportIssuesProductController implements DynamicContentController {
     @FXML
     void sendReportButton(){
         ReportProduct.report(idProductField, quantityField, descField, dateField);
-        // idProductField.clear();
-        // quantityField.clear();
-        // descField.clear();
-        // dateField.clear();
     }
 
     @FXML

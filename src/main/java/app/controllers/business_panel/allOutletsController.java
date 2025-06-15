@@ -5,16 +5,18 @@ import app.controllers.shared.MainController;
 import app.model.OutletModel;
 import app.service.SceneManager;
 import app.service.Session;
-import app.service.business_panel.outletsMainService;
+import app.service.business_panel.OutletsMainService;
+import app.service.business_panel.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import app.service.business_panel.*;
-import java.io.IOException;
 
-
+/**
+ *  Controller for managing all outlets in the business panel.
+ */
 public class allOutletsController implements DynamicContentController {
     private MainController mainController;
 
@@ -30,12 +32,12 @@ public class allOutletsController implements DynamicContentController {
     private TableView<OutletModel> outletsTableView;
 
     public void initialize() {
-        outletsTableView = outletsMainService.getAllOutletsView();
+        outletsTableView = OutletsMainService.getAllOutletsView();
         tablePane.getChildren().add(outletsTableView);
     }
 
     public void goToChooseOutlet(ActionEvent actionEvent) {
-        int result = outletsMainService.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
+        int result = OutletsMainService.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
         if (result == 0) {
             SceneManager.clear();
             raportChoice.generate(1, Session.getOutlet().getID(), Session.getProduct().getID());

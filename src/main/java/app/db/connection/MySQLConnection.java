@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * MySQLConnection class handles the connection to the MySQL database.
+ * It provides methods to establish and close the connection.
+ */
 public class MySQLConnection {
     public static Connection conn = null;
 
-    // Dane do połączenia (możesz trzymać w pliku .env lub config w produkcji)
+    // Database connection details
     private static final String URL = "jdbc:mysql://io-stacje.c544m8scom33.eu-north-1.rds.amazonaws.com:3306/io_baza";
     private static final String USER = "admin";
     private static final String PASSWORD = "admin123#";

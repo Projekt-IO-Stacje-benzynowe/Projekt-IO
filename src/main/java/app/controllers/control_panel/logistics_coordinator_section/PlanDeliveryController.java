@@ -16,6 +16,9 @@ import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 
+/**
+ *  Controller for planning a delivery in the logistics coordinator section of the control panel.
+ */
 public class PlanDeliveryController extends MainController implements DynamicContentController {
     private MainController mainController;
 

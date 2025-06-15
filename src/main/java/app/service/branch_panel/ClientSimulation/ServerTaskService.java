@@ -1,18 +1,20 @@
 package app.service.branch_panel.ClientSimulation;
 
+import app.db.repo.RepositorySQL;
+import app.model.RewardModel;
+import app.service.Session;
+
 import java.util.Map;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
-import app.db.repo.RepositorySQL;
-import app.model.RewardModel;
-
-import app.service.Session;
-
-// This class receives purchase data from the client, processes it, and updates the database tables.
-
+/**
+ *  ServerTaskService class for processing purchase data from clients.
+ *  It reads data from a server, parses it, and updates the RewardsToIssuance and Sales tables in the database.
+ *  The service runs indefinitely, processing incoming data every 3 seconds.
+ */
 public class ServerTaskService {
 
     public void run(){

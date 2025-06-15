@@ -10,6 +10,9 @@ import javafx.scene.control.TableView;
 
 import java.time.LocalDate;
 
+/**
+ *  Service class for managing promotions in the promotions coordinator section.
+ */
 public class PromotionsMainService {
     public static TableView<PromotionModel> getAllPromotions() {
         return TableService.getAllPromotionsTable();

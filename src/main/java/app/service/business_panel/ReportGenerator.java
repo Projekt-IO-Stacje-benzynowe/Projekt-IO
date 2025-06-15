@@ -21,27 +21,35 @@ import java.time.YearMonth;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
+/**
+ * Service class for generating sales reports in the business panel.
+ * This class connects to a MySQL database to retrieve sales data and generates PDF reports with charts.
+ */
 public class ReportGenerator {
-    //Datebase connection details
 
+    // Datebase connection details
     private static final String DB_URL = "jdbc:mysql://io-stacje.c544m8scom33.eu-north-1.rds.amazonaws.com:3306/io_baza";
     private static final String USER = "admin";
     private static final String PASS = "admin123#";
 
-    // Generates a PDF sales report for a given parameters - station (stationID), and product (productID),
-    // for last 12 months. If stationID, or productID is equal 0, our report is made for all stations or products
-    // PDF include 3 charts :
-    // 1) sales value for products included in our promotions
-    // 2) year to year comparison of sales value
-    // 3) quantity of sold products
+    /**
+     *  Generates a sales report for the last 12 months.
+     *  This method connects to a MySQL database, retrieves sales data for the specified station and product,
+     *  generates three charts (total sales, year-over-year sales difference, and total units sold),
+     *  and creates a PDF report containing these charts.
+     *  If the stationID or productID is 0, the report includes all stations or products respectively.
+     * @param outputFilePath
+     * @param stationID
+     * @param productID
+     * @throws Exception
+     */
     public void generateSalesReport2024(String outputFilePath, int stationID, int productID) throws Exception {
         int [] reportType = new int [3]; // used to customize report title
         reportType [0] = 1; // 1 means sales report
         reportType [1] = stationID;
         reportType [2] = productID;
 
-        Map<String, Double> sales2024 = new LinkedHashMap<>();// to storage sales / quantity value from database
+        Map<String, Double> sales2024 = new LinkedHashMap<>(); // to storage sales / quantity value from database
         Map<String, Double> sales2023 = new LinkedHashMap<>();
         Map<String, Double> quantity2024 = new LinkedHashMap<>();
 
@@ -77,20 +85,29 @@ public class ReportGenerator {
 
             }
         }
-    // create 3 charts for collected data
-    JFreeChart chartSales = createStyledChart("Monthly Total Sales (PLN)", "Month", "PLN", sales2024, new Color(220, 53, 69));
-    JFreeChart chartDiff = createStyledChart("Year-over-Year Sales Difference (PLN)", "Month", "PLN", computeDifference(sales2024, sales2023), new Color(255, 159, 64));
-    JFreeChart chartQuantity = createStyledChart("Monthly Total Units Sold", "Month", "Units", quantity2024, new Color(40, 167, 69));
-    // generate final PDF report
-    generatePDF(outputFilePath, reportType, chartSales, chartDiff, chartQuantity);
+        // create 3 charts for collected data
+        JFreeChart chartSales = createStyledChart("Monthly Total Sales (PLN)", "Month", "PLN", sales2024, new Color(220, 53, 69));
+        JFreeChart chartDiff = createStyledChart("Year-over-Year Sales Difference (PLN)", "Month", "PLN", computeDifference(sales2024, sales2023), new Color(255, 159, 64));
+        JFreeChart chartQuantity = createStyledChart("Monthly Total Units Sold", "Month", "Units", quantity2024, new Color(40, 167, 69));
+        // generate final PDF report
+        generatePDF(outputFilePath, reportType, chartSales, chartDiff, chartQuantity);
     }
 
-    //helper to calculate total sale for specyfic month, station, and product ( or for all products / all stations )
+    /**
+     *  Retrieves the total sales for a specific month, station, and product from the database.
+     *  If stationId or productId is 0, it retrieves sales for all stations or products respectively.
+     * @param conn
+     * @param date
+     * @param stationId
+     * @param productId
+     * @return
+     * @throws SQLException
+     */
     private double getTotalSales(Connection conn, String date, int stationId, int productId) throws SQLException {
         StringBuilder sql = new StringBuilder("SELECT SUM(GrossValue) FROM Sales WHERE MONTH(Month) = MONTH(?) AND YEAR(Month) = YEAR(?)");
 
-        if (stationId > 0) sql.append(" AND OutletID = ?");// if we choose specific station
-        if (productId > 0) sql.append(" AND ProductID = ?");// if we choose specific product
+        if (stationId > 0) sql.append(" AND OutletID = ?"); // if we choose a specific station
+        if (productId > 0) sql.append(" AND ProductID = ?"); // if we choose a specific product
 
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())) {
             int idx = 1;

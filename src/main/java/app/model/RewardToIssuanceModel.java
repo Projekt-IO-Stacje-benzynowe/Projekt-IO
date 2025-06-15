@@ -3,7 +3,10 @@ package app.model;
 
 import java.sql.Date;
 
-// that class inherit from RewardModel because when we wanna issuance some reward we need some extra data
+/**
+ *  Model representing a reward to issuance.
+ *  This class extends RewardModel to include additional fields necessary for issuance.
+ */
 public class RewardToIssuanceModel extends RewardModel{
     public Integer issuanceID;
     public Integer totalValue;

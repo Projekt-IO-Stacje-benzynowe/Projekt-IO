@@ -1,7 +1,11 @@
 package app.controllers.branch_panel;
+
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
 import app.model.RewardToIssuanceModel;
+import app.service.branch_panel.Rewards.RewardsOperation;
+import app.service.Alerts;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,13 +13,13 @@ import javafx.scene.control.*;
 
 import java.util.List;
 
-import app.service.branch_panel.Rewards.RewardsOperation;
-import app.service.Alerts;
-
+/**
+ *  Controller for confirming the issuance of rewards in the branch panel.
+ */
 public class RewardTableController implements DynamicContentController {
     private MainController mainController;
     @Override
-    public void setMainController(app.controllers.shared.MainController mainController) { // funkcja, która pozwala
+    public void setMainController(app.controllers.shared.MainController mainController) {
         this.mainController = mainController;
     }
     @FXML
@@ -46,7 +50,7 @@ public class RewardTableController implements DynamicContentController {
         }
         rewardTable.setItems(rewardList);
 
-        confirmButton.setOnAction(e -> onConfirm());
+        confirmButton.setOnAction(_ -> onConfirm());
     }
 
 
