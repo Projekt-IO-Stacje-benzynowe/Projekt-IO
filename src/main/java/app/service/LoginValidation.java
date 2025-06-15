@@ -11,8 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -31,34 +29,32 @@ public class LoginValidation{
         String email = emailField.getText();
         String password = passwordField.getText();
         UserModel user = RepositorySQL.findUser(email);
-        System.out.println(user.getPanel());
         
         if (user == null){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Informacja");
-            alert.setHeaderText(null);
-            alert.setContentText("Nie znaleziono użytkownika o podanym adresie email");
-            alert.showAndWait();
+            Alerts.warnInvalidInput("login details");
+            emailField.clear();
+            passwordField.clear();
             return;
         }
         
         if (password.equals(user.getPassword())){
             String panel = user.getPanel();
-            Stage stage = (Stage) emailField.getScene().getWindow(); // <-- służy zamknięciu Panela logowania
+            Stage stage = (Stage) emailField.getScene().getWindow();
             stage.close();
 
-            // Załaduj główną scenę
+            // load main scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/shared/Main.fxml"));
             
             Parent root = loader.load();
 
-            // Pokaż główne okno
+            // show app window
             Stage mainStage = new Stage();
             mainStage.setScene(new Scene(root));
             mainStage.show();
 
-            MainController mainController = loader.getController(); // <--przypisujemy kontroler do sceny
-            mainController.setPanel(user.getPanel()); //<--- ładujemy zawartość w poprawne miejsce
+            MainController mainController = loader.getController(); // assing controller to the scene
+            mainController.setPanel(user.getPanel()); //set correct panel
+            
             if (panel.equals("branch")){
                 user.setNameBranch(RepositorySQL.getBranchNameForUser(user.getID()));
             

@@ -12,7 +12,6 @@ public class ClientService{
 
     public ClientService(){};
 
-
     public ClientService(String address, int port) {
         try {
             s = new Socket(address, port);
@@ -27,7 +26,7 @@ public class ClientService{
             out.writeUTF(mess);
             out.flush();
         } catch (IOException e){
-            System.out.println("Błąd wysyłania: " + e.getMessage());
+            System.out.println("Error while sending data via socket: " + e.getMessage());
         }
     }
     public void close() {
@@ -36,7 +35,7 @@ public class ClientService{
             in.close();
             s.close();
         } catch (IOException e) {
-            System.out.println("Błąd zamykania: " + e.getMessage());
+            System.out.println("Erorr while closing sockets " + e.getMessage());
         }
     }
 }

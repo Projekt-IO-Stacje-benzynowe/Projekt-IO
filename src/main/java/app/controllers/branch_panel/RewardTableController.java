@@ -1,9 +1,7 @@
 package app.controllers.branch_panel;
 import app.controllers.shared.DynamicContentController;
 import app.controllers.shared.MainController;
-import app.model.PanelList;
 import app.model.RewardToIssuanceModel;
-import app.service.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,8 +9,8 @@ import javafx.scene.control.*;
 
 import java.util.List;
 
-import app.service.branch_panel.Rewards.RewardsOperation;;
-
+import app.service.branch_panel.Rewards.RewardsOperation;
+import app.service.Alerts;
 
 public class RewardTableController implements DynamicContentController {
     private MainController mainController;
@@ -63,19 +61,12 @@ public class RewardTableController implements DynamicContentController {
             RewardsOperation.insertRewardToIssuance(selected);
 
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Brak wyboru");
-            alert.setHeaderText(null);
-            alert.setContentText("Wybierz wiersz przed potwierdzeniem.");
-            alert.showAndWait();
+            Alerts.warnSelectToDelete("Select a row before confirming");
         }
     }
-
     @FXML
     public void goBack() {
-        SceneManager.clearScene("rewards_table");
         mainController.showDynamicContent("branch");
-
     }   
 }
 

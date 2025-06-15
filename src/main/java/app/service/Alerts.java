@@ -63,7 +63,7 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Selection Required");
         alert.setHeaderText(null);
-        alert.setContentText("Failed to delete " + item + ".");
+        alert.setContentText("Failed to add " + item + ".");
         alert.showAndWait();
     }
 
@@ -90,4 +90,22 @@ public class Alerts {
         alert.setContentText("Please enter a valid " + item + ".");
         alert.showAndWait();
     }
+
+    public static void warnItemNotFound(String item) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Item Not Found");
+        alert.setHeaderText(null);
+        alert.setContentText("No " + item + " was found.");
+        alert.showAndWait();
+    }
+
+
+    public static void infoAlert(String title, String item) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(item);
+        alert.showAndWait();
+    }
+
 }
