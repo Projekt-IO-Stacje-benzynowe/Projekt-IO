@@ -14,7 +14,6 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.time.LocalDate;
@@ -36,8 +35,6 @@ public class ModifyDeliveryController extends MainController implements DynamicC
     private TextField quantityField;
     @FXML
     private DatePicker deliveryDatePicker;
-    @FXML
-    private VBox sidebarContainer;
 
     public void initialize() {
         try {

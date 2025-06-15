@@ -11,7 +11,7 @@ public class ProductModel {
         this.brand = brand;
     }
 
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 

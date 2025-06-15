@@ -90,4 +90,20 @@ public class Alerts {
         alert.setContentText("Please enter a valid " + item + ".");
         alert.showAndWait();
     }
+
+    public static void warnCannotDeleteBegunPromotion() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Cannot Delete Promotion");
+        alert.setHeaderText(null);
+        alert.setContentText("You cannot delete a promotion that has already begun.");
+        alert.showAndWait();
+    }
+
+    public static void warnInvalidDateRange() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Invalid Date Range");
+        alert.setHeaderText(null);
+        alert.setContentText("The start date cannot be after the end date.");
+        alert.showAndWait();
+    }
 }

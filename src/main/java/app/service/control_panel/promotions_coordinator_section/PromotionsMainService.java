@@ -5,7 +5,10 @@ import app.model.PromotionModel;
 import app.service.Alerts;
 import app.service.Session;
 import app.service.TableService;
+
 import javafx.scene.control.TableView;
+
+import java.time.LocalDate;
 
 public class PromotionsMainService {
     public static TableView<PromotionModel> getAllPromotions() {
@@ -29,6 +32,11 @@ public class PromotionsMainService {
             return -1; // Error: No promotion selected
         }
         else {
+            if (promotion.getStartDate().isBefore(LocalDate.now())) {
+                Alerts.warnCannotDeleteBegunPromotion();
+                return -1; // Error: Cannot delete begun promotion
+            }
+
             boolean result = RepositorySQL.deletePromotion(promotion.getID());
             if (result) {
                 Alerts.confirmDelete("Promotion");

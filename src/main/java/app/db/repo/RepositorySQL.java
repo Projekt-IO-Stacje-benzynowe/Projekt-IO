@@ -67,7 +67,12 @@ public class RepositorySQL {
                 result.add(new PromotionModel(
                     rs.getInt("PromotionID"),
                     rs.getString("PromotionName"),
-                    rs.getString("Description")));
+                    rs.getString("Description"),
+                    rs.getInt("ProductID"),
+                    rs.getTimestamp("StartDate").toLocalDateTime().toLocalDate(),
+                    rs.getTimestamp("EndDate").toLocalDateTime().toLocalDate(),
+                    rs.getDouble("Price")
+                ));
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching promotions on chosen outlet: " + err.getMessage());
@@ -91,7 +96,12 @@ public class RepositorySQL {
                 result.add(new PromotionModel(
                     rs.getInt("PromotionID"),
                     rs.getString("PromotionName"),
-                    rs.getString("Description")));
+                    rs.getString("Description"),
+                    rs.getInt("ProductID"),
+                    rs.getTimestamp("StartDate").toLocalDateTime().toLocalDate(),
+                    rs.getTimestamp("EndDate").toLocalDateTime().toLocalDate(),
+                    rs.getDouble("Price")
+                ));
             }
         } catch (SQLException err) {
             System.err.println("Error while fetching promotions on chosen outlet: " + err.getMessage());
@@ -280,6 +290,43 @@ public class RepositorySQL {
         }
     }
 
+    public static boolean modifyPromotion(Integer promotionID, String promotionName, String description, LocalDate startDate, LocalDate endDate, Integer rewardID, Integer productID, Integer quantity) {
+        String querySQL = """
+                UPDATE Promotions
+                SET PromotionName = ?, Description = ?, StartDate = ?, EndDate = ?, ProductID = ?, Price = ?
+                WHERE PromotionID = ?
+                """;
+        int rs1, rs2;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setString(1, promotionName);
+            stmt.setString(2, description);
+            stmt.setTimestamp(3, Timestamp.valueOf(startDate.atStartOfDay()));
+            stmt.setTimestamp(4, Timestamp.valueOf(endDate.atStartOfDay()));
+            stmt.setInt(5, productID);
+            stmt.setDouble(6, quantity);
+            stmt.setInt(7, promotionID);
+            rs1 = stmt.executeUpdate();
+        } catch (SQLException err) {
+            System.err.println("Error while modifying promotion: " + err.getMessage());
+            return false;
+        }
+
+        String querySQL2 = """
+                Update RewardProducts
+                SET PromotionID = ?
+                WHERE RewardProductID = ?
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL2)){
+            stmt.setInt(1, promotionID);
+            stmt.setInt(2, rewardID);
+            rs2 = stmt.executeUpdate();
+        } catch (SQLException err) {
+            System.err.println("Error while modifying reward for promotion: " + err.getMessage());
+            return false;
+        }
+        return rs1 == 1 && rs2 == 1;
+    }
+
     public static boolean deletePromotion(Integer promotionID) {
         String querySQL = """
                 DELETE
@@ -294,6 +341,24 @@ public class RepositorySQL {
             System.err.println("Error while deleting promotion: " + err.getMessage());
             return false;
         }
+    }
+    
+    public static int getRewardIDForPromotion(int promotionID) {
+        String querySQL = """
+                SELECT RewardProductID
+                FROM RewardProducts
+                WHERE PromotionID = ?
+                """;
+        try (PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)){
+            stmt.setInt(1, promotionID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("RewardProductID");
+            }
+        } catch (SQLException err) {
+            System.err.println("Error while fetching reward ID for promotion: " + err.getMessage());
+        }
+        return -1; // Return -1 if no reward found
     }
 
     public static UserModel findUser(String email) {
