@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -399,6 +400,7 @@ public class RepositorySQL {
         }
     }
 
+
     public static void sendReport(int outletID, int productID, int quantity, String desc, Timestamp date) {
         String querySQL = """
             INSERT INTO Disposals (
@@ -416,8 +418,7 @@ public class RepositorySQL {
         """;
 
         try(PreparedStatement stmt = MySQLConnection.conn.prepareStatement(querySQL)) {
-            // int newID = GetLastIndexFromDisposals() + 1;
-            int newID = getLastIndex("DisposalID", "Disposals") + 1;
+            int newID = getLastIndex("Disposals", "DisposalID") + 1;
             stmt.setInt(1, newID);
             stmt.setInt(2, outletID);
             stmt.setInt(3, productID);

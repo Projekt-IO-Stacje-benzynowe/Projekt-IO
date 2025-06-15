@@ -12,9 +12,13 @@ public class ServerService{
     private DataInputStream cliIn;
     private DataOutputStream cliOut;
 
+    public ServerService(){
+        serverSocket = null;
+        cliIn = null;
+        cliOut = null;
+    }
     public ServerService(int port){
         try(ServerSocket ss = new ServerSocket(port)){
-            // System.out.println("Uruchomiono server");
             this.serverSocket = ss;
 
             Socket cliSocket = serverSocket.accept();
@@ -22,14 +26,14 @@ public class ServerService{
             this.cliOut = new DataOutputStream(cliSocket.getOutputStream());
             
         }catch(Exception e){
-            System.out.println("Błąd podczas uruchamiania servera");
+            System.out.println("Erorr while starting server");
         }
     }
     public String read(){
         try{
             return cliIn.readUTF();
         }catch(IOException e){
-            System.out.println("Błąd odczytu: " + e);
+            System.out.println("Error while reading data from socket " + e);
         };        
         return null;
     }

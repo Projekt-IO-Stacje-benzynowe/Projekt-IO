@@ -5,4 +5,3 @@ db - warstwa danych. Opdowiada za połącznie z bazą danych oraz udostepnia API
 
 Przepływ:
 controllers -> service -> db
-// aktualnie w /controllers/branch_panel jest umieszczona logika biznesowa, ale to poprawie

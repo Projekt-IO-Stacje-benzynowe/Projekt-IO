@@ -13,14 +13,11 @@ import app.service.Session;
 
 // This class receives purchase data from the client, processes it, and updates the database tables.
 
-public class ServerTaskService{
-    public ServerTaskService(){};
+public class ServerTaskService {
 
     public void run(){
         ServerService server = new ServerService(9999);
-
-        while (true) {  
-            // System.out.println("Odebrano wiadomość: " + server.read());
+        while (true) {              
             // we parse the data, then prepare it for the RewardsToIssuance table. 
             // we also take care of consistency with the Sales table
 
@@ -89,7 +86,7 @@ public class ServerTaskService{
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                System.out.println("Wątek został przerwany");
+                System.out.println("Thread was interrupted");
                 break;
             }
         }

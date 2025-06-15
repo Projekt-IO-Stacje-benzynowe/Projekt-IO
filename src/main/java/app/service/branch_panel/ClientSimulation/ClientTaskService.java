@@ -4,7 +4,7 @@ import java.util.Random;
 
 // We simulate a client buying some items from our list, then send the data to our system via port 9999.
 
-public class ClientTaskService {
+public class ClientTaskService{
     public ClientTaskService(){};
     
     public void run(){
@@ -12,10 +12,8 @@ public class ClientTaskService {
 
         while(true){
             client.send(GenerateRandomJsonQuery());
-            
-            // System.out.println("Wysłano wiadomość");
             try{
-                Thread.sleep(15000);
+                Thread.sleep(21000);
             } catch (InterruptedException e) {
                 break;
             }
