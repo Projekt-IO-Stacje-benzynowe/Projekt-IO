@@ -19,7 +19,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 
 public class ModifyPromotionController implements DynamicContentController {
     private MainController mainController;

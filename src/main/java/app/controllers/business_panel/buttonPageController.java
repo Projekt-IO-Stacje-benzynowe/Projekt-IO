@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import app.controllers.shared.MainController;
 import app.controllers.shared.DynamicContentController;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 
 
 public class buttonPageController implements DynamicContentController{

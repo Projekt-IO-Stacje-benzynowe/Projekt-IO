@@ -38,7 +38,7 @@ public class allOutletsController implements DynamicContentController {
         int result = outletsMainService.setOutlet(outletsTableView.getSelectionModel().getSelectedItem());
         if (result == 0) {
             SceneManager.clear();
-            raportChoice.generate(1, Session.getOutlet().getID(), Session.getProduct().getId());
+            raportChoice.generate(1, Session.getOutlet().getID(), Session.getProduct().getID());
             mainController.showDynamicContent("Analysis");
         }
 

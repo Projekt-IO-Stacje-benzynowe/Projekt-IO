@@ -21,7 +21,7 @@ public class normalOrOutletController implements DynamicContentController{
     }
 
     public void printGeneralRaport(ActionEvent actionEvent) throws Exception {
-        raportChoice.generate(1, 0, Session.getProduct().getId());
+        raportChoice.generate(1, 0, Session.getProduct().getID());
         Session.clearNonUserData();
         SceneManager.clear();
         mainController.showDynamicContent("Analysis");
