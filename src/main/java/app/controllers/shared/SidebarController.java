@@ -24,27 +24,21 @@ public class SidebarController implements DynamicContentController {
         this.mainController = mainController;
     }
 
-
     @FXML private VBox Box1;
-
-    @FXML private Button homeButton, settingsButton, logoutButton;
-    @FXML private Label homeLabel, settingsLabel, logoutLabel;
-    @FXML private HBox homeHBox, settingsHBox, logoutHBox;
+    @FXML private Button homeButton,  logoutButton;
+    @FXML private Label homeLabel,  logoutLabel;
+    @FXML private HBox homeHBox,  logoutHBox;
 
     @FXML
     public void initialize() {
         System.out.println("SidebarController loaded! homeButton: " + homeButton);
         homeLabel.setVisible(false);
-        settingsLabel.setVisible(false);
         logoutLabel.setVisible(false);
         setupButton(homeButton, homeLabel, homeHBox, this::handleHomeClick);
-        setupButton(settingsButton, settingsLabel, settingsHBox, this::handleSettingsClick);
         setupButton(logoutButton, logoutLabel, logoutHBox, this::handleLogoutClick);
         ImageView homeIcon = (ImageView) homeButton.getGraphic();
-        ImageView settingsIcon = (ImageView) settingsButton.getGraphic();
         ImageView logIcon = (ImageView) logoutButton.getGraphic();
         homeIcon.fitHeightProperty().bind(Box1.widthProperty().multiply(0.325));
-        settingsIcon.fitHeightProperty().bind(Box1.widthProperty().multiply(0.25));
         logIcon.fitHeightProperty().bind(Box1.widthProperty().multiply(0.25));
         Box1.setAlignment(Pos.CENTER);
     }
@@ -90,12 +84,6 @@ public class SidebarController implements DynamicContentController {
     private void handleHomeClick() {
         if (mainController != null) {
             mainController.showDynamicContent(Session.getUser().getPanel());
-        }
-    }
-
-    private void handleSettingsClick() {
-        if (mainController != null) {
-           // mainController.changeContent("/fxmls/settings.fxml");
         }
     }
 

@@ -31,7 +31,11 @@ public class PanelList {
         result.put("modify_promotion", "/view/control_panel/promotions_coordinator_section/modify_promotion_panel.fxml");
 
         result.put("Analysis", "/view/business_panel/buttonPage.fxml" );
-
+        result.put("rewardsBusiness", "/view/business_panel/rewardsBusiness.fxml");
+        result.put("ProductPage", "/view/business_panel/productsPanel.fxml");
+        result.put("choose_product_business", "/view/business_panel/GeneralOrOutlet.fxml");
+        result.put("allOutlets", "/view/business_panel/allOutlets.fxml");
+        result.put("allOutletsRewards", "/view/business_panel/allOutletsRewards.fxml");
         return result;
     }
 

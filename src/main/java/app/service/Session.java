@@ -1,9 +1,6 @@
 package app.service;
 
-import app.model.DeliveryModel;
-import app.model.OutletModel;
-import app.model.PromotionModel;
-import app.model.UserModel;
+import app.model.*;
 
 /**
  * Session class to manage the current state of the application.
@@ -14,18 +11,24 @@ public class Session {
     private static PromotionModel promotion = null;
     private static OutletModel outlet = null;
     private static DeliveryModel delivery = null;
+    private static ProductModel product = null;
+    private static RewardModel reward = null;
 
     public static void endSession(){
         user = null;
         promotion = null;
         outlet = null;
         delivery = null;
+        product = null;
+        reward = null;
     }
 
     public static void clearNonUserData() {
         promotion = null;
         outlet = null;
         delivery = null;
+        reward = null;
+        product = null;
     }
 
     public static void setUser(UserModel user) {
@@ -92,4 +95,26 @@ public class Session {
         delivery = null;
     }
 
+    public static boolean isProductInitialized() {return product != null;}
+
+    public static void setProduct(ProductModel product){Session.product = product;}
+
+    public static ProductModel getProduct() {return product;}
+
+    public static void setProductNull() {product = null;}
+
+    public static void setReward(RewardModel reward) {
+        Session.reward = reward;
+    }
+
+    public static RewardModel getReward() {
+        return reward;
+    }
+
+    public static void setRewardNull(){
+        reward=null;
+    }
+    public static boolean isRewardInitialized(){
+        return reward != null;
+    }
 }
