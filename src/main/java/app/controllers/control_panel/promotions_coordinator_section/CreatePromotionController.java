@@ -91,7 +91,7 @@ public class CreatePromotionController implements DynamicContentController {
     }
 
     public void createPromotion(ActionEvent event) {
-        int result = CreatePromotionService.createPromotion(promotionText.getText(), descriptionText.getText(), startDatePicker.getValue(), endDatePicker.getValue(), rewardComboBox.getSelectionModel().getSelectedItem(), productComboBox.getSelectionModel().getSelectedItem(), quantityField.getText());
+        int result = CreatePromotionService.createPromotion(promotionText.getText(), descriptionText.getText(), startDatePicker.getValue(), endDatePicker.getValue(), rewardComboBox.getSelectionModel().getSelectedItem(), productComboBox.getSelectionModel().getSelectedItem(), outletComboBox.getSelectionModel().getSelectedItem(), quantityField.getText());
         if (result == 0) {
             ModifyPromotionService.clearNonUserData();
             SceneManager.clearScene("create_promotion");

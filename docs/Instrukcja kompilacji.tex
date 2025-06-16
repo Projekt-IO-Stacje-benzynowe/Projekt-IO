@@ -1,0 +1,68 @@
+% Ten plik jest zaprojektowany do użycia z LuaLaTeX.
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{fontspec} % Obsługa czcionek w LuaLaTeX
+\usepackage[polish]{babel}
+\usepackage{geometry} % Ustawienia marginesów
+\geometry{margin=1in}
+\usepackage{hyperref} % Obsługa hiperłączy
+\usepackage{titlesec} % Formatowanie sekcji
+\usepackage[skip=10pt plus1pt]{parskip}
+\usepackage[table]{xcolor}
+\usepackage{float}
+
+\usepackage{xcolor}
+
+\usepackage{url}
+
+% Ustawienia hiperłączy
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    pdftitle={Instrukcja kompilacji},
+    pdfauthor={Diego Ostoja Kowalski}
+}
+
+% Tytuł dokumentu
+\title{
+    \line(1,0){250}\\
+    System Zarządzania Promocjami\\
+    Instrukcja kompilacji\\
+    \line(1,0){250}}
+\author{Antoni Blicharz\\
+        Szymon Dybał\\
+        Jakub Koszorz\\
+        Mikołaj Mroczek\\
+        Diego Ostoja-Kowalski\\}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+
+\newpage
+
+\section{Kompilacja od podstaw}
+
+Pliki \texttt{cleanInstall.bat} oraz \texttt{startIO.bat} służą do kompilacji programu Java wprost z kodu, bez potrzeby ręcznego instalowania JDK, JavaFX, Maven oraz jego pluginów.
+W wierszu poleceń trzeba przejść do poziomu folderu, w którym są umieszczone wszystkie pliki projektu, a następnie uruchomić te dwa pliki w podanej kolejności (np. w Windows Command Line wystarczy wywołać polecenia \texttt{\~{}/cleanInstall.bat} oraz \texttt{\~{}/startIO.bat}).
+Następnie program zostanie uruchomiony z pliku \texttt{target/app-java-1.0-SNAPSHOT.jar}, którego można potem używać.
+
+\section{Kompilacja bez używania skryptów}
+
+Do tej kompilacji potrzebne są zainstalowane następujące narzędzia:
+\begin{itemize}
+    \item Java SE Development Kit w wersji 24.0.1 z ustawioną ścieżką w zmiennej środowiskowej \texttt{PATH}.
+    \item JavaFX w wersji 24.0.1 z ustawioną ścieżką w zmiennej środowiskowej \texttt{PATH}.
+    \item Maven w wersji 4.0.0.
+\end{itemize}
+Jest również potrzebny plik \texttt{pom.xml}, aby zostały zainstalowane i użyte odpowiednie pluginy Maven.
+
+Kompilację następnie wykonuje się przez użycie w wierszu poleceń w folderze z plikami projektu kolejno dwóch poleceń: najpierw \texttt{\~{}/mvn clean install}, a następnie \texttt{\~{}/mvn javafx:run}.
+Takie rozwiązanie od razu również uruchomi aplikację, aby tylko ją skompilować, należy drugie polecenie zastąpić przez polecenie \texttt{\~{}/mvn package}.
+Wynik kompilacji to plik \texttt{target/app-java-1.0-SNAPSHOT.jar}.
+
+\end{document}
