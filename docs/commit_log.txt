@@ -1,0 +1,829 @@
+commit df782e1c98f947fd6923fb877c0a76979ed5f2ef
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 16 11:05:17 2025 +0200
+
+    added compile instructions
+
+commit 349af61796d16a4e626c0422ca0c461f9b57af00
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 15:05:58 2025 +0200
+
+    finished promotions coordinator
+
+commit 12d2bc5cb3555fe4ff7a2376b6bab4c5009c33f3
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 12:17:00 2025 +0200
+
+    refreshing gitignore
+
+commit 7a4d53800525f0a2a9758ee69c8353ff21426eef
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 12:16:15 2025 +0200
+
+    refreshing gitignore
+
+commit c4b79f5344ee5131ace37db4922c4365cddd2bb8
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 12:15:38 2025 +0200
+
+    refreshing gitignore
+
+commit 9fd469d53ea3b898d05c376b5a1829239c194903
+Merge: 5392fd7 168a15c
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 12:14:11 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 5392fd76c2a23a8e2f57a99a59fdbe7b6c3b7ad0
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 12:13:13 2025 +0200
+
+    synchronization with origin
+
+commit 168a15c172157931a9a4d113593618ccc1a0d700
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Sun Jun 15 11:57:50 2025 +0200
+
+    final_version_187
+
+commit 0e5ee3255d0ea26eba06100899f763dc174c1696
+Merge: 06a35e8 1af5449
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 11:24:08 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 06a35e8eea553f677fdadfc19b9e47ade03ecfeb
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 15 11:22:36 2025 +0200
+
+    added modify promotion
+
+commit 1af544904bae629a98552848fa02ac9702242e99
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sat Jun 14 15:06:20 2025 +0200
+
+    scripted
+
+commit 9f24e1c8c84b4386bb8ebe0eac0bd76593622e64
+Merge: 6dbeafb c16f3fd
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sat Jun 14 15:04:41 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 6dbeafbc719e3830300aa22c17b7b9471f7b3bbd
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sat Jun 14 15:04:34 2025 +0200
+
+    withScript
+
+commit c16f3fd5db069facd955bf837c6b5289f08fedb1
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat Jun 14 13:10:39 2025 +0200
+
+    updated activity diagrams and SRS
+
+commit 7de443ca0105c4b98b2d2ed3552179e0a9030f25
+Merge: 0c2f369 57ec686
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sat Jun 14 12:03:14 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 0c2f369668a9b73348577da27b460e082446ae0f
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sat Jun 14 12:02:03 2025 +0200
+
+    workInProgress
+
+commit dcefb06d56787b2c635daa60962e980386996f21
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat Jun 14 09:59:35 2025 +0200
+
+    basic scaffolding for promotions coordinator
+
+commit 57ec6862415f8b8d0def43383e8e17aabcf4ceb8
+Merge: be4e85b bed62ed
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Fri Jun 13 23:05:38 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit be4e85bf70c7e809b0f25be6260540622f9c1543
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Fri Jun 13 23:05:14 2025 +0200
+
+    added getAllRewardsTable
+
+commit bed62ed82fc91df1aa59a8312dea8fe126b8c0c1
+Author: JamesDvez <111461553+JamesDvez@users.noreply.github.com>
+Date:   Fri Jun 13 20:34:22 2025 +0200
+
+    Delete target/classes directory
+
+commit 0b54d956569c7447c344d0b92c9df3f6e78edb75
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Fri Jun 13 16:35:06 2025 +0200
+
+    final version
+
+commit 117ddaf3d06288963e52ebbd86ac0c73b320bb33
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Fri Jun 13 16:32:19 2025 +0200
+
+    final version
+
+commit 947fea81b338a9c2f4dfe32e1ca2ecc80a7d218b
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Fri Jun 13 16:28:53 2025 +0200
+
+    Merged
+
+commit bdd2db72d1b7c9c07f22a67ab043f98b028b4db6
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Fri Jun 13 16:24:05 2025 +0200
+
+    final version
+
+commit 6313fe525e8dbfbcd4006c3ebbe6f07d4af3fd57
+Merge: 46689cc 724e4b0
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Fri Jun 13 16:00:07 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 5bc1d61b0d15a71ae13329e4fd0761233347a495
+Merge: 9a54b77 724e4b0
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Fri Jun 13 15:56:01 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 9a54b776257cc13bf9f1671b799b8c39e0303f95
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Fri Jun 13 15:52:54 2025 +0200
+
+    error
+
+commit 46689ccb5f62e3df702f1a7a60e4f57df250c688
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Fri Jun 13 15:51:46 2025 +0200
+
+    moved things from controllers to services
+
+commit 724e4b08b23e3230c96bcb083eb3a45e151a3556
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Fri Jun 13 15:44:16 2025 +0200
+
+    Remove target/, add .gitignore to ignore compiled files
+
+commit 8eda0f45e32e4960922fd0401587ac299f174af1
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Fri Jun 13 15:38:41 2025 +0200
+
+    poprawione nazwy oraz komentarze
+
+commit 3c0585781843b99a8cb2fc82708376ecae0bbba9
+Merge: 30018e5 9cdf4f2
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Fri Jun 13 11:49:27 2025 +0200
+
+    yes
+
+commit 30018e5cf014137590265f07ec1e1e838be0c4ee
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Fri Jun 13 11:49:02 2025 +0200
+
+    roboczawersja
+
+commit 9cdf4f26304c6bd0c4d2b3be7d505d96dcf3bab4
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Fri Jun 13 11:31:06 2025 +0200
+
+    added product table
+
+commit 0d9138d11e50049787e7d4666e7d7efd13737d05
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 23:55:20 2025 +0200
+
+    added view requests
+
+commit dba3091e7462c81b78fc8a098e43ee99ad936858
+Merge: 4b793c5 a475700
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 22:54:04 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 4b793c59cf1e6187a67feca18c41c4654b23c3a7
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 22:52:33 2025 +0200
+
+    added modify delivery
+
+commit a4757007cc3460ceefccfa2c68f398fe5cc21409
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 22:49:52 2025 +0200
+
+    Works
+
+commit 6abe31b9c567bc45e50af2649a26120bb31c6d73
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 21:59:47 2025 +0200
+
+    fixx
+
+commit 95892b5b6153f915b0c30d3208ae924da7775a7e
+Merge: 37d47b9 8e494d2
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 16:40:50 2025 +0200
+
+    a
+
+commit 37d47b967a252765a2e00b6b0c190e6f29ed0a33
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 16:39:29 2025 +0200
+
+    next
+
+commit 8e494d28cb4bd9c29db84a6744f7b7ddc1b6e328
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 16:38:36 2025 +0200
+
+    added some more confirmation logic
+
+commit d3cc021a3edc3d8e6f8cfe685c67aa095cb475ec
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 16:04:03 2025 +0200
+
+    for the sake of synchronization
+
+commit 9f1f44fb03c28b9a951f170876d0b0d0db91360a
+Merge: 2ed839c bfda67e
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 14:01:50 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 2ed839c388c4ab7204e134c50ea0712d07203ab6
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 14:01:31 2025 +0200
+
+    refactored logistics naming a bit
+
+commit bfda67e523deb2c94d395d978b383a222cbbab8b
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 13:41:13 2025 +0200
+
+    fixedRefactored
+
+commit 89622830361a2c7c9ca796bf93942f46e7668598
+Merge: caf7764 74f4a53
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 13:31:47 2025 +0200
+
+    fixed
+
+commit caf7764d8981be2540309df600aa5fd50b8a0a6e
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 13:29:00 2025 +0200
+
+    refactoredd
+
+commit d155da3baf41ed21bd0164ffab1b6e80dec3cd3d
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 12 13:26:13 2025 +0200
+
+    refactored
+
+commit 74f4a53d6762ca42099bd5bc2bf4c014313e4201
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Thu Jun 12 13:10:19 2025 +0200
+
+    implemented adding and removing deliveries
+
+commit 5ae0f5939563e455e66da8e498a9b30d7eeaecdf
+Merge: ac2beca 1dba1f0
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Wed Jun 11 22:27:03 2025 +0200
+
+    updated diagrams
+
+commit ac2beca483e61efd0af65af11061a007e070278c
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Wed Jun 11 22:22:15 2025 +0200
+
+    updated diagrams
+
+commit 1dba1f0cde51e905ac8dea6f978f8de0863bd9f1
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Wed Jun 11 21:55:43 2025 +0200
+
+    refaktoryzacja
+
+commit 9c843283643a9a50b819ed583371d4e7ffb3135b
+Merge: c969bfd 0580fa3
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Wed Jun 11 12:44:54 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit c969bfdc31dcb255be3e690f01489d53d3d5b7a0
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Wed Jun 11 12:43:35 2025 +0200
+
+    fixing buttons
+
+commit 0580fa30d37a4d7dd073b7602b42a14c5796f6af
+Author: Jakub Koszorz <jakubkoszorz@MacBook-Pro-Jakub.local>
+Date:   Tue Jun 10 02:18:35 2025 +0200
+
+    cosDziala
+
+commit ee96c1fa8d4e6f4497c190aea8159044f2631482
+Author: Jakub Koszorz <jakubkoszorz@MacBook-Pro-Jakub.local>
+Date:   Tue Jun 10 00:22:02 2025 +0200
+
+    pushed
+
+commit 1023fcd2bfa852eade916dfe34530b272d677525
+Author: Jakub Koszorz <jakubkoszorz@MacBook-Pro-Jakub.local>
+Date:   Mon Jun 9 23:22:40 2025 +0200
+
+    Nadpisane
+
+commit aec984221e2623102eeec1c6b2a40c137bf7e5b9
+Merge: 702f522 75ffeed
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 9 22:44:45 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 702f522b1529ef136ebecfa435bf715ee0d44847
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 9 22:42:49 2025 +0200
+
+    added choose delivery panel
+
+commit 75ffeedb016b761861be031b4daefec6e935689d
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Mon Jun 9 20:28:35 2025 +0200
+
+    branch panel naprawiony
+
+commit dcf4469ef09f88de3c94661d756126492dea61d4
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 9 19:51:09 2025 +0200
+
+    working on choosing delivery
+
+commit 94ce8d97856f4b0e35dd96a162686adca14eee42
+Merge: 2ba5f18 a5e3d4d
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 9 19:50:52 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 2ba5f18d567c1bf9e0de06dc440645be507a4ca2
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 9 19:49:35 2025 +0200
+
+    working on choosing delivery
+
+commit a5e3d4dcbf3a015daf7f0c6f2dfe37126c44e40d
+Author: Jakub Koszorz <jakubkoszorz@MacBook-Pro-Jakub.local>
+Date:   Mon Jun 9 19:29:05 2025 +0200
+
+    new
+
+commit a40a405263b7c852995ca968391843254ffd4d38
+Author: Jakub Koszorz <jakubkoszorz@MacBook-Pro-Jakub.local>
+Date:   Mon Jun 9 19:13:57 2025 +0200
+
+    new
+
+commit 313325bc99721876cce059bb504d4d3f7e1fa4c1
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 9 17:44:41 2025 +0200
+
+    added a plan delivery grid
+
+commit 886b8a2d9f4468f3b16fda3c031eefd3820e615b
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Mon Jun 9 12:47:29 2025 +0200
+
+    started adding plan delivery
+
+commit 78522da9748fbe597bcd6adeb5242327d778a7dc
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 8 18:58:32 2025 +0200
+
+    Refactored login, SceneManager, renamed stations to outlets
+
+commit 0970a037fea7c9c480843c226259b9856b5329da
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 8 17:46:59 2025 +0200
+
+    refactored scene setting
+
+commit 8439a33fdc14834091f906b6b0d035b876c62c01
+Merge: 8742c9c 22c99e9
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 8 12:05:24 2025 +0200
+
+    first table
+
+commit 8742c9c26ea4876818db0fe8f7831256969ebeab
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 8 12:04:37 2025 +0200
+
+    first table
+
+commit d97cd413a00b225f260c30955368de5776707ee4
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat Jun 7 20:35:54 2025 +0200
+
+    merged
+
+commit 22c99e99307d57a3fa480d7a46dc612a538df3f9
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Sat Jun 7 19:30:41 2025 +0200
+
+    finałowa wersja panel branch
+
+commit 7fa7362bd0c314ece335c751c94b85838f673ae1
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat Jun 7 14:50:51 2025 +0200
+
+    test
+
+commit 4c2f34cd6688410b05d95ad7bfe47de19ff3b764
+Merge: 7cb5fd6 7986b5b
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat Jun 7 09:18:49 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 7cb5fd60fe4264c508d31c179369ba4907c8ee96
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat Jun 7 09:18:43 2025 +0200
+
+    test
+
+commit 7986b5b800f299a88439ae47d28853f0ca56db13
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sat Jun 7 09:17:19 2025 +0200
+
+    Updated
+
+commit 52616958e132c7929e3cdce92d57287157651575
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat Jun 7 09:06:57 2025 +0200
+
+    working version
+
+commit c627ac0c4414be1b97754cf8e432beca11c9b2e3
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Fri Jun 6 00:40:06 2025 +0200
+
+    Layout
+
+commit ea2152a62b504fc1961eab6057c31e88ff423f13
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Thu Jun 5 23:06:25 2025 +0200
+
+    zip
+
+commit 59ccdc01d8eec66c32d16e0a6b7d44cf299504c7
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Wed Jun 4 19:39:03 2025 +0200
+
+    Dupa
+
+commit 739b3ad51e1729d0ce79d4031ea545dbd7ce43fd
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Wed Jun 4 19:18:49 2025 +0200
+
+    Diegram
+
+commit 06858e08d2002d349920fe491adedc270f1eff22
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 13:43:37 2025 +0200
+
+    Finished SRS
+
+commit cdc077fd380e201cd6221e50fed64958c32644bf
+Merge: 8b11fc4 6d1242c
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 13:42:34 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 8b11fc4a6e5e0e7b4371b51798fd53c454b1e9be
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 13:39:50 2025 +0200
+
+    Finished SRS
+
+commit 445372b56f99dee1591080bcc294c8449ba90553
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 13:39:21 2025 +0200
+
+    Finished SRS
+
+commit 8c35e5ff52cbfcf3a6bbbeadf0e0bba260c2f89f
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 13:33:14 2025 +0200
+
+    Finished SRS
+
+commit 3e6b7a4e87cbc294e46b688e942c73fbfb1918f5
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 11:44:34 2025 +0200
+
+    Completed SRS
+
+commit b9465b18ec2e9cc5caaa2f323bdf2b27a79f7e87
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 11:41:53 2025 +0200
+
+    uhh
+
+commit e43dca37dada8d81dcad7e5dd86e89356fce3bc0
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Tue Jun 3 11:39:35 2025 +0200
+
+    required commit
+
+commit 6d1242c452a9cc60a722b214422781257c83490e
+Author: Jakub Koszorz <jakubkoszorz@Mac.home>
+Date:   Mon Jun 2 20:12:05 2025 +0200
+
+    mergedStuff
+
+commit b7e2d473af8b41e13cf87ee1ebcafc67390c3fd5
+Author: Jakub Koszorz <jakubkoszorz@Mac.home>
+Date:   Mon Jun 2 19:04:11 2025 +0200
+
+    addedDybal
+
+commit b06f1745408016e1957cf9a6923fd09c5fdbe1cc
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sun Jun 1 20:55:11 2025 +0200
+
+    NearlyMerged
+
+commit 6d055e66b4e39388ef1c23b70942de9b2d1e0998
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sun Jun 1 20:27:00 2025 +0200
+
+    wersjaZpomXml
+
+commit 9a17609eada984f9f226f0d1763d8d8762c05e08
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sun Jun 1 20:26:08 2025 +0200
+
+    wersjaZpomXml
+
+commit ee147f02cce996bf8d273b6e7bb5bf345ba0d712
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sun Jun 1 20:14:59 2025 +0200
+
+    polaczone
+
+commit 0fe3477ff1fc3b624124646728f5b3f4d7eaf615
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sun Jun 1 11:15:18 2025 +0200
+
+    Added business side to activity diagram
+
+commit 9a593959fccc0fa28c10183772c093c238eff991
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat May 31 17:14:41 2025 +0200
+
+    Diagram czynności
+
+commit 30b6b9e2c4f8c34a6feba4c8b9aa419ba823dc2f
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat May 31 17:13:11 2025 +0200
+
+    Diagram czynności
+
+commit ed3826f2df0e6910acb3b3fdb1713bdb09a804d4
+Author: d13g0h0h0 <56599994+d13g0h0h0@users.noreply.github.com>
+Date:   Sat May 31 00:31:09 2025 +0200
+
+    Hopefully fixed my failed push
+
+commit 5d547795547cc10a84fa912266b0a385e7cb8b5a
+Author: d13g0h0h0 <56599994+d13g0h0h0@users.noreply.github.com>
+Date:   Sat May 31 00:29:25 2025 +0200
+
+    Hopefully fixed my failed push
+
+commit c5cbd0c75c1b6c6cda7c2a6672a59e56642c410b
+Author: d13g0h0h0 <diego.jamroz@gmail.com>
+Date:   Sat May 31 00:25:30 2025 +0200
+
+    Fixed all the mistakes
+
+commit 2a5e5d84112f44515062191794c5d12cf00fb9b2
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Wed May 28 19:45:47 2025 +0200
+
+    boilerplate
+
+commit cf1504fa0e31b6548094eb84d37e85e242d7af39
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Fri May 23 08:51:32 2025 +0200
+
+    Worked on SRS
+
+commit 9b8e28d7235cf72571a9d2c8afa0b649cfcd233a
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Fri May 23 08:43:39 2025 +0200
+
+    Revert "made some progress on SRS"
+    
+    This reverts commit ea9df304d1900d6523f76484b11fb9b49d484de8.
+
+commit ea9df304d1900d6523f76484b11fb9b49d484de8
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Fri May 23 08:30:38 2025 +0200
+
+    made some progress on SRS
+
+commit c800f6258bd6b62baaa2a7a05f52afd082a7ca43
+Merge: 21fd281 5444a6b
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Wed May 14 13:46:28 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 469a5d7dcd66b2ef6723aa8ba55b2850199d45b8
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Thu May 8 18:10:24 2025 +0200
+
+    skonfigurowalem pom.xml
+
+commit 8aa0f39e1d7e0c72f1389368395d7b6af64e1dee
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Thu May 8 17:42:26 2025 +0200
+
+    Wprowadzono strukture plików adekwatną do architektury trójwarstwowej
+
+commit 5444a6b84064fa0a295420f1d3d12ef49e631f2b
+Author: JamesDvez <111461553+JamesDvez@users.noreply.github.com>
+Date:   Sat May 3 18:17:21 2025 +0200
+
+    Create Maven-Konwersja
+
+commit 21fd281898861167141bebe2b3141dafd78bd825
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sun Apr 27 12:02:49 2025 +0200
+
+    udało mi się zrobić setup żeby działało
+
+commit faf2d53d9f70a089b1e02c235c60458772404069
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sun Apr 27 12:02:04 2025 +0200
+
+    udało mi się zrobić setup żeby działało
+
+commit 76765d5ea3dededb68d89bf257082cd4459c755d
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 16:03:03 2025 +0200
+
+    Added LICENSE and README
+
+commit 0ca87a146b8c2c47945cdd31f7985f8e3607d21f
+Merge: 7327db7 ae897e1
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 15:53:45 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 7327db7af1991d70fc91af523eacc9f995e3af12
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 15:52:51 2025 +0200
+
+    Dodane README i LICENSE
+
+commit 0ef1036e163fe82b1dad4a668fb964f0f4b32d7c
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 15:52:17 2025 +0200
+
+    Dodane README i LICENSE
+
+commit ae897e1313e071b5562160689c8cc890bb2b46e8
+Author: dybalszymon <szymondybal23@gmail.com>
+Date:   Sat Apr 26 15:05:28 2025 +0200
+
+    tekst
+
+commit cfbf99d9cfa4c42ec6c056fc4178fcf91965b527
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Sat Apr 26 15:25:38 2025 +0200
+
+    dodano do .gitignore aby ignorowalo .vscode
+
+commit 7cfa03f4d7dcfff84ae9a3ef9bce3079cf67c207
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Sat Apr 26 15:21:57 2025 +0200
+
+    usunieto smieci
+
+commit 12883200619b6446f708f2749d3109a651f25ee8
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 15:04:33 2025 +0200
+
+    Lepsze instrukcje
+
+commit a6c43454085c9054610074dfc650c0b77f2c376c
+Merge: 9d10f60 5854a06
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 15:02:27 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 9d10f60f3c711934bfd2a7b3a53be01ff70365a0
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 15:02:08 2025 +0200
+
+    Lepsze instrukcje
+
+commit 5854a06196464cff02bc3337d43cf9e6d7a2899c
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Sat Apr 26 14:50:15 2025 +0200
+
+    logika zarzadzania scenami
+
+commit b710cf1134eb22d3055848c24b7767955e3d2852
+Merge: 850c4f4 1e003fc
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 14:50:39 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO into diego
+
+commit 850c4f43409178d5e831ba31679db82603b0f68c
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 14:50:21 2025 +0200
+
+    Testujemy gałęzie
+
+commit 1e003fce3b3f65844d59b6f98f656d1261e63198
+Author: Mikolaj Mroczek <mikolaj.mroczek.dev@gmail.com>
+Date:   Sat Apr 26 14:44:10 2025 +0200
+
+    testttt
+
+commit 30e24f9ffac3e21bcbcb5f38b53aeda8973c130e
+Author: Silentium <kubakas12345@gmail.com>
+Date:   Sat Apr 26 14:36:31 2025 +0200
+
+    dupa
+
+commit cf5aae7c3819cb14b47ffa0a3c4255c5c1a6194f
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 14:26:12 2025 +0200
+
+    main
+
+commit c1fcf55753eaacef3496918d5d4d78cf571f5cfe
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 14:18:20 2025 +0200
+
+    Added the instructions
+
+commit 9e85ac25fbfe00a0d99663fb62f13c11fd76684b
+Merge: c67b405 39a5e51
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 14:04:21 2025 +0200
+
+    Merge branch 'main' of https://github.com/Projekt-IO-Stacje-benzynowe/Projekt-IO
+
+commit 39a5e51a1f4c9d8cf54c776aab6f5894c2cc16a3
+Author: d13g0h0h0 <56599994+d13g0h0h0@users.noreply.github.com>
+Date:   Sat Apr 26 13:59:35 2025 +0200
+
+    Delete LICENSE
+
+commit 8ce01e1d427c378a4123ebe74012b800952f5244
+Author: d13g0h0h0 <56599994+d13g0h0h0@users.noreply.github.com>
+Date:   Sat Apr 26 13:59:26 2025 +0200
+
+    Delete README.md
+
+commit c67b405738753c34a8b4e2f6f5af8becf9641e19
+Author: Diego Ostoja-Kowalski <diego.jamroz@gmail.com>
+Date:   Sat Apr 26 13:57:25 2025 +0200
+
+    First commit
+
+commit 43f8757afc0ab8b2c0ab745a415ee23e35af3a27
+Author: d13g0h0h0 <56599994+d13g0h0h0@users.noreply.github.com>
+Date:   Fri Apr 25 19:10:20 2025 +0200
+
+    Initial commit

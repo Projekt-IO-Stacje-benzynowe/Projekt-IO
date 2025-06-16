@@ -1,3 +1,48 @@
+% Ten plik jest zaprojektowany do użycia z LuaLaTeX.
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{fontspec} % Obsługa czcionek w LuaLaTeX
+\usepackage[polish]{babel}
+\usepackage{geometry} % Ustawienia marginesów
+\geometry{margin=1in}
+\usepackage{hyperref} % Obsługa hiperłączy
+\usepackage{titlesec} % Formatowanie sekcji
+\usepackage[skip=10pt plus1pt]{parskip}
+\usepackage[table]{xcolor}
+\usepackage{float}
+
+% Ustawienia hiperłączy
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Instrukcja obsługi},
+    pdfauthor={Diego Ostoja Kowalski}
+}
+
+% Tytuł dokumentu
+\title{
+    \line(1,0){250}\\
+    System Zarządzania Promocjami\\
+    Instrukcja obsługi\\
+    \line(1,0){250}}
+\author{Antoni Blicharz\\
+        Szymon Dybał\\
+        Jakub Koszorz\\
+        Mikołaj Mroczek\\
+        Diego Ostoja-Kowalski\\}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+
+\newpage
+
+\end{document}
+
 % w których sprawach należy komunikować się z administratorem
 
 % jak wybierać opcje (np. punkty sprzedaży w tabelce)

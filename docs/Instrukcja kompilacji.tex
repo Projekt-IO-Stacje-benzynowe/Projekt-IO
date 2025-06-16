@@ -48,6 +48,7 @@
 \section{Kompilacja od podstaw}
 
 Pliki \texttt{cleanInstall.bat} oraz \texttt{startIO.bat} służą do kompilacji programu Java wprost z kodu, bez potrzeby ręcznego instalowania JDK, JavaFX, Maven oraz jego pluginów.
+Nadal jest jednak wymagane uprzednie zainstalowanie Java SE w wersji 24.0.1.
 W wierszu poleceń trzeba przejść do poziomu folderu, w którym są umieszczone wszystkie pliki projektu, a następnie uruchomić te dwa pliki w podanej kolejności (np. w Windows Command Line wystarczy wywołać polecenia \texttt{\~{}/cleanInstall.bat} oraz \texttt{\~{}/startIO.bat}).
 Następnie program zostanie uruchomiony z pliku \texttt{target/app-java-1.0-SNAPSHOT.jar}, którego można potem używać.
 
@@ -55,7 +56,7 @@ Następnie program zostanie uruchomiony z pliku \texttt{target/app-java-1.0-SNAP
 
 Do tej kompilacji potrzebne są zainstalowane następujące narzędzia:
 \begin{itemize}
-    \item Java SE Development Kit w wersji 24.0.1 z ustawioną ścieżką w zmiennej środowiskowej \texttt{PATH}.
+    \item Java Development Kit w wersji 24.0.1 z ustawioną ścieżką w zmiennej środowiskowej \texttt{PATH}.
     \item JavaFX w wersji 24.0.1 z ustawioną ścieżką w zmiennej środowiskowej \texttt{PATH}.
     \item Maven w wersji 4.0.0.
 \end{itemize}

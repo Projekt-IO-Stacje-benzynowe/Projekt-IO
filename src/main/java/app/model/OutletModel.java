@@ -37,4 +37,9 @@ public class OutletModel {
     public String getRegion(){
         return this.region;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

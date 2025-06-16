@@ -25,4 +25,9 @@ public class ProductModel {
     public String getBrand() {
         return brand;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

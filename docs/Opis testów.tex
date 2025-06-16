@@ -1,0 +1,111 @@
+% Ten plik jest zaprojektowany do użycia z LuaLaTeX.
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{fontspec} % Obsługa czcionek w LuaLaTeX
+\usepackage[polish]{babel}
+\usepackage{geometry} % Ustawienia marginesów
+\geometry{margin=1in}
+\usepackage{hyperref} % Obsługa hiperłączy
+\usepackage{titlesec} % Formatowanie sekcji
+\usepackage[skip=10pt plus1pt]{parskip}
+\usepackage[table]{xcolor}
+\usepackage{float}
+
+% Ustawienia hiperłączy
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Opis testów},
+    pdfauthor={Diego Ostoja Kowalski}
+}
+
+% Tytuł dokumentu
+\title{
+    \line(1,0){250}\\
+    System Zarządzania Promocjami\\
+    Opis testów\\
+    \line(1,0){250}}
+\author{Antoni Blicharz\\
+        Szymon Dybał\\
+        Jakub Koszorz\\
+        Mikołaj Mroczek\\
+        Diego Ostoja-Kowalski\\}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+
+\newpage
+
+\section{Opis testowania}
+
+\subsection{Wstep}
+
+Proces testowania aplikacji został przeprowadzony w celu zapewnienia najwyższej jakości produktu finalnego oraz spełnienia wymagań funkcjonalnych i niefunkcjonalnych klienta.
+
+\subsection{Przebieg testowania}
+
+Testowanie odbywało się w dwóch częściach.
+Testowanie było implementowane równolegle do tworzenia aplikacji, przez osoby odpowiadające jej tworzeniu.
+Miało miejsce również testowanie zwieńczające, wykonywane w końcowym etapie tworzenia projektu.
+Testowaniem końcowym zajmował się tester, który nie miał tak dużej wiedzy na temat wewnętrznego działania aplikacji, co programiści.
+To dało mu możliwość podejścia do aplikacji bez stronniczego patrzenia na nią.
+Mógł się wcielić w rolę użytkownika, widzącego aplikacje po raz pierwszy.
+Oczywiście tester miał dostęp do kodu aplikacji, więc przy mniejszych błędach poprawiał je własnoręcznie, lecz przy większych błędach strukturalnych zostały one zgłaszane do programistów, którzy je poprawiali.
+
+\subsection{Rodzaje testowania}
+
+Testowanie wykonywane przez testera pokrywało zarówno funkcjonalne, jak i niefunkcjonalne wymagania aplikacji.
+Format plików zawierających informacje o znalezionych błędach był następujący:
+\begin{itemize}
+    \item Pierwsza część zawierała informacje o błędach niebędącymi czymś, co nie mogłoby jednoznacznie i obiektywnie być uznane za błąd, ale co znacznie negatywnie wpływało na doświadczenie używania aplikacji.
+    \item W drugiej części opisywane były błędy, które jednoznacznie wskazywały na niepoprawnie działające elementy aplikacji.
+\end{itemize}
+
+Testowanie jednostkowe – tester używał aplikacji z perspektywy użytkowników.
+Szukanie błędów było przeprowadzane za pomocą zwykłego korzystania z aplikacji oraz przy użyciu narzędzia TestFX.
+Sprawdzone były przypadki brzegowe we wszystkich czynnościach, które mógł wykonać użytkownik.
+
+\subsection{Implementowane techniki i narzędzia}
+
+
+Do testów wykorzystano narzędzie TestFX, umożliwiające automatyzację testów interfejsu użytkownika w aplikacjach JavaFX.
+Dodatkowo przeprowadzono testy manualne, weryfikujące poprawność działania funkcjonalności oraz reakcję aplikacji na niestandardowe dane wejściowe.
+W celu śledzenia błędów zastosowano prosty system raportowania w formie plików tekstowych, zawierających opis problemów i ich priorytet.
+
+
+\section{Pierwsza faza testów}
+
+Sekcja pierwsza:
+\begin{itemize}
+    \item W administratorze, w Report Issues po wprowadzeniu potwierdzeniu z wprowadzeniem złej daty zerowane są wszystkie wpisane pola, zamiast tylko pola daty.
+    \item Podanie złej ilości nie wyświetla komunikatu tak jak na przykład podanie złej daty -- przyciski wysłania po prostu nie działa.
+\end{itemize}
+
+Sekcja druga:
+\begin{itemize}
+    \item W administratorze, w Report Issues nie jest odrzucone zgłoszenie błędu w przypadku podania złej godziny w dacie, np. przechodzi zarówno -1.-1.-1 jak i 30.30.30 (powinno być od 0.0.0 do 23.59.59).
+    \item Podczas działania programu na moim komputerze ciągle w terminalu Javy samoistnie wyświetało się "Błąd podczas dodawania danych: Cannot add or update a child row: a foreign key constraint fails (\`{}io\textunderscore{}baza\`{}.\`{}RewardsToIssuance\`{}, CONSTRAINT \`{}RewardsToIssuance\textunderscore{}ibfk\textunderscore{}1\`{} FOREIGN KEY (\`{}IssuanceID\`{}) REFERENCES \`{}RewardIssuance\`{} (\`{}IssuanceID\`{}))".
+    \item Panele analityka i promotora nie działają wcale.
+\end{itemize}
+
+\section{Druga faza testów}
+
+Sekcja pierwsza:
+\begin{itemize}
+    \item Przy zgłaszaniu defektu w panelu pracownika punktu sprzedaży i tworzeniu i modyfikowaniu nowego defektu po zakończeniu operacji powodzeniem powinno się wracać automatycznie do menu.
+\end{itemize}
+
+Sekcja druga:
+\begin{itemize}
+    \item Uruchomienie aplikacji przez plik \texttt{startIO.bat} nie działa -- wyświetla się okienko logowania, a po zalogowaniu się nic się nie dzieje, trzeba odpalać przez \texttt{javafx:run}.
+    \item Przycisk powrotny (przycisk menu po lewej) w promotorze nie działa, a przez to, że nie ma specjalnego przycisku ,,powrót'' jak w operacjach pracownika punktu sprzedaży, a po udanej operacji nie powraca się automatycznie do menu, utykamy na tym panelu i trzeba się wylogować.
+    \item W sekcji logistyka patrzenie na zapytania na stacji centralnej w Warszawie nadal prowadzi do pustej strony.
+    \item Po zgłoszeniu przyjęcia dostawy w panelu pracownika punktu sprzedaży aplikacja przechodzi od razu do zgłaszania usterki (nie wiem, czy to celowo).
+\end{itemize}
+
+\end{document}

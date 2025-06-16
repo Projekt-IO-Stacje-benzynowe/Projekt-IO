@@ -51,6 +51,7 @@
 
 Ten dokument opisuje architekturę oprogramowania Systemu Zarządzania Promocjami.
 Tłumaczy on zastosowany wzorzec architekturalny oraz to, które części oprogramowania realizują którą jego część.
+Opisuje on również, dlaczego zostały zastosowane przez nas różne narzędzia do stworzenia oprogramowania.
 
 \subsection{Definicje}
 
@@ -79,6 +80,9 @@ Opierając się na idei takiej jak \href{https://quantiphi.com/blog/an-introduct
     \item \textbf{View} -- warstwa odpowiadająca za faktyczne wyświetlanie interfejsu graficznego, komunikująca się z warstwą \texttt{Controller}.
     Należą do niej panele \texttt{.fxml} zawarte w \texttt{src/main/java/app/resources}, jak również klasy \texttt{PanelList.java} i\linebreak\texttt{SceneManager.java}.
 \end{itemize}
+
+Została ona wybrana ze względu na prostotę jej implementacji z użyciem JavaFX oraz jasny podział obowiązków warstw.
+Definiowanie panelu w pliku \texttt{.fxml} jest bardzo szybkie i łatwo jest utworzyć nowy panel z odpowiednimi elementami, a następnie zdefiniować odpowiednie metody klas w warstwach Controller i Service, rozdzielając między nie niezbędne importy klas takich jak \texttt{RepositorySQL.java} czy \texttt{SceneManager.java} do nich i ograniczając skomplikowanie zależności modułów.
 
 Większość plików oprogramowania w prosty sposób realizuje tę architekturę przez powiązanie ze sobą odpowiadających sobie plików \texttt{*Service.java}, \texttt{*Controller.java} oraz \url{*\textunderscore panel.fxml}, gdzie pierwsze dwa pliki są nazwane w CamelCase, a ostatni w snake\textunderscore{}case.
 Pliki \texttt{*Model.java} są z kolei używane uniwersalnie, w zależności od funkcjonalności wymaganych w konkretnych panelach.
@@ -113,5 +117,26 @@ Klasy \texttt{LoginValidation.java} i \texttt{TypeValidation.java} służą spra
 Klasa \texttt{Main.java} jest odpowiedzialna za rozpoczęcie działania interfejsu graficznego.
 Klasa \texttt{SceneManager.java} służy ładowaniu, usuwaniu i przełączaniu między panelami, wykorzystując do tego mapę ich nazw w klasie \texttt{PanelList.java}.
 Klasy zawarte w \url{src/main/java/app/controllers/shared} oraz powiązane z nimi pliki \texttt{.fxml} służą wyświetlaniu bocznego panelu użytkownika i zapewnianiu miejsca na podpanele realizujące wymagania funkcjonalne.
+
+\subsection{Przechowywanie wybranych opcji}
+
+Klasa \texttt{Session.java} jest odpowiedzialna za przechowywanie informacji o zalogowanym użytkowniku oraz o elementach wybranych w poprzednich panelach t.j. punkt sprzedaży czy planowana dostawa do modyfikacji.
+
+\subsection{Tworzenie tabel}
+
+Ze względu na większą złożoność procesu tworzenia tabel, to zadanie zostało oddelegowane do specjalnej klasy \texttt{TableService.java}.
+
+\section{Zastosowane narzędzia}
+
+W projekcie zastosowano następujące narzędzia:
+\begin{itemize}
+    \item \textbf{Java} -- zespół miał już wcześniej styczność z tym językiem programowania oraz wczesne eksploracje wskazały na bogatą gamę narzędzi do tworzenia aplikacji okienkowych i łączność z bazą danych, co dokładnie odpowiadało potrzebom projektu.
+    \item \textbf{JavaFX} -- ten zestaw rozszerzeń do języka Java okazał się być zasobny w przeróżne gotowe elementy interfejsu graficznego, co uczyniło proces deweloperski bardzo prosty.
+    Zwłaszcza przydatne były takie elementy jak \texttt{TableView} i \texttt{ComboBox}, które można od razu populować własnymi obiektami warstwy Model i które automatycznie rejestrują i przekazują informację o zaznaczonym polu, co było niesamowitym uproszczeniem logiki wyświetlania i pobierania z nich danych.
+    Podobieństwo plików \texttt{.fxml} do struktury języka HTML ułatwiła też wdrożenie się części zespołu zaznajomionej z tworzeniem stron internetowych.
+    \item \textbf{MySQL} -- odmiana SQL, która szybko działa na serwerach zdalnych usługi AWS, jednocześnie naliczając znacznie mniej kosztów, niż np. Microsoft SQL Server.
+    \item \textbf{Maven} -- narzędzie umożliwiające usprawnienie procesu kompilacji i dodawania nowych modułów (widocznych w pliku \texttt{pom.xml}), co pozwala na korzystanie z gotowych rozwiązań bardziej zaawansowanych problemów i większą przenaszalność kodu dla zespołu deweloperskiego.
+    Kluczowe były tutaj pluginy do włączania JavaFX (\texttt{javafx-controls}, \texttt{javafx-fxml}), łączenia się z bazą danych (\texttt{mysql-connector-java}), tworzenia plików PDF i wypełniania ich wykresami (\texttt{pdfbox}, \texttt{itextpdf}, \texttt{jfreechart}, \texttt{fontbox}) oraz utworzenia API dla systemu kasowego komunikującego się plikami JSON (\texttt{jackson-databind}).
+\end{itemize}
 
 \end{document}
