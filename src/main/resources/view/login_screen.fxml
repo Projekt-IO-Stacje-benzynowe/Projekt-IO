@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Tło -->
+    <children>
+        <ImageView fitWidth="400" preserveRatio="true">
+            <image>
+                <Image url="file:resources/icon_top_center_on_blue.png" />
+            </image>
+        </ImageView>
+
+        <!-- Formularz logowania -->
+        <VBox alignment="CENTER" spacing="10" prefWidth="300">
+            <padding>
+                <Insets top="120" right="40" bottom="40" left="40" />
+            </padding>
+            <children>
+                <Label text="Retail Management" style="-fx-font-size: 24px; -fx-font-family: 'Arial';" />
+                <TextField promptText="Email address" />
+                <PasswordField promptText="Password" />
+                <Button text="Log in" maxWidth="Infinity" />
+                <Hyperlink text="Forgot password?" />
+            </children>
+        </VBox>
+    </children>
+</StackPane>

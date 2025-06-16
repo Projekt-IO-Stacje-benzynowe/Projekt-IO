@@ -1,0 +1,275 @@
+% Ten plik jest zaprojektowany do użycia z LuaLaTeX.
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{fontspec} % Obsługa czcionek w LuaLaTeX
+\usepackage[polish]{babel}
+\usepackage{geometry} % Ustawienia marginesów
+\geometry{margin=1in}
+\usepackage{hyperref} % Obsługa hiperłączy
+\usepackage{titlesec} % Formatowanie sekcji
+\usepackage[skip=10pt plus1pt]{parskip}
+
+% Ustawienia hiperłączy
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Specyfikacja Wymagań Oprogramowania},
+    pdfauthor={Diego Ostoja Kowalski}
+}
+
+% Tytuł dokumentu
+\title{
+    \line(1,0){250}\\
+    System Zarządzania Promocjami\\
+    Specyfikacja Wymagań Oprogramowania\\
+    \line(1,0){250}}
+\author{Antoni Blicharz\\
+        Szymon Dybał\\
+        Jakub Koszorz\\
+        Mikołaj Mroczek\\
+        Diego Ostoja-Kowalski\\}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+\tableofcontents
+\newpage
+
+\section{Wprowadzenie}
+
+\subsection{Cel dokumentu}
+Celem tego dokumentu jest dostarczenie szczegółowego opisu wymagań dla Systemu Zarządzania Promocjami.
+Dokument ten opisuje wymagania funkcjonalne i niefunkcjonalne, które muszą być spełnione przez produkt.
+Jest on przeznaczony dla potencjalnych użytkowników oraz projektantów i programistów chcących wykorzystać ten system.
+
+\subsection{Zakres produktu}
+System ma na celu automatyzację procesu zarządzania promocjami produktów w sieciach handlowych takich jak stacje benzynowe, supermarkety i inne punkty sprzedaży detalicznej.
+Umożliwi on pracownikom sieci handlowych dodawanie, edytowanie i usuwanie promocji, a także generowanie raportów dotyczących ich skuteczności.
+System umożliwi też pracownikom koordynowanie dostaw nagród promocyjnych i utylizacji defektów.
+Będzie on również umożliwiał zintegrowanie procesu wydawania produktów promocyjnych z systemem kasowym, co pozwoli na automatyczne zarządzanie stanami magazynowymi.
+
+
+\subsection{Definicje, akronimy i skróty}
+
+\textbf{Promocja} -- czas, w którym nagroda jest wydawana klientom po spełnieniu przez nich wymagań kupna konkretnych produktów podczas sprzedaży detalicznej.
+Dopóki jeszcze nie nastąpiła data rozpoczęcia promocji, istnieje możliwość edycji wszystkich atrybutów promocji.
+W trakcie jej trwania istnieje tylko możliwość edycji czasu zakończenia promocji, a po zakończeniu promocji nie ma możliwości zmiany jakichkolwiek jej atrybutów.
+
+\textbf{Produkt} -- pojedynczy towar o określonym kodzie w systemie, który jest sprzedawany w punktach sprzedaży sieci handlowej.
+
+\textbf{Nagroda} -- pojedynczy towar o określonym kodzie w systemie, który jest przekazywany klientowi po spełnieniu przez niego wymagań określonych w promocji.
+
+\textbf{Punkt sprzedaży} -- pojedynczy punkt, w którym odbywa się sprzedaż detaliczna w ramach sieci handlowej.
+
+\textbf{Dostawa} -- przekazanie określonej liczby nagród z magazynu centralnego do poszczególnych punktów sprzedaży.
+
+\textbf{Magazyn/stan magazynowy} -- określa liczbę nagród o określonych kodach w określonym punkcie sprzedaży.
+
+\textbf{Defekt} -- nagroda uszkodzona w trakcie transportu lub w trakcie przebywania w punkcie sprzedaży, nienadająca się do wydania klientowi.
+
+\section{Opis ogólny}
+
+\subsection{Perspektywa produktu}
+
+System zarządzania promocjami jest zaprojektowany tak, aby był przystosowywalny jako część większego systemu zarządzania sprzedażą w sieciach handlowych.
+Zawiera on interfejs do integracji z systemami kasowymi, jak również osobny system do zarządzania stanem magazynowym i generowania raportów.
+
+\subsection{Funkcje produktu}
+
+\begin{itemize}
+    \item Tworzenie i edytowanie promocji
+    \begin{itemize}
+        \item Dodawanie nowej promocji
+        \item Zmiana daty końcowej promocji
+        \item Zmiana towarów promocyjnych przypisanych do promocji
+        \item Usuwanie promocji
+    \end{itemize}
+    \item Integracja z systemem kasowym
+    \begin{itemize}
+        \item Obliczanie, jakie towary promocyjne należy wydać
+        \item Automatyczne aktualizowanie stanów magazynowych
+    \end{itemize}
+    \item Zarządzanie stanem magazynowym
+    \begin{itemize}
+        \item Planowanie dostawy towarów promocyjnych
+        \item Zgłaszanie przyjęcia dostawy towarów promocyjnych
+        \item Monitorowanie stanów magazynowych
+        \item Wysłanie zapytania o dodatkową dostawę towarów promocyjnych
+        \item Wyświetlanie zapytań o dodatkowe dostawy towarów promocyjnych
+    \end{itemize}
+    \item Zarządzanie defektywnymi towarami promocyjnymi
+    \begin{itemize}
+        \item Zgłaszanie defektów towarów promocyjnych
+        \item Planowanie utylizacji wadliwych towarów promocyjnych
+    \end{itemize}
+    \item Generowanie raportów dotyczących skuteczności promocji
+\end{itemize}
+
+\subsection{Klasy użytkowników}
+
+Przewidywani użytkownicy Systemu Zarządzania Promocjami będą należeć do dokładnie jednej z poniższych pięciu grup:
+\begin{itemize}
+    \item \textbf{Administrator bazy danych} -- pracownik sieci handlowej zajmujący się utrzymaniem bazy danych przechowującej dane Systemu.
+    Jest on doświadczony w używaniu języka SQL, utrzymywaniu baz danych systemów sieci handlowej i oczekuje łatwej do zrozumienia struktury tabel w dostarczonej bazie danych.
+    \item \textbf{Analityk biznesowy} -- pracownik sieci handlowej odpowiedzialny za podsumowanie danych dotyczących promocji w celu podejmowania decyzji o przyszłych działaniach przedsiębiorstwa.
+    Jest on wprawny w używaniu komputera osobistego i przyzwyczajony do używania wykresów do ilustracji danych.
+    \item \textbf{Koordynator logistyki} -- pracownik sieci handlowej odpowiedzialny za planowanie dostaw nagród do punktów sprzedaży.
+    Pracuje on na komputerze osobistym, ma doświadczenie w organizowaniu dostaw produktów sieci handlowej i wymaga klarownego interfejsu graficznego.
+    \item \textbf{Koordynator promocji} -- pracownik sieci handlowej odpowiedzialny za planowanie nowych promocji i zarządzanie obecnymi.
+    Pracuje on na komputerze osobistym, ma doświadczenie w organizowaniu promocji i wymaga klarownego interfejsu graficznego.
+    \item \textbf{Pracownik punktu sprzedaży} -- pracownik sieci handlowej odpowiedzialny za przeprowadzanie transakcji sprzedaży detalicznej w punkcie sprzedaży.
+    Pracuje on w jednym punkcie sprzedaży i wymaga przejrzystego, prostego interfejsu graficznego, którego da się używać z interfejsu systemu kasowego.
+\end{itemize}
+
+\subsection{Środowisko operacyjne}
+
+System będzie działał na urządzeniach z systemem operacyjnym Windows 11 lub macOS 15 Sequoia.
+
+\subsection{Ograniczenia implementacji}
+
+System będzie ograniczony czasowo do połowy czerwca 2025, w czasie której musi zostać on dostarczony.
+Ze względu na mały budżet zespołu deweloperskiego będzie on łączył się z pojedynczą bazą danych MySQL osadzoną na serwerach Amazon Web Services.
+Przez łączenie się ze zdalną bazą danych za pośrednictwem Internetu, System będzie musiał implementować autoryzację użytkowników poprzez logowanie się w celu bezpieczeństwa danych sieci handlowej.
+
+\subsection{Dokumentacja dla użytkownika}
+
+Aplikacja będzie dostarczona wraz z instrukcją użytkownika dostępną w głównym folderze kodu źródłowego w pliku \texttt{docs/Instrukcja użytkownika.pdf}.
+
+\section{Wymagania szczegółowe}
+
+\subsection{Wymagania funkcjonalne}
+
+\subsubsection{Zarządzanie promocjami}
+
+Koordynatorzy promocji, którzy definiują i nadzorują proces planowania i przebiegu promocji, będą mieć dostęp do następujących funkcjonalności:
+\begin{itemize}
+    \item \textbf{Dodawanie promocji}:
+    Promocja musi być określona przez daty rozpoczęcia i zakończenia, obejmowany produkt i oferowaną nagrodę, oraz informacje o ilości kupionych produktów, za którą jest wydawana nagroda.
+    Promocja może być tylko planowana z datami rozpoczęcia i zakończenia późniejszymi od daty bieżącej, oraz datą zakończenia poźniejszą od daty rozpoczęcia. 
+    \item \textbf{Edycja promocji}:
+    Przed datą rozpoczęcia promocji można zmieniać dowolne dane określające promocję, po jej rozpoczęciu można zmieniać jedynie jej datę końcową, a po jej zakończeniu nie można zmieniać żadnych jej atrybutów.
+    Edycja danych musi zachować warunki ,,data rozpoczęcia > data bieżąca'' i ,,data zakończenia > data rozpoczęcia''.
+    Musi ona zawierać obejmowany produkt oraz wydawaną nagrodę.
+    \item \textbf{Usuwanie promocji}:
+    Promocja może zostać usunięta z systemu tylko wtedy, gdy jeszcze się nie rozpoczęła, t.j. musi spełniać warunek ,,data rozpoczęcia > data bieżąca''.
+\end{itemize}
+
+\subsubsection{Zarządzanie stanem magazynowym}
+
+Koordynatorzy logistyki, którzy dbają, aby w trakcie trwania promocji nie następowało przepełnienie ani zbytnie opróżnienie magazynów nagród, będą mieć dostęp do następnych funkcjonalności:
+\begin{itemize}
+    \item \textbf{Monitorowanie stanu magazynowego}:
+    Można wyświetlić bieżące stany magazynowe wszystkich punktów sprzedaży z podziałem na poszczególne nagrody.
+    \item \textbf{Planowanie dostawy nagród}:
+    Dostawa jest określana przez datę dostawy, poźniejszą od daty bieżącej, oraz ilości poszczególnych typów nagród dostarczanych w danej dostawie.
+    Sam proces wysyłki nagród jest realizowany poza Systemem.
+    \item \textbf{Wyświetlanie zapytań o dodatkowe dostawy nagród}:
+    Dla każdego punktu sprzedaży, w którym zgłoszono zapytanie o dodatkową dostawę nagród, można wyświetlić wszystkie takie zapytania.
+    Jeżeli zostanie ono uznane za zasadne, można na jego podstawie zaplanować nową dostawę nagród.
+\end{itemize}
+
+Pracownicy punktów sprzedaży, którzy zajmują się przyjmowaniem dostaw nagród i wydawaniem ich klientom sprzedaży detalicznej, będą mogli korzystać z poniższych funkcjonalności:
+\begin{itemize}
+    \item \textbf{Zgłaszanie przyjęcia dostawy nagród}:
+    Po udanym procesie wysyłki nagród do punktu sprzedaży, jego pracownik musi zatwierdzić jego przyjęcie w Systemie.
+    Tylko w ten sposób może on zwiększyć stan magazynowy swojego punktu sprzedaży.
+    W trakcie zgłaszania przyjęcia dostawy można od razu zgłosić liczbę defektów w dostawie.
+    \item \textbf{Wysłanie zapytania o dodatkową dostawę nagród}:
+    Pracownik punktu sprzedaży może samodzielnie kontrolować stan magazynowy swojego punktu sprzedaży i wysłać zapytanie o dodatkową dostawę nagród, jeżeli jest ich za mało w magazynie.
+    Takie zapytanie jest potem możliwa do wyświetlenia przez koordynatora logistyki.
+\end{itemize}
+
+\subsubsection{Integracja z systemem kasowym}
+
+System kasowy w punkcie sprzedaży, oprócz już w nim istniejącej funkcjonalności obsługi transakcji detalicznych, będzie również sprawdzał, jaka ilość poszczególnych nagród należy się klientowi sprzedaży detalicznej.
+Będzie on wywoływał funkcję przez API Systemu Zarządzania Promocjami, w którym jest zalogowany pracownik punktu sprzedaży, która przyjmie liczby produktów sprzedanych w obecnej transakcji i odpowie informacjami o należących się nagrodach.
+Po potwierdzeniu wydania ich przez pracownika nastąpi odjęcie za stanu magazynowego odpowiedniej liczby wydanych nagród.
+
+\subsubsection{Zarządzanie defektami}
+
+Pracownik punktu sprzedaży może zgłosić defekty, które powstały podczas transportu lub podczas przebywania w punkcie sprzedaży.
+Po zgłoszeniu określonej liczby defektów danego typu nagrody System odejmuje od stanu magazynowego tej nagrody podaną liczbę sztuk, jeżeli nie przekracza ona obecnego stanu magazynowego.
+
+\subsubsection{Generowanie raportów}
+
+Analityk biznesowy, który zajmuje się analizą efektów promocji na sprzedaż produktów, ma możliwość generowania następujących raportów w formacie PDF:
+\begin{itemize}
+    \item \textbf{Raport produktu}:
+    Ilustruje on na wykresach słupkowych liczbę sprzedaży danego produktu w jednym roku w poszczególnych miesiącach.
+    Może on być generowany dla całej sieci handlowej lub dla poszczególnych punktów sprzedaży.
+    \item \textbf{Raport nagród}:
+    Ilustruje on na wykresach słupkowych liczbę wydań nagród w jednym roku w poszczególnych miesiącach.
+    Może on być generowany dla całej sieci handlowej lub dla poszczególnych punktów sprzedaży.
+\end{itemize}
+
+\subsubsection{Dodatkowe funkcjonalności}
+
+Administrator bazy danych, który zajmuje się utrzymaniem bazy danych Systemu, ma dostęp do następujących funkcjonalności:
+\begin{itemize}
+    \item \textbf{Zarządzanie użytkownikami}:
+    Administrator bazy danych definiuje użytkowników Systemu przy użyciu bazy danych.
+    Każdy użytkownik posiada unikalny identyfikator, adres email, hasło oraz jest przypisany do odpowiedniej klasy użytkowników.
+    \item \textbf{Zarządzanie nagrodami}:
+    Administrator bazy danych definiuje nagrody przy użyciu bazy danych.
+    Każda nagroda posiada unikalny identyfikator, nazwę oraz koszt jednostkowy jej zakupu od producenta.
+    \item \textbf{Zarządzanie produktami}:
+    Administrator bazy danych definiuje produkty przy użyciu bazy danych.
+    Każdy produkt posiada unikalny identyfikator, nazwę, koszt jednostkowy jego zakupu od producenta i cenę sprzedaży detalicznej.
+    \item \textbf{Zarządzanie punktami sprzedaży}:
+    Administrator bazy danych definiuje punkty sprzedaży przy użyciu bazy danych.
+    Każdy punkt sprzedaży posiada unikalny identyfikator, nazwę i adres.
+\end{itemize}
+
+\subsection{Wymagania interfejsów}
+
+\subsubsection{Interfejsy użytkownika}
+
+Wszyscy użytkownicy Systemu Zarządzania Promocjami poza administratorami bazy danych potrzebują czytelnych ekranów do realizacji wszystkich swoich funkcjonalności.
+Pierwszym jego widocznym ekranem jest ekran logowania, w którym użytkownik podaje swój adres email i hasło, które są autentyfikowane przez bazę danych.
+Po zalogowaniu się do Systemu użytkownik widzi odpowiedni ekran, zgodny z jego klasą, na którym umieszczone są przyciski.
+Wybór przycisku powoduje przejście do odpowiedniej akcji, szczegóły tego procesu są opisane w pliku \texttt{docs/Diagram czynności.pdf}.
+
+\subsubsection{Interfejsy programowe}
+
+Wszystkie funkcjonalności powinny być wykonywane poprzez połączenie internetowe ze zdalną bazą danych Systemu, które wymaga logowania użytkownika.
+
+\subsubsection{Interfejsy sprzętowe}
+
+Nie zidentyfikowano żadnych wymaganych interfejsów sprzętowych.
+
+\subsubsection{Interfejsy komunikacyjne}
+
+Funkcjonalność integracji z systemem kasowym powinna być realizowana przez API dostępne lokalnie na urządzeniu, na którym jednocześnie działa system kasowy oraz interfejs użytkownika, do którego zalogowany jest pracownik punktu sprzedaży. 
+
+\subsection{Wymagania niefunkcjonalne}
+
+\subsubsection{Użyteczność}
+
+Cały interfejs użytkownika ma być realizowany w języku angielskim i mieć kolorystykę umożliwiającą korzystanie z niego przez osoby ze ślepotą barw.
+System musi posiadać mechanizm logowania, który daje użytkownikom dostęp do funkcjonalności odpowiadających ich klasie użytkownika.
+
+\subsubsection{Bezpieczeństwo}
+
+System powinien udostępniać użytkownikom dostęp tylko do czytania, tworzenia, modyfikowania i usuwania tylko tych rekordów bazy danych, z którymi należy wykonywać te czynności, aby wykonywać funkcjonalności wymagane dla danego użytkownika.
+
+\subsubsection{Wydajność}
+
+System powinien obsługiwać do 1000 punktów sprzedaży i w zakresie jednoczesnej aktywności do 20\% wszystkich punktów sprzedaży powinien zwracać odpowiedź w ciągu maksymalnie 10 sekund.
+
+\subsubsection{Przenaszalność}
+
+Interfejs użytkownika powinien działać na urządzeniach z systemem Windows 11 lub macOS 15 Sequoia, gdzie jest zainstalowane oprogramowanie Java SE Development Kit w wersji 24.0.1 oraz JavaFX w wersji 24.0.1.
+Baza danych powinna działać na serwerze z zainstalowanym oprogramowaniem MySQL w wersji 8.0.33.
+
+\section{Załączniki}
+
+\begin{itemize}
+    \item Załącznik 1: ...
+    \item Załącznik 2: ...
+\end{itemize}
+
+\end{document}

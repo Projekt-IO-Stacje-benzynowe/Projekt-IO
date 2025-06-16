@@ -1,0 +1,16 @@
+docs/*.aux
+docs/*.fdb_latexmk
+docs/*.fls
+docs/*.log
+docs/*.synctex.gz
+docs/*.xdv
+docs/*.vscode
+mv_info.txt
+docs/*.toc
+docs/*.out
+docs/*.svg
+.vscode
+build.*
+run.*
+target/
+*.log

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane
+    fx:id="contentPane"
+    style="-fx-background-color: #fafafa;"
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="app.controllers.control_panel.logistics_coordinator_section.ViewRequestsController">
+    <top>
+        <HBox minWidth="100" spacing="20 " alignment="CENTER">
+            <Label text="Select an option:"/>
+            <Text text="" fx:id="messageText"/>
+            <Button mnemonicParsing="false" onAction="#goToApproveRequest" prefHeight="35.0" prefWidth="100.0" text="Approve request"/>
+            <Button mnemonicParsing="false" onAction="#deleteRequest" prefHeight="35.0" prefWidth="100.0" text="Delete request"/>
+        </HBox>
+    </top>
+    <left>
+    </left>
+    <center>
+        <StackPane fx:id="tablePane">
+        </StackPane>
+    </center>
+    <right>
+
+    </right>
+    <bottom>
+    </bottom>
+</BorderPane>
